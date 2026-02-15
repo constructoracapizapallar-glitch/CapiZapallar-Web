@@ -1,20 +1,103 @@
 :root {
-    /* Fondos */
-    --bg-primary: #020202;
-    --bg-secondary: #0A0A0B;
-    --bg-tertiary: #111113;
+    /* --- LIGHT MODE (Default - Pastel/Neutral) --- */
+    /* Backgrounds: Soft Creams & Sand */
+    --bg-primary: #FDFBF7;
+    --bg-secondary: #F4F1EA;
+    --bg-tertiary: #EAE6dc;
 
-    /* Acento Primario: Refined Gold */
-    --primary-500: #C5A059;
-    --primary-600: #A88648;
-    --primary-rgb: 197, 160, 89;
+    /* Accents: Muted Gold & Earthy Tones */
+    --primary-500: #D4AF37;
+    /* Classic Gold */
+    --primary-600: #B4942D;
+    --primary-rgb: 212, 175, 55;
 
-    /* Textos */
-    --text-primary: #FFFFFF;
-    --text-secondary: #D1D1D6;
-    --text-tertiary: #8E8E93;
+    /* Text: Soft Charcoal (Not pure black) */
+    --text-primary: #2C2C2C;
+    --text-secondary: #595959;
+    --text-tertiary: #8C8C8C;
+
+    /* UI Elements */
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.12);
+    --nav-bg-scrolled: rgba(253, 251, 247, 0.95);
+    --glow-color: rgba(212, 175, 55, 0.08);
+
+    --input-bg: rgba(0, 0, 0, 0.04);
+    --input-border: rgba(0, 0, 0, 0.1);
+    --input-focus-bg: rgba(0, 0, 0, 0.08);
 
     --transition-base: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- DARK MODE (System Preference) --- */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        /* Soft Charcoal/Slate - No extreme black */
+        --bg-primary: #1A1A1D;
+        --bg-secondary: #252528;
+        --bg-tertiary: #2E2E31;
+
+        --primary-500: #E6C288;
+        --primary-600: #C5A059;
+
+        --text-primary: #F2F2F7;
+        --text-secondary: #C7C7CC;
+        --text-tertiary: #98989D;
+
+        --glass-bg: rgba(30, 30, 35, 0.6);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --nav-bg-scrolled: rgba(26, 26, 29, 0.9);
+        --glow-color: rgba(230, 194, 136, 0.1);
+
+        --input-bg: rgba(255, 255, 255, 0.03);
+        --input-border: rgba(255, 255, 255, 0.1);
+        --input-focus-bg: rgba(255, 255, 255, 0.07);
+    }
+}
+
+/* --- DARK MODE (Manual Override) --- */
+[data-theme="dark"] {
+    --bg-primary: #1A1A1D;
+    --bg-secondary: #252528;
+    --bg-tertiary: #2E2E31;
+
+    --primary-500: #E6C288;
+    --primary-600: #C5A059;
+
+    --text-primary: #F2F2F7;
+    --text-secondary: #C7C7CC;
+    --text-tertiary: #98989D;
+
+    --glass-bg: rgba(30, 30, 35, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --nav-bg-scrolled: rgba(26, 26, 29, 0.9);
+    --glow-color: rgba(230, 194, 136, 0.1);
+
+    --input-bg: rgba(255, 255, 255, 0.03);
+    --input-border: rgba(255, 255, 255, 0.1);
+    --input-focus-bg: rgba(255, 255, 255, 0.07);
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 16px;
+    font-size: 1.2rem;
+    transition: var(--transition-base);
+    color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+    background: var(--glass-bg);
+    transform: rotate(15deg);
 }
 
 * {
@@ -29,6 +112,14 @@ body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Fix for default blue links */
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 h1,
@@ -37,6 +128,7 @@ h3,
 .label-upper {
     font-family: 'Plus Jakarta Sans', sans-serif;
     letter-spacing: -0.02em;
+    color: var(--text-primary);
 }
 
 .container {
@@ -64,9 +156,9 @@ h3,
 
 .navbar.scrolled {
     padding: 16px 0;
-    background: rgba(2, 2, 2, 0.85);
+    background: var(--nav-bg-scrolled);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .navbar-container {
@@ -88,7 +180,7 @@ h3,
 }
 
 .logo-text {
-    color: white;
+    color: var(--text-primary);
     font-size: 1.4rem;
     font-weight: 800;
 }
@@ -107,7 +199,7 @@ h3,
 .mobile-menu-toggle span {
     width: 30px;
     height: 2px;
-    background: white;
+    background: var(--text-primary);
     transition: 0.3s;
 }
 
@@ -132,6 +224,8 @@ h3,
 .nav-links {
     display: flex;
     gap: 40px;
+    align-items: center;
+    /* Fix icon alignment */
 }
 
 @media (max-width: 768px) {
@@ -414,10 +508,10 @@ h3,
 .form-group textarea {
     width: 100%;
     padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 12px;
-    color: white;
+    color: var(--text-primary);
     font-size: 1rem;
     outline: none;
     transition: var(--transition-base);
@@ -426,7 +520,7 @@ h3,
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--primary-500);
-    background: rgba(255, 255, 255, 0.07);
+    background: var(--input-focus-bg);
 }
 
 .btn-full {
@@ -625,7 +719,7 @@ h3,
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(168, 134, 72, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
@@ -639,7 +733,7 @@ h3,
 .about::before {
     bottom: -200px;
     right: -200px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
 }
 
 .testimonials::before {
@@ -656,23 +750,23 @@ h3,
     z-index: 2;
 }
 
-/* Default Glass Card */
+/* Default Glass Card - Highlighted per request */
 .glass-card {
-    background: rgba(20, 20, 22, 0.7);
+    background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    /* More visible border */
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.1);
+    /* Stronger shadow */
     border-radius: 24px;
+    transition: var(--transition-base);
 }
 
 .service-card-back {
     /* Stronger glass for flip cards */
-    background: rgba(15, 15, 15, 0.85);
+    background: var(--bg-tertiary);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(168, 134, 72, 0.1);
-    /* Subtle gold tint border */
+    border: 1px solid var(--primary-500);
 }
 
 /* Ensure images cover properly */
@@ -695,6 +789,9 @@ h3,
 .service-title-front {
     font-size: 1.8rem;
     font-weight: 700;
+    color: white;
+    /* Force white for contrast on dark overlay */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .service-card-back {
@@ -811,7 +908,7 @@ h3,
 /* --- Footer --- */
 .footer {
     padding: 120px 0 60px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--glass-border);
 }
 
 .footer-grid {
@@ -832,7 +929,7 @@ h3,
 }
 
 .social-link {
-    color: white;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid var(--primary-500);
@@ -854,7 +951,7 @@ h3,
 }
 
 .footer-links a:hover {
-    color: white;
+    color: var(--primary-500);
 }
 
 .footer-bottom {

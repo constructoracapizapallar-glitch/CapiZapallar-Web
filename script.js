@@ -107,6 +107,42 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto'; // Restore scroll
     };
 
+    // 8. Theme Toggle Logic
+    const themeBtn = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    // Helper to update icon
+    function updateIcon() {
+        // If data-theme is dark, or no data-theme but system is dark
+        const isDark = html.getAttribute('data-theme') === 'dark' ||
+            (!html.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        themeBtn.querySelector('.theme-icon').textContent = isDark ? '☀️' : '🌙';
+    }
+
+    // Check saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+    }
+    updateIcon(); // Initial icon state
+
+    themeBtn.addEventListener('click', () => {
+        let currentTheme = html.getAttribute('data-theme');
+        let systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let newTheme;
+
+        if (!currentTheme) {
+            // No manual override yet, toggle from system
+            newTheme = systemDark ? 'light' : 'dark';
+        } else {
+            // Manual override exists, flip it
+            newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        }
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon();
+    });
+
     window.nextImg = () => {
         currentIdx = (currentIdx + 1) % images.length;
         viewerImg.src = images[currentIdx];
