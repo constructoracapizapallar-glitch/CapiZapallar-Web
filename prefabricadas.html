@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kit Autoconstrucción Premium | Capi Zapallar</title>
+    <title>Cotizador Casas Prefabricadas | Capi Zapallar</title>
     <meta name="description"
-        content="Kit Tiny House 6x3 SIP Premium. Aislación superior, autoconstrucción. Despacho gratis RM y V Región.">
+        content="Cotiza tu Casa Prefabricada SIP. Modelos Tiny 18m2 y 35m2. Desde Kits de autoconstrucción hasta Llave en Mano.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,14 @@
     <style>
         summary::-webkit-details-marker {
             display: none;
+        }
+
+        .config-section-title {
+            font-size: 1.2rem;
+            color: var(--primary-500);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 5px;
         }
     </style>
 </head>
@@ -34,9 +42,8 @@
             </a>
             <div class="nav-links">
                 <a href="index.html#hero" class="nav-link">Inicio</a>
-                <a href="prefabricadas.html" class="nav-link" style="color: var(--primary-500);">Prefabricadas</a>
-                <a href="#comprar-ahora" class="btn btn-primary" style="padding: 8px 20px;">Comprar</a>
-                <!-- Theme Toggle Button -->
+                <a href="prefabricadas.html" class="nav-link" style="color: var(--primary-500);">Cotizador</a>
+                <a href="#cotizador-anchor" class="btn btn-primary" style="padding: 8px 20px;">Cotizar Ahora</a>
                 <button id="themeToggle" class="theme-toggle" aria-label="Cambiar Tema">
                     <span class="theme-icon">🌓</span>
                 </button>
@@ -52,204 +59,247 @@
     <!-- Product Hero -->
     <header class="product-hero">
         <div class="container">
-            <span class="label-upper">No compres una mediagua, invierte en SIP</span>
-            <h1 class="hero-title" style="font-size: 3rem;">Kit Autoconstrucción SIP Premium 18m²</h1>
+            <span class="label-upper">Sistemas Constructivos Modulares SIP</span>
+            <h1 class="hero-title" style="font-size: 3rem;">Configura tu Nuevo Hogar</h1>
+            <p style="max-width: 600px; margin: 20px auto; color: var(--text-secondary);">
+                Elige entre nuestros modelos, selecciona el nivel de terminación y obtén un valor estimado al instante.
+            </p>
         </div>
     </header>
 
-    <!-- Main Product Section -->
-    <section class="product-container">
+    <!-- Shipping Banner -->
+    <div class="container">
+        <div class="shipping-banner">
+            <span>🚚</span>
+            DESPACHO GRATIS: Región Metropolitana y V Región (hasta 100km a la redonda).
+        </div>
+    </div>
+
+    <!-- CALCULATOR SECTION -->
+    <section class="calculator-section" id="cotizador-anchor">
         <div class="container">
 
-            <!-- Shipping Banner -->
-            <div class="shipping-banner">
-                <span>🚚</span>
-                DESPACHO GRATIS: Región Metropolitana y V Región (hasta 100km a la redonda).
+            <!-- 1. Model Selector -->
+            <div class="model-selector">
+                <button class="model-btn active" onclick="selectModel('tiny')">Modelo Tiny 6x3 (18m²)</button>
+                <button class="model-btn" onclick="selectModel('m35')">Modelo 35m²</button>
             </div>
 
-            <div class="product-grid">
-                <!-- Left Column: Image & Comparison -->
-                <div class="product-left">
-                    <div class="product-image-wrapper glass-card">
-                        <img src="images/tiny6x3.jpg" alt="Modelo Tiny 6x3 Panel SIP" class="product-image crop-bottom">
+            <div class="config-grid">
+                <!-- Left: Options -->
+                <div class="config-options">
+
+                    <!-- Image Preview -->
+                    <div class="product-image-wrapper glass-card" style="height: 300px; margin-bottom: 20px;">
+                        <img id="model-image" src="images/tiny6x3.jpg" alt="Modelo Seleccionado"
+                            class="product-image crop-bottom" style="height: 100%; object-fit: cover;">
                     </div>
 
-                    <!-- Comparison Table -->
-                    <div class="comparison-wrapper glass-card">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th class="col-feature">Característica</th>
-                                    <th class="col-us">✅ Kit SIP Capi Zapallar</th>
-                                    <th class="col-other">❌ Prefabricada Madera</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Aislación (Invierno/Verano)</td>
-                                    <td><strong>Superior (Térmica)</strong></td>
-                                    <td>Muy Baja (Fría/Calurosa)</td>
-                                </tr>
-                                <tr>
-                                    <td>Estructura</td>
-                                    <td><strong>Sólida y Antisísmica</strong></td>
-                                    <td>Débil con el tiempo</td>
-                                </tr>
-                                <tr>
-                                    <td>Durabilidad</td>
-                                    <td><strong>Años sin deformarse</strong></td>
-                                    <td>Se tuerce y agrieta</td>
-                                </tr>
-                                <tr>
-                                    <td>Humedad/Hongos</td>
-                                    <td><strong>Resistente (EPS Alta Densidad)</strong></td>
-                                    <td>Se pudre fácilmente</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- Tier Selection -->
+                    <div>
+                        <h3 class="config-section-title">1. Nivel de Terminación</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <label class="option-card selected" onclick="selectTier('kit', this)">
+                                <div class="option-header">
+                                    <span>🏗️ Kit Autoconstrucción (Básico)</span>
+                                    <input type="radio" name="tier" value="kit" checked
+                                        style="accent-color: var(--primary-500);">
+                                </div>
+                                <p style="font-size: 0.9rem; margin: 0; color: var(--text-secondary);">
+                                    Solo materiales estructurales (Paneles SIP, maderas, fijaciones). Ideal para
+                                    autoconstrucción.
+                                </p>
+                            </label>
+
+                            <label class="option-card" onclick="selectTier('ogh', this)">
+                                <div class="option-header">
+                                    <span>🏠 Obra Gruesa Habitable</span>
+                                    <input type="radio" name="tier" value="ogh"
+                                        style="accent-color: var(--primary-500);">
+                                </div>
+                                <p style="font-size: 0.9rem; margin: 0; color: var(--text-secondary);">
+                                    Estructura armada, con ventanas termopanel, puertas, y conexiones básicas (agua/luz)
+                                    dentro de la casa. Sin terminaciones finas.
+                                </p>
+                            </label>
+
+                            <label class="option-card" onclick="selectTier('lem', this)">
+                                <div class="option-header">
+                                    <span>🔑 Llave en Mano (Full)</span>
+                                    <input type="radio" name="tier" value="lem"
+                                        style="accent-color: var(--primary-500);">
+                                </div>
+                                <p style="font-size: 0.9rem; margin: 0; color: var(--text-secondary);">
+                                    Lista para habitar. Incluye terminaciones, pisos vinílicos, baño equipado, cocina
+                                    amoblada y closet.
+                                </p>
+                            </label>
+                        </div>
                     </div>
-                    <p style="text-align: center; font-size: 0.9rem; margin-top: 10px; color: var(--text-secondary);">*
-                        ¿Por qué vale más? Porque dura toda la vida.</p>
+
+                    <!-- Add-ons (Only for Kit) -->
+                    <div id="addons-section">
+                        <h3 class="config-section-title">2. Servicios Adicionales (Solo Kit)</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <label class="option-card">
+                                <div class="option-header">
+                                    <span>🔨 Servicio de Armado</span>
+                                    <input type="checkbox" id="check-armado" onchange="updatePrice()"
+                                        style="accent-color: var(--primary-500); transform: scale(1.2);">
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Nosotros armamos la
+                                    estructura en tu terreno.</p>
+                            </label>
+
+                            <label class="option-card">
+                                <div class="option-header">
+                                    <span>🧱 Radier de Hormigón</span>
+                                    <input type="checkbox" id="check-radier" onchange="updatePrice()"
+                                        style="accent-color: var(--primary-500); transform: scale(1.2);">
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Construcción de base sólida
+                                    de concreto.</p>
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Right Column: Info & Price -->
-                <div class="product-info">
-                    <h2>Modelo Tiny 6x3 | Panel SIP 114mm</h2>
-                    <span class="price-tag">Valor Kit: $3.990.000 <span
-                            style="font-size: 1rem; color: var(--text-secondary); font-weight: 400;">+ IVA</span></span>
+                <!-- Right: Summary Panel -->
+                <div class="checkout-panel">
+                    <h3 style="margin-bottom: 20px; color: var(--text-primary);">Resumen Cotización</h3>
 
-                    <p class="product-description">
-                        Este no es un kit básico. Es un sistema constructivo profesional diseñado para que tú mismo
-                        armes una vivienda <strong>definitiva</strong>, no de emergencia.
+                    <div class="price-row">
+                        <span id="summary-model">Modelo Tiny 6x3</span>
+                        <span id="price-base">$3.990.000</span>
+                    </div>
+
+                    <div id="summary-addons">
+                        <!-- Dynamic Addons -->
+                    </div>
+
+                    <div class="price-total">
+                        <span>TOTAL ESTIMADO (+IVA)</span>
+                        <span id="final-price">$3.990.000</span>
+                    </div>
+
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 10px; font-style: italic;">
+                        * Precios netos. Agregar IVA (19%).
                     </p>
 
-                    <div class="promo-box glass-card">
-                        <span class="promo-title">🔥 Incluye de Regalo (Feb-Mar)</span>
-                        <p style="margin:0; font-weight: 500;">Cubierta de Zinc 5V completa para el techo.</p>
-                    </div>
-
-                    <h4 style="margin-bottom: 20px; color: var(--text-primary);">¿Qué recibes exactamente?</h4>
-                    <ul class="features-list">
-                        <li><strong>Muros y Techo:</strong> Paneles SIP 114mm (Aislación real).</li>
-                        <li><strong>Estructura:</strong> Todas las maderas calibradas IPV.</li>
-                        <li><strong>Montaje:</strong> Kit completo de tornillos, fijaciones y adhesivos.</li>
-                        <li><strong>Protección:</strong> Membrana hidrófuga Typar o similar.</li>
-                        <li><strong>Guía:</strong> Manual de montaje paso a paso.</li>
-                    </ul>
-
-                    <div
-                        style="background: rgba(255, 0, 0, 0.1); border: 1px solid red; padding: 15px; border-radius: 8px; margin-bottom: 30px;">
-                        <h5 style="color: #ff4444; margin-bottom: 5px;">⚠️ Lo que NO incluye (Lee bien):</h5>
-                        <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: var(--text-secondary);">
-                            <li>❌ No incluye armado (Es autoconstrucción).</li>
-                            <li>❌ No incluye radier ni pilotes (Debes tenerlos listos).</li>
-                            <li>❌ No incluye ventanas ni puertas (Solo el vano listo).</li>
-                            <li>❌ No incluye terminaciones finas (Piso, pintura, muebles).</li>
-                        </ul>
-                    </div>
-
-                    <a href="#comprar-ahora" class="btn btn-primary btn-full">Ir a Comprar</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section" style="padding-top: 20px;">
-        <div class="container" style="max-width: 800px;">
-            <h3 class="section-title" style="text-align: center; margin-bottom: 40px;">Preguntas Frecuentes (Sin rodeos)
-            </h3>
-
-            <details class="faq-details">
-                <summary class="faq-summary">¿Es "Llave en mano"? ¿Ustedes la construyen?</summary>
-                <div class="faq-answer">
-                    <strong>NO.</strong> Este es un KIT DE AUTOCONSTRUCCIÓN. Nosotros te enviamos todos los paneles y
-                    materiales numerados para que tú (o tu maestro) la armen. Es como un lego gigante profesional. Si
-                    buscas llave en mano, el valor es mucho más alto (contáctanos aparte).
-                </div>
-            </details>
-
-            <details class="faq-details">
-                <summary class="faq-summary">¿Por qué es más cara que las prefabricadas de Facebook?</summary>
-                <div class="faq-answer">
-                    Porque las "baratas" son de madera de pino verde que se tuerce al mes, con internit delgado y
-                    plumavit básico. Nuestras casas son de <strong>Panel SIP Estructural</strong> (OSB + EPS Alta
-                    Densidad). Es una casa de verdad, térmica, acústica y eterna. Estás comprando calidad de vida, no
-                    tablas.
-                </div>
-            </details>
-
-            <details class="faq-details">
-                <summary class="faq-summary">¿Incluye instalación eléctrica o gasfitería?</summary>
-                <div class="faq-answer">
-                    No. El kit es la "obra gruesa" térmica y estructural. Las instalaciones las haces tú a tu gusto una
-                    vez armada la estructura (los paneles SIP traen trazados para facilitar esto, pero no incluyen
-                    cañerías ni cables).
-                </div>
-            </details>
-
-            <details class="faq-details">
-                <summary class="faq-summary">¿Puedo pagar con Tarjeta de Crédito?</summary>
-                <div class="faq-answer">
-                    Sí, aceptamos MercadoPago donde puedes pagar con crédito en cuotas. El precio final con IVA es de
-                    aproxiadamente $4.7M.
-                </div>
-            </details>
-        </div>
-    </section>
-
-    <!-- Final Purchase Section -->
-    <section id="comprar-ahora" class="final-cta-container">
-        <div class="container">
-            <h2 class="section-title">¿Todo claro? ¡Manos a la obra!</h2>
-            <p style="margin-bottom: 40px;">Si ya tienes tu terreno y el radier listo (o planeado), asegura tu kit hoy
-                mismo.</p>
-
-            <div class="final-actions">
-                <!-- MercadoPago Button -->
-                <a href="https://mpago.la/18v8CpN" target="_blank" class="btn btn-mercadopago">
-                    Pagar Ahora ($4.748.100 IVA Inc.)
-                </a>
-
-                <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.7;">Pago 100% Seguro vía MercadoPago</p>
-
-                <div class="secondary-options">
-                    <button class="btn btn-outline"
-                        onclick="document.getElementById('dudas-form').style.display='block'; location.href='#dudas-form'">
-                        Aún tengo dudas (Formulario)
+                    <button onclick="scrollToForm()" class="btn btn-primary btn-full" style="margin-top: 30px;">
+                        Solicitar esta Configuración
                     </button>
-                    <a href="https://wa.me/56973732599" class="btn btn-outline">WhatsApp Ventas</a>
+
+                    <div class="promo-box glass-card"
+                        style="margin-top: 20px; padding: 15px; border: 1px dashed var(--primary-500);">
+                        <span class="promo-title">🔥 Promo Web</span>
+                        <p style="margin:0; font-size: 0.9rem;">Incluye Cubierta de Zinc Gratis (Solo Kit).</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Doubt Form (Hidden by default or shown below) -->
-            <div id="dudas-form"
-                style="display: none; margin-top: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                <div class="contact-wrapper glass-card">
-                    <h3>Resolver Dudas Específicas</h3>
-                    <form class="contact-form">
-                        <input type="hidden" name="source" value="dutas_tiny_6x3">
-                        <div class="form-group"><input type="text" placeholder="Tu Nombre" required></div>
-                        <div class="form-group"><input type="tel" placeholder="Tu Teléfono" required></div>
-                        <div class="form-group"><textarea rows="3"
-                                placeholder="¿Qué duda te queda? (Ej: factibilidad terreno)"></textarea></div>
-                        <button type="submit" class="btn btn-primary btn-full">Enviar Pregunta</button>
-                    </form>
+            <!-- Tech Specs -->
+            <div class="tech-specs">
+                <div class="spec-item">
+                    <span class="spec-icon">🌡️</span>
+                    <strong>Aislación Térmica</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Panel SIP 114mm</p>
                 </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🏗️</span>
+                    <strong>Estructura</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Madera Calibrada IPV</p>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🔊</span>
+                    <strong>Acústica</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Reducción de Ruido</p>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">⚡</span>
+                    <strong>Rápido Montaje</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Sistema Modular</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-wrapper glass-card" style="margin-top: 60px;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="col-feature">Característica</th>
+                            <th class="col-us">✅ Sistema SIP Capi</th>
+                            <th class="col-other">❌ Cabaña Madera Común</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Eficiencia Térmica</td>
+                            <td><strong>Ahorro 60% Califacción</strong></td>
+                            <td>Pérdida de calor constante</td>
+                        </tr>
+                        <tr>
+                            <td>Vida Útil</td>
+                            <td><strong>+50 Años (Eterno)</strong></td>
+                            <td>10-15 Años (Se pudre)</td>
+                        </tr>
+                        <tr>
+                            <td>Resistencia Fuego</td>
+                            <td><strong>Retardante (Autoextinguible)</strong></td>
+                            <td>Altamente Inflamable</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Form (Replaces WhatsApp Link) -->
+    <section id="contacto-formal" class="contact" style="padding-top: 40px;">
+        <div class="container" style="max-width: 700px;">
+            <div class="contact-wrapper glass-card">
+                <span class="label-upper" style="text-align: center; display: block;">Paso Final</span>
+                <h2 class="section-title" style="text-align: center;">Agendar Llamada / Cotizar</h2>
+                <p style="text-align: center; margin-bottom: 30px;">
+                    Déjanos tus datos para formalizar la cotización de tu configuración seleccionada.
+                </p>
+
+                <form class="contact-form">
+                    <input type="hidden" id="form-config" name="configuracion" value="">
+
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Región de Instalación</label>
+                        <select class="form-control"
+                            style="width: 100%; padding: 15px; border-radius: 8px; background: var(--input-bg); color: var(--text-primary); border: 1px solid var(--input-border);">
+                            <option value="RM">Región Metropolitana (Despacho Gratis)</option>
+                            <option value="V">V Región (Despacho Gratis)</option>
+                            <option value="Otra">Otra Región (Flete por pagar)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje Adicional</label>
+                        <textarea rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
+                </form>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Capi Zapallar</h3>
-                    <p>Construcción de excelencia.</p>
-                </div>
-                <div class="footer-links">
-                    <p>&copy; 2026 Constructora Capi Zapallar.</p>
-                </div>
+            <div class="footer-bottom" style="margin-top: 40px;">
+                <p>&copy; 2026 Constructora Capi Zapallar.</p>
             </div>
         </div>
     </footer>
@@ -257,6 +307,122 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
+
+    <!-- Calculator Logic -->
+    <script>
+        const pricing = {
+            tiny: {
+                kit: 3990000,
+                armado: 1690000,
+                radier: 1100000,
+                ogh: 12590000,
+                lem: 16990000
+            },
+            m35: {
+                kit: 7990000,
+                armado: 3150000, // 90k * 35m2
+                radier: 2100000, // 60k * 35m2
+                lem: 29990000,
+                ogh: 22492500 // 75% of LEM
+            }
+        };
+
+        let currentModel = 'tiny';
+        const modelBtns = document.querySelectorAll('.model-btn');
+        const modelImage = document.getElementById('model-image');
+
+        function selectModel(model) {
+            currentModel = model;
+
+            // UI Toggle
+            modelBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Image Update (Placeholder for m35 if missing, user has to fix)
+            if (model === 'm35') {
+                modelImage.src = 'images/modelo35.jpg';
+                // Fallback if image fails loading (keep visually clean)
+                modelImage.onerror = function () { this.src = 'images/tiny6x3.jpg'; };
+                document.getElementById('summary-model').innerText = "Modelo 35m²";
+            } else {
+                modelImage.src = 'images/tiny6x3.jpg';
+                document.getElementById('summary-model').innerText = "Modelo Tiny 6x3";
+            }
+
+            updatePrice();
+        }
+
+        function selectTier(tier, element) {
+            // UI Toggle
+            document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+
+            // Check radio manually bc we clicked the label/div
+            element.querySelector('input[type="radio"]').checked = true;
+
+            // Show/Hide Addons
+            const addons = document.getElementById('addons-section');
+            if (tier === 'kit') {
+                addons.style.display = 'block';
+                addons.style.opacity = '1';
+            } else {
+                addons.style.display = 'none';
+                // Uncheck addons to avoid confusion in price
+                document.getElementById('check-armado').checked = false;
+                document.getElementById('check-radier').checked = false;
+            }
+
+            updatePrice();
+        }
+
+        function formatMoney(amount) {
+            return '$' + amount.toLocaleString('es-CL');
+        }
+
+        function updatePrice() {
+            const tier = document.querySelector('input[name="tier"]:checked').value;
+            let total = 0;
+            let basePrice = 0;
+
+            const summaryAddons = document.getElementById('summary-addons');
+            summaryAddons.innerHTML = ''; // Clear previous
+
+            // Base Tier Price
+            if (tier === 'kit') basePrice = pricing[currentModel].kit;
+            else if (tier === 'ogh') basePrice = pricing[currentModel].ogh;
+            else if (tier === 'lem') basePrice = pricing[currentModel].lem;
+
+            total += basePrice;
+            document.getElementById('price-base').innerText = formatMoney(basePrice);
+
+            // Addons (If Kit)
+            if (tier === 'kit') {
+                if (document.getElementById('check-armado').checked) {
+                    const p = pricing[currentModel].armado;
+                    total += p;
+                    summaryAddons.innerHTML += `<div class="price-row"><span>+ Servicio Armado</span><span>${formatMoney(p)}</span></div>`;
+                }
+                if (document.getElementById('check-radier').checked) {
+                    const p = pricing[currentModel].radier;
+                    total += p;
+                    summaryAddons.innerHTML += `<div class="price-row"><span>+ Radier Hormigón</span><span>${formatMoney(p)}</span></div>`;
+                }
+            }
+
+            document.getElementById('final-price').innerText = formatMoney(total);
+
+            // Build config string for form
+            let configStr = `Modelo: ${currentModel.toUpperCase()}, Nivel: ${tier.toUpperCase()}, Total Est: ${formatMoney(total)}`;
+            document.getElementById('form-config').value = configStr;
+        }
+
+        function scrollToForm() {
+            document.getElementById('contacto-formal').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Init
+        updatePrice();
+    </script>
 </body>
 
 </html>
