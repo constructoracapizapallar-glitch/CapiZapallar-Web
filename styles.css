@@ -1103,3 +1103,64 @@ h3,
         gap: 40px;
     }
 }
+
+/* --- Purchase Box & FAQ Styles --- */
+.purchase-box {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.price-huge {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.faq-details {
+    background: rgba(var(--glass-bg-rgb), 0.5);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.faq-details:hover {
+    background: rgba(var(--glass-bg-rgb), 0.8);
+}
+
+.faq-details[open] {
+    border-color: var(--primary-500);
+}
+
+.faq-summary {
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    /* Hide default triangle */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.faq-summary::after {
+    content: '+';
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--primary-500);
+}
+
+.faq-details[open] .faq-summary::after {
+    content: '-';
+}
+
+.faq-answer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}

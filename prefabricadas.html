@@ -16,6 +16,12 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Embedded styles for FAQ details/summary interaction if needed, though mainly in CSS */
+        summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="dark-mode">
@@ -35,7 +41,6 @@
                 <a href="#contacto-prefabricadas" class="nav-link">Contacto</a>
                 <!-- Theme Toggle Button -->
                 <button id="themeToggle" class="theme-toggle" aria-label="Cambiar Tema">
-                    <!-- Icon handled by JS -->
                     <span class="theme-icon">🌓</span>
                 </button>
             </div>
@@ -47,7 +52,7 @@
         </div>
     </nav>
 
-    <!-- Product Hero (Simplified) -->
+    <!-- Product Hero -->
     <header class="product-hero">
         <div class="container">
             <span class="label-upper">Sistemas de Autoconstrucción Premium</span>
@@ -61,7 +66,6 @@
             <div class="product-grid">
                 <!-- Left: Image -->
                 <div class="product-image-wrapper glass-card">
-                    <!-- Placeholder Image - User to replace -->
                     <img src="images/tiny6x3.jpg" alt="Modelo Tiny 6x3 Panel SIP" class="product-image">
                 </div>
 
@@ -98,47 +102,100 @@
         </div>
     </section>
 
-    <!-- Specific Contact Form -->
-    <section id="contacto-prefabricadas" class="contact" style="padding-top: 80px;">
+    <!-- Purchase / Contact Section (Replaced Form) -->
+    <section id="contacto-prefabricadas" class="contact" style="padding-top: 40px;">
         <div class="container">
-            <div class="contact-wrapper glass-card">
-                <div class="contact-info">
-                    <span class="label-upper">¿Interesado en este modelo?</span>
-                    <h2 class="section-title">Cotiza tu Tiny House</h2>
-                    <p>Déjanos tus datos y te enviaremos la ficha técnica completa y opciones de despacho.</p>
+            <div class="contact-wrapper glass-card purchase-box">
 
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="icon">📞</span>
-                            <p>+56 9 7373 2599</p>
-                        </div>
-                        <div class="contact-item">
-                            <span class="icon">📧</span>
-                            <p>contacto@capizapallar.cl</p>
-                        </div>
+                <span class="label-upper" style="margin-bottom: 20px;">Oferta por Tiempo Limitado</span>
+                <h2 class="section-title" style="margin-bottom: 20px;">¡Comienza tu Proyecto Ahora!</h2>
+                <p style="max-width: 600px; margin: 0 auto 40px; color: var(--text-secondary); font-size: 1.1rem;">
+                    Aprovecha la promoción de Febrero/Marzo. Gestiona tu reserva de forma directa con nuestros
+                    ejecutivos a través de WhatsApp o Correo.
+                </p>
+
+                <div class="price-display" style="margin-bottom: 50px;">
+                    <span class="price-huge">$3.990.000</span>
+                    <span style="font-size: 1.5rem; color: var(--text-secondary); font-weight: 500;">+ IVA</span>
+                </div>
+
+                <div class="action-buttons" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/56973732599?text=Hola,%20quisiera%20comprar%20el%20Kit%20Tiny%206x3%20de%20promocion"
+                        target="_blank" class="btn btn-primary"
+                        style="padding: 18px 40px; font-size: 1.2rem; display: flex; align-items: center; gap: 12px; border-radius: 50px;">
+                        <span style="font-size: 1.5rem;">📱</span> Comprar por WhatsApp
+                    </a>
+
+                    <a href="mailto:contacto@capizapallar.cl?subject=Solicitud%20Datos%20Transferencia%20Tiny%206x3"
+                        class="btn btn-outline"
+                        style="padding: 18px 40px; font-size: 1.2rem; display: flex; align-items: center; gap: 12px; border-radius: 50px;">
+                        <span style="font-size: 1.5rem;">✉️</span> Datos Transferencia
+                    </a>
+                </div>
+
+                <div class="payment-methods"
+                    style="margin: 60px auto 0; opacity: 0.8; padding-top: 30px; border-top: 1px solid var(--glass-border); width: 100%; max-width: 500px;">
+                    <p style="font-size: 0.9rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">
+                        Métodos de Pago:</p>
+                    <div style="display: flex; gap: 20px; justify-content: center; font-size: 2rem;">
+                        <span title="Transferencia Bancaria">🏦</span>
+                        <span title="Efectivo / Vale Vista">💵</span>
+                        <span title="Webpay (Consultar)">💳</span>
                     </div>
                 </div>
 
-                <form class="contact-form">
-                    <!-- Hidden field to track source -->
-                    <input type="hidden" name="source" value="prefabricada_tiny_18m2">
-                    <input type="hidden" name="subject" value="Cotización Tiny 6x3 SIP">
-
-                    <div class="form-group">
-                        <input type="text" placeholder="Nombre Completo" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Correo Electrónico" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" placeholder="WhatsApp / Teléfono" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="4" placeholder="¿Consulta sobre despacho o instalación?"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
-                </form>
             </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container" style="max-width: 800px;">
+            <h3 class="section-title" style="text-align: center; margin-bottom: 40px;">Preguntas Frecuentes</h3>
+
+            <details class="faq-details">
+                <summary class="faq-summary">¿Qué incluye exactamente el valor del Kit?</summary>
+                <div class="faq-answer">
+                    El valor incluye todos los materiales para la obra gruesa: Paneles SIP de 114mm para muros y techo,
+                    maderas estructurales calibradas, kit completo de tornillos y fijaciones, adhesivo de poliuretano y
+                    la membrana hidrófuga para proteger la estructura.
+                </div>
+            </details>
+
+            <details class="faq-details">
+                <summary class="faq-summary">¿El valor incluye armado o instalación?</summary>
+                <div class="faq-answer">
+                    No, este es un <strong>Kit de Autoconstrucción</strong> diseñado para ser armado por el cliente o un
+                    maestro. Entregamos un manual detallado paso a paso para facilitar el montaje. Si necesitas servicio
+                    de llave en mano (armado completo), contáctanos para una cotización personalizada.
+                </div>
+            </details>
+
+            <details class="faq-details">
+                <summary class="faq-summary">¿Hacen despachos a otras regiones?</summary>
+                <div class="faq-answer">
+                    Sí, realizamos despachos a todo Chile. El costo del flete es adicional y se paga contra entrega o
+                    según acuerdo con la empresa de transporte. También puedes retirar directamente en nuestra bodega en
+                    Zapallar.
+                </div>
+            </details>
+
+            <details class="faq-details">
+                <summary class="faq-summary">¿Qué necesito tener listo antes de armar?</summary>
+                <div class="faq-answer">
+                    Debes contar con una base nivelada, ya sean pollos de hormigón, pilotes de madera o un radier de
+                    cemento. Nosotros te entregamos el plano de fundaciones sugerido una vez confirmada la compra.
+                </div>
+            </details>
+
+            <details class="faq-details">
+                <summary class="faq-summary">¿Cuáles son los tiempos de entrega?</summary>
+                <div class="faq-answer">
+                    Generalmente tenemos stock para entrega inmediata o un plazo máximo de fabricación de 5 a 7 días
+                    hábiles dependiendo de la demanda.
+                </div>
+            </details>
+
         </div>
     </section>
 
