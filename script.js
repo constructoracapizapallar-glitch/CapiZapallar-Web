@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 9. Form Handling for n8n Automations
-    const WEBHOOK_URL = 'https://capizapallar.app.n8n.cloud/webhook-test/leads-constructora'; // Using Test URL for now
+    const WEBHOOK_URL = 'https://capizapallar.app.n8n.cloud/webhook/leads-constructora'; // Production URL
 
     const handleFormSubmit = async (formId, event) => {
         event.preventDefault();
