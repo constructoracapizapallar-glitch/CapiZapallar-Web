@@ -60,6 +60,36 @@
             width: 100% !important;
             height: auto !important;
             object-fit: contain !important;
+            transition: opacity 0.3s ease !important;
+        }
+
+        .view-controls {
+            display: flex !important;
+            gap: 10px !important;
+            margin-top: 15px !important;
+            justify-content: center !important;
+        }
+
+        .view-thumb {
+            width: 80px !important;
+            height: 60px !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            border: 2px solid transparent !important;
+            cursor: pointer !important;
+            transition: all 0.2s !important;
+            background: var(--bg-secondary) !important;
+        }
+
+        .view-thumb.active {
+            border-color: var(--primary-500) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        .view-thumb img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
         }
 
         .config-grid {
@@ -77,6 +107,44 @@
         .option-card.selected {
             border-color: var(--primary-500) !important;
             background: rgba(var(--primary-rgb, 230, 194, 136), 0.1) !important;
+        }
+
+        /* View Switcher Styles */
+        #model-image {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+            transition: opacity 0.3s ease !important;
+        }
+
+        .view-controls {
+            display: flex !important;
+            gap: 10px !important;
+            margin-top: 15px !important;
+            justify-content: center !important;
+        }
+
+        .view-thumb {
+            width: 80px !important;
+            height: 60px !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            border: 2px solid transparent !important;
+            cursor: pointer !important;
+            transition: all 0.2s !important;
+            background: var(--bg-secondary) !important;
+            padding: 0 !important;
+        }
+
+        .view-thumb.active {
+            border-color: var(--primary-500) !important;
+            transform: translateY(-3px) !important;
+        }
+
+        .view-thumb img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
         }
 
         @media (max-width: 900px) {
@@ -201,7 +269,17 @@
 
                     <!-- Image Preview (Improved) -->
                     <div class="product-image-wrapper glass-card">
-                        <img id="model-image" src="images/tiny6x3.jpg" alt="Modelo Seleccionado">
+                        <img id="model-image" src="images/tiny.jpg" alt="Modelo Seleccionado">
+                    </div>
+
+                    <!-- View Switcher -->
+                    <div class="view-controls">
+                        <div class="view-thumb active" id="btn-render" onclick="switchView('render', this)">
+                            <img id="thumb-render" src="images/tiny.jpg" alt="Vista Render">
+                        </div>
+                        <div class="view-thumb" id="btn-plan" onclick="switchView('plan', this)">
+                            <img id="thumb-plan" src="images/tiny_plan.jpg" alt="Vista Plano">
+                        </div>
                     </div>
 
                     <!-- 1. Construction Services (Only for Kit) -->
@@ -438,14 +516,15 @@
             document.querySelectorAll('.model-btn').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
 
-            // Image Update Logic (Simpler Names)
-            modelImage.src = `images/${model}.jpg`;
+            // Update Thumbnails sources (House vs Plan)
+            const renderPath = `images/${model}.jpg`;
+            const planPath = `images/${model}_plan.jpg`;
 
-            // Global Fallback to existing tiny image
-            modelImage.onerror = function () {
-                this.src = 'images/tiny6x3.jpg';
-                this.onerror = null;
-            };
+            document.getElementById('thumb-render').src = renderPath;
+            document.getElementById('thumb-plan').src = planPath;
+
+            // Reset to render view by default
+            switchView('render', document.getElementById('btn-render'));
 
             // Update Summary Name
             const names = {
@@ -455,6 +534,27 @@
             document.getElementById('summary-model').innerText = names[model] || "Modelo Especial";
 
             updatePrice();
+        }
+
+        function switchView(type, element) {
+            if (!element) return;
+
+            // UI Toggle for thumbs
+            document.querySelectorAll('.view-thumb').forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+
+            // Source Update with Fade Effect
+            modelImage.style.opacity = '0.3';
+            setTimeout(() => {
+                modelImage.src = type === 'render' ? `images/${currentModel}.jpg` : `images/${currentModel}_plan.jpg`;
+                modelImage.style.opacity = '1';
+
+                // Combined error handling
+                modelImage.onerror = function () {
+                    this.src = 'images/tiny.jpg';
+                    this.onerror = null;
+                };
+            }, 100);
         }
 
         function selectTier(tier, element) {
