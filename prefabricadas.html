@@ -170,14 +170,14 @@
     <section class="calculator-section" id="cotizador-anchor">
         <div class="container">
 
-            <!-- 1. Model Selector (Expanded to 6) -->
+            <!-- 1. Model Selector (Updated) -->
             <div class="model-selector" id="model-list">
                 <button class="model-btn active" onclick="selectModel('tiny', this)">Tiny 18m²</button>
+                <button class="model-btn" onclick="selectModel('quincho35', this)">Quincho 35m²</button>
                 <button class="model-btn" onclick="selectModel('m35', this)">Modelo 35m²</button>
-                <button class="model-btn" onclick="selectModel('m45', this)">Modelo 45m²</button>
-                <button class="model-btn" onclick="selectModel('m54', this)">Modelo 54m²</button>
-                <button class="model-btn" onclick="selectModel('m72', this)">Modelo 72m²</button>
-                <button class="model-btn" onclick="selectModel('m90', this)">Modelo 90m²</button>
+                <button class="model-btn" onclick="selectModel('m85', this)">Modelo 85m²</button>
+                <button class="model-btn" onclick="selectModel('m95', this)">Modelo 95m²</button>
+                <button class="model-btn" onclick="selectModel('m140', this)">Modelo 140m²</button>
             </div>
 
             <div class="config-grid">
@@ -406,11 +406,11 @@
     <script>
         const pricing = {
             tiny: { kit: 3990000, armado: 1690000, radier: 1100000, ogh: 12590000, lem: 16990000, m2: 18 },
+            quincho35: { kit: 6300000, armado: 3150000, radier: 2100000, ogh: 17640000, lem: 23625000, m2: 35 },
             m35: { kit: 7990000, armado: 3150000, radier: 2100000, ogh: 22492500, lem: 29990000, m2: 35 },
-            m45: { kit: 9990000, armado: 4050000, radier: 2700000, ogh: 28425000, lem: 37900000, m2: 45 },
-            m54: { kit: 11990000, armado: 4860000, radier: 3240000, ogh: 32925000, lem: 43900000, m2: 54 },
-            m72: { kit: 15490000, armado: 6480000, radier: 4320000, ogh: 41175000, lem: 54900000, m2: 72 },
-            m90: { kit: 18990000, armado: 8100000, radier: 5400000, ogh: 52425000, lem: 69900000, m2: 90 }
+            m85: { kit: 19550000, armado: 7650000, radier: 5100000, ogh: 54740000, lem: 73312500, m2: 85 },
+            m95: { kit: 21850000, armado: 8550000, radier: 5700000, ogh: 61180000, lem: 81937500, m2: 95 },
+            m140: { kit: 32200000, armado: 12600000, radier: 8400000, ogh: 90160000, lem: 120750000, m2: 140 }
         };
 
         let currentModel = 'tiny';
@@ -434,10 +434,10 @@
 
             // Update Summary Name
             const names = {
-                tiny: "Tiny 18m²", m35: "Modelo 35m²", m45: "Modelo 45m²",
-                m54: "Modelo 54m²", m72: "Modelo 72m²", m90: "Modelo 90m²"
+                tiny: "Tiny 18m²", quincho35: "Quincho 35m²", m35: "Modelo 35m²",
+                m85: "Modelo 85m²", m95: "Modelo 95m²", m140: "Modelo 140m²"
             };
-            document.getElementById('summary-model').innerText = names[model];
+            document.getElementById('summary-model').innerText = names[model] || "Modelo Especial";
 
             updatePrice();
         }
