@@ -1172,3 +1172,109 @@ h3,
     display: block;
     width: 100%;
 }
+
+/* --- New Comparison Table --- */
+.comparison-wrapper {
+    margin-top: 40px;
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.comparison-table th {
+    background: rgba(var(--primary-rgb), 0.2);
+    color: var(--primary-500);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.comparison-table td strong {
+    color: var(--text-primary);
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.col-feature {
+    width: 30%;
+    color: var(--text-secondary);
+}
+
+.col-us {
+    width: 35%;
+    background: rgba(var(--primary-rgb), 0.05);
+}
+
+.col-other {
+    width: 35%;
+    opacity: 0.7;
+}
+
+/* --- Shipping Banner --- */
+.shipping-banner {
+    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+    /* Green for free shipping */
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+/* --- Final CTA Section --- */
+.final-cta-container {
+    padding: 40px;
+    text-align: center;
+    background: rgba(var(--glass-bg-rgb), 0.3);
+    border-radius: 20px;
+    margin-top: 60px;
+}
+
+.btn-mercadopago {
+    background: #009ee3;
+    /* MercadoPago Blue */
+    color: white;
+    font-size: 1.3rem;
+    padding: 20px 40px;
+    width: 100%;
+    max-width: 400px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0, 158, 227, 0.3);
+}
+
+.btn-mercadopago:hover {
+    background: #007eb5;
+    transform: translateY(-2px);
+}
+
+.secondary-options {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
