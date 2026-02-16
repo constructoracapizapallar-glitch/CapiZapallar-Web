@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casas Prefabricadas | Constructora Capi Zapallar</title>
+    <meta name="description"
+        content="Kits de autoconstrucción y casas prefabricadas premium. Modelo Tiny 6x3 en Panel SIP con excelente aislación.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dark-mode">
+    <div id="particles-js"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.svg" alt="Capi Zapallar Logo" class="logo-img" style="height: 50px; width: auto;">
+                <span class="logo-text">Capi Zapallar</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#hero" class="nav-link">Inicio</a>
+                <a href="index.html#servicios" class="nav-link">Servicios</a>
+                <a href="index.html#proyectos" class="nav-link">Proyectos</a>
+                <a href="prefabricadas.html" class="nav-link" style="color: var(--primary-500);">Prefabricadas</a>
+                <a href="#contacto-prefabricadas" class="nav-link">Contacto</a>
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="theme-toggle" aria-label="Cambiar Tema">
+                    <!-- Icon handled by JS -->
+                    <span class="theme-icon">🌓</span>
+                </button>
+            </div>
+            <button class="mobile-menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Product Hero (Simplified) -->
+    <header class="product-hero">
+        <div class="container">
+            <span class="label-upper">Sistemas de Autoconstrucción Premium</span>
+            <h1 class="hero-title" style="font-size: 3.5rem;">Kits Prefabricados SIP</h1>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <section class="product-container">
+        <div class="container">
+            <div class="product-grid">
+                <!-- Left: Image -->
+                <div class="product-image-wrapper glass-card">
+                    <!-- Placeholder Image - User to replace -->
+                    <img src="images/tiny6x3.jpg" alt="Modelo Tiny 6x3 Panel SIP" class="product-image">
+                </div>
+
+                <!-- Right: Info -->
+                <div class="product-info">
+                    <h2>Kit Autoconstrucción 18m² | Modelo Tiny 6x3</h2>
+                    <span class="price-tag">Desde $3.990.000 <span
+                            style="font-size: 1rem; color: var(--text-secondary); font-weight: 400;">+ IVA</span></span>
+
+                    <p class="product-description">
+                        Exclusivo sistema de autoconstrucción con <strong>Panel SIP de 114mm Premium</strong> para muros
+                        y techo.
+                        Garantiza una excelente aislación termoacústica y una estructura sólida. Ideal para segunda
+                        vivienda, oficina o estudio.
+                    </p>
+
+                    <div class="promo-box glass-card">
+                        <span class="promo-title">🔥 Promoción Febrero & Marzo</span>
+                        <p style="margin:0; font-weight: 500;">Incluye Gratis: Cubierta de Zinc 5V.</p>
+                    </div>
+
+                    <h4 style="margin-bottom: 20px; color: var(--text-primary);">El Pack Incluye:</h4>
+                    <ul class="features-list">
+                        <li>Paneles SIP 114mm (Muros y Techo)</li>
+                        <li>Todas las maderas necesarias (estructurales)</li>
+                        <li>Kit de fijaciones y adhesivos completo</li>
+                        <li>Membrana hidrófuga para protección</li>
+                        <li>Manual de montaje detallado</li>
+                    </ul>
+
+                    <a href="#contacto-prefabricadas" class="btn btn-primary btn-full">Solicitar Cotización</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specific Contact Form -->
+    <section id="contacto-prefabricadas" class="contact" style="padding-top: 80px;">
+        <div class="container">
+            <div class="contact-wrapper glass-card">
+                <div class="contact-info">
+                    <span class="label-upper">¿Interesado en este modelo?</span>
+                    <h2 class="section-title">Cotiza tu Tiny House</h2>
+                    <p>Déjanos tus datos y te enviaremos la ficha técnica completa y opciones de despacho.</p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="icon">📞</span>
+                            <p>+56 9 7373 2599</p>
+                        </div>
+                        <div class="contact-item">
+                            <span class="icon">📧</span>
+                            <p>contacto@capizapallar.cl</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <!-- Hidden field to track source -->
+                    <input type="hidden" name="source" value="prefabricada_tiny_18m2">
+                    <input type="hidden" name="subject" value="Cotización Tiny 6x3 SIP">
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Correo Electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="WhatsApp / Teléfono" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="¿Consulta sobre despacho o instalación?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Capi Zapallar</h3>
+                    <p>Construcción de excelencia en la zona de Zapallar y alrededores.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <a href="index.html#hero">Inicio</a>
+                    <a href="index.html#servicios">Servicios</a>
+                    <a href="prefabricadas.html">Prefabricadas</a>
+                    <a href="index.html#contacto">Contacto General</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Constructora Capi Zapallar. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
