@@ -638,7 +638,8 @@ h3,
 
 /* --- Services --- */
 .services {
-    padding: 160px 0;
+    padding: 100px 0;
+    /* Reduced from 160px */
     background: var(--bg-secondary);
 }
 
@@ -648,9 +649,13 @@ h3,
 }
 
 .section-title {
-    font-size: 3.5rem;
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    line-height: 1.1;
     font-weight: 800;
-    margin: 16px 0;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
 }
 
 .cta-title {
@@ -1301,11 +1306,88 @@ h3,
     transform: translateY(-2px);
 }
 
-.secondary-options {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+/* --- Mobile/Tablet Overrides --- */
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 20px;
+    }
+
+    .container {
+        padding: 0 var(--container-padding);
+    }
+
+    .section-header {
+        margin-bottom: 50px;
+    }
+
+    /* Hero Fixes */
+    .hero {
+        padding-top: 120px;
+        text-align: center;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-ctas {
+        justify-content: center;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    /* Services & About */
+    .services,
+    .about,
+    .testimonials,
+    .lead-form-section {
+        padding: 60px 0;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    /* Statistics */
+    .social-proof .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logo-container {
+        justify-content: center;
+    }
 }
 
 /* --- Interactive Calculator & Tabs --- */

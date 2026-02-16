@@ -89,12 +89,29 @@
 
         /* Form Fixes */
         .contact-wrapper {
-            padding: 50px !important;
-            border-radius: 30px !important;
+            padding: 60px;
+            margin: 40px auto;
+            max-width: 800px;
         }
 
-        .contact-form {
-            gap: 15px !important;
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                padding: 30px 20px !important;
+                margin: 20px 10px !important;
+                border-radius: 20px !important;
+            }
+
+            .section-title {
+                font-size: 2rem !important;
+            }
+
+            .product-image-wrapper {
+                max-height: 250px !important;
+            }
+
+            .price-huge {
+                font-size: 2.5rem !important;
+            }
         }
 
         .form-group label {
