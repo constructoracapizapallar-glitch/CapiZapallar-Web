@@ -1104,6 +1104,16 @@ h3,
     }
 }
 
+/* --- Global Components --- */
+.glass-card {
+    background: rgba(var(--glass-bg-rgb), 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
 /* --- Purchase Box & FAQ Styles --- */
 .purchase-box {
     text-align: center;
@@ -1249,6 +1259,11 @@ h3,
     background: rgba(var(--glass-bg-rgb), 0.3);
     border-radius: 20px;
     margin-top: 60px;
+}
+
+.contact-wrapper {
+    padding: 60px;
+    margin: 40px auto;
 }
 
 .btn-mercadopago {
