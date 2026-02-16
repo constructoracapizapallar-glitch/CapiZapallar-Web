@@ -18,43 +18,62 @@
     <link rel="stylesheet" href="styles.css?v=1.2">
     <style>
         /* CRITICAL RESCUE STYLES - Ensuring proper layout even if external CSS fails */
-        .config-grid {
-            display: grid !important;
-            grid-template-columns: 1.2fr 0.8fr !important;
-            gap: 40px !important;
-            align-items: start !important;
+        .option-card {
+            background: rgba(var(--glass-bg-rgb, 30, 30, 35), 0.5) !important;
+            border: 1px solid var(--glass-border) !important;
+            padding: 15px 20px !important;
+            border-radius: 12px !important;
+            margin-bottom: 15px !important;
+            cursor: pointer !important;
+            display: block !important;
         }
 
         .model-selector {
             display: flex !important;
-            justify-content: center !important;
-            gap: 20px !important;
-            margin-bottom: 40px !important;
-            flex-wrap: wrap !important;
+            gap: 12px !important;
+            margin-bottom: 30px !important;
+            overflow-x: auto !important;
+            padding: 10px 5px !important;
+            scrollbar-width: thin;
+            justify-content: flex-start !important;
         }
 
         .model-btn {
-            padding: 15px 30px !important;
-            border-radius: 50px !important;
-            border: 2px solid var(--primary-500) !important;
-            background: transparent !important;
-            color: var(--text-primary) !important;
-            font-weight: 700 !important;
-            cursor: pointer !important;
+            white-space: nowrap !important;
+            padding: 10px 25px !important;
+            font-size: 0.9rem !important;
+            min-width: auto !important;
+            flex-shrink: 0 !important;
         }
 
-        .model-btn.active {
-            background: var(--primary-500) !important;
-            color: white !important;
+        .product-image-wrapper {
+            height: auto !important;
+            max-height: 450px !important;
+            overflow: hidden !important;
+            border-radius: 20px !important;
+            margin-bottom: 25px !important;
+            background: #000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
 
-        .option-card {
-            background: rgba(var(--glass-bg-rgb, 30, 30, 35), 0.5) !important;
-            border: 1px solid var(--glass-border) !important;
-            padding: 20px !important;
-            border-radius: 12px !important;
-            margin-bottom: 15px !important;
-            cursor: pointer !important;
+        #model-image {
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+
+        .config-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 380px !important;
+            gap: 30px !important;
+        }
+
+        @media (max-width: 1024px) {
+            .config-grid {
+                grid-template-columns: 1fr !important;
+            }
         }
 
         .option-card.selected {
@@ -151,20 +170,23 @@
     <section class="calculator-section" id="cotizador-anchor">
         <div class="container">
 
-            <!-- 1. Model Selector -->
-            <div class="model-selector">
-                <button class="model-btn active" onclick="selectModel('tiny')">Tiny 18m²</button>
-                <button class="model-btn" onclick="selectModel('m35')">Modelo 35m²</button>
+            <!-- 1. Model Selector (Expanded to 6) -->
+            <div class="model-selector" id="model-list">
+                <button class="model-btn active" onclick="selectModel('tiny', this)">Tiny 18m²</button>
+                <button class="model-btn" onclick="selectModel('m35', this)">Modelo 35m²</button>
+                <button class="model-btn" onclick="selectModel('m45', this)">Modelo 45m²</button>
+                <button class="model-btn" onclick="selectModel('m54', this)">Modelo 54m²</button>
+                <button class="model-btn" onclick="selectModel('m72', this)">Modelo 72m²</button>
+                <button class="model-btn" onclick="selectModel('m90', this)">Modelo 90m²</button>
             </div>
 
             <div class="config-grid">
                 <!-- Left: Options -->
                 <div class="config-options">
 
-                    <!-- Image Preview -->
-                    <div class="product-image-wrapper glass-card" style="height: 300px; margin-bottom: 20px;">
-                        <img id="model-image" src="images/tiny6x3.jpg" alt="Modelo Seleccionado"
-                            class="product-image crop-bottom" style="height: 100%; object-fit: cover;">
+                    <!-- Image Preview (Improved) -->
+                    <div class="product-image-wrapper glass-card">
+                        <img id="model-image" src="images/tiny18m2_unified.jpg" alt="Modelo Seleccionado">
                     </div>
 
                     <!-- 1. Construction Services (Only for Kit) -->
@@ -383,43 +405,47 @@
     <!-- Calculator Logic -->
     <script>
         const pricing = {
-            tiny: {
-                kit: 3990000,
-                armado: 1690000,
-                radier: 1100000,
-                ogh: 12590000,
-                lem: 16990000
-            },
-            m35: {
-                kit: 7990000,
-                armado: 3150000, // 90k * 35m2
-                radier: 2100000, // 60k * 35m2
-                lem: 29990000,
-                ogh: 22492500 // 75% of LEM
-            }
+            tiny: { kit: 3990000, armado: 1690000, radier: 1100000, ogh: 12590000, lem: 16990000, m2: 18 },
+            m35: { kit: 7990000, armado: 3150000, radier: 2100000, ogh: 22492500, lem: 29990000, m2: 35 },
+            m45: { kit: 9990000, armado: 4050000, radier: 2700000, ogh: 28425000, lem: 37900000, m2: 45 },
+            m54: { kit: 11990000, armado: 4860000, radier: 3240000, ogh: 32925000, lem: 43900000, m2: 54 },
+            m72: { kit: 15490000, armado: 6480000, radier: 4320000, ogh: 41175000, lem: 54900000, m2: 72 },
+            m90: { kit: 18990000, armado: 8100000, radier: 5400000, ogh: 52425000, lem: 69900000, m2: 90 }
         };
 
         let currentModel = 'tiny';
-        const modelBtns = document.querySelectorAll('.model-btn');
         const modelImage = document.getElementById('model-image');
 
-        function selectModel(model) {
+        function selectModel(model, element) {
             currentModel = model;
 
-            // UI Toggle
-            modelBtns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            // UI Toggle for buttons
+            document.querySelectorAll('.model-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
 
-            // Image Update (Placeholder for m35 if missing, user has to fix)
-            if (model === 'm35') {
-                modelImage.src = 'images/m35_unified.jpg';
-                modelImage.onerror = null;
-                document.getElementById('summary-model').innerText = "Modelo 35m²";
+            // Image Update Logic
+            modelImage.src = `images/${model}_unified.jpg`;
+
+            // Fallback for m18 legacy name
+            if (model === 'tiny') {
+                modelImage.onerror = function () {
+                    this.src = 'images/tiny6x3.jpg';
+                    this.onerror = null;
+                };
             } else {
-                modelImage.src = 'images/tiny18m2_unified.jpg';
-                modelImage.onerror = function () { this.src = 'images/tiny6x3.jpg'; this.onerror = null; };
-                document.getElementById('summary-model').innerText = "Tiny 18m²";
+                modelImage.onerror = function () {
+                    this.src = 'images/tiny6x3.jpg'; // Global fallback
+                    this.onerror = null;
+                    console.log("No se encontró la imagen: " + model);
+                };
             }
+
+            // Update Summary Name
+            const names = {
+                tiny: "Tiny 18m²", m35: "Modelo 35m²", m45: "Modelo 45m²",
+                m54: "Modelo 54m²", m72: "Modelo 72m²", m90: "Modelo 90m²"
+            };
+            document.getElementById('summary-model').innerText = names[model];
 
             updatePrice();
         }
