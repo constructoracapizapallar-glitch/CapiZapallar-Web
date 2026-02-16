@@ -413,7 +413,7 @@
             // Image Update (Placeholder for m35 if missing, user has to fix)
             if (model === 'm35') {
                 modelImage.src = 'images/m35_unified.jpg';
-                modelImage.onerror = function () { this.src = 'images/tiny6x3.jpg'; this.onerror = null; };
+                modelImage.onerror = null;
                 document.getElementById('summary-model').innerText = "Modelo 35m²";
             } else {
                 modelImage.src = 'images/tiny18m2_unified.jpg';
