@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -15,8 +15,59 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=1.2">
     <style>
+        /* CRITICAL RESCUE STYLES - Ensuring proper layout even if external CSS fails */
+        .config-grid {
+            display: grid !important;
+            grid-template-columns: 1.2fr 0.8fr !important;
+            gap: 40px !important;
+            align-items: start !important;
+        }
+
+        .model-selector {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            margin-bottom: 40px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .model-btn {
+            padding: 15px 30px !important;
+            border-radius: 50px !important;
+            border: 2px solid var(--primary-500) !important;
+            background: transparent !important;
+            color: var(--text-primary) !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+        }
+
+        .model-btn.active {
+            background: var(--primary-500) !important;
+            color: white !important;
+        }
+
+        .option-card {
+            background: rgba(var(--glass-bg-rgb, 30, 30, 35), 0.5) !important;
+            border: 1px solid var(--glass-border) !important;
+            padding: 20px !important;
+            border-radius: 12px !important;
+            margin-bottom: 15px !important;
+            cursor: pointer !important;
+        }
+
+        .option-card.selected {
+            border-color: var(--primary-500) !important;
+            background: rgba(var(--primary-rgb, 230, 194, 136), 0.1) !important;
+        }
+
+        @media (max-width: 900px) {
+            .config-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
         summary::-webkit-details-marker {
             display: none;
         }
