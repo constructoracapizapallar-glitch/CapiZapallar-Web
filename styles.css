@@ -1164,3 +1164,11 @@ h3,
     color: var(--text-secondary);
     line-height: 1.6;
 }
+
+/* Helper to crop bottom of image visually */
+.crop-bottom {
+    clip-path: inset(0 0 10% 0);
+    margin-bottom: -10%;
+    display: block;
+    width: 100%;
+}
