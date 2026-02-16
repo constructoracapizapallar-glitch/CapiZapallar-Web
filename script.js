@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 2. Parallax Effect for Hero
     window.addEventListener('scroll', () => {
         const scrolled = window.scrollY;
         const heroVisual = document.querySelector('.hero-visual');
@@ -97,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.openViewer = (index) => {
         currentIdx = index;
-        viewerImg.src = images[currentIdx];
-        viewer.style.display = 'flex';
+        if (viewerImg) viewerImg.src = images[currentIdx];
+        if (viewer) viewer.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Stop scroll
     };
 
     window.closeViewer = () => {
-        viewer.style.display = 'none';
+        if (viewer) viewer.style.display = 'none';
         document.body.style.overflow = 'auto'; // Restore scroll
     };
 
@@ -112,10 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const html = document.documentElement;
     // Helper to update icon
     function updateIcon() {
+        if (!themeBtn) return;
         // If data-theme is dark, or no data-theme but system is dark
         const isDark = html.getAttribute('data-theme') === 'dark' ||
             (!html.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        themeBtn.querySelector('.theme-icon').textContent = isDark ? '☀️' : '🌙';
+        const iconSpan = themeBtn.querySelector('.theme-icon');
+        if (iconSpan) iconSpan.textContent = isDark ? '☀️' : '🌙';
     }
 
     // Check saved preference
@@ -125,23 +126,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     updateIcon(); // Initial icon state
 
-    themeBtn.addEventListener('click', () => {
-        let currentTheme = html.getAttribute('data-theme');
-        let systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        let newTheme;
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            let currentTheme = html.getAttribute('data-theme');
+            let systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let newTheme;
 
-        if (!currentTheme) {
-            // No manual override yet, toggle from system
-            newTheme = systemDark ? 'light' : 'dark';
-        } else {
-            // Manual override exists, flip it
-            newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        }
+            if (!currentTheme) {
+                // No manual override yet, toggle from system
+                newTheme = systemDark ? 'light' : 'dark';
+            } else {
+                // Manual override exists, flip it
+                newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            }
 
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateIcon();
-    });
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon();
+        });
+    }
 
     window.nextImg = () => {
         currentIdx = (currentIdx + 1) % images.length;
@@ -154,9 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Close on click outside
-    viewer.addEventListener('click', (e) => {
-        if (e.target === viewer) closeViewer();
-    });
+    if (viewer) {
+        viewer.addEventListener('click', (e) => {
+            if (e.target === viewer) closeViewer();
+        });
+    }
 
     // 9. Form Handling for n8n Automations
     const WEBHOOK_URL = 'https://capizapallar.app.n8n.cloud/webhook-test/leads-constructora'; // Using Test URL for now
