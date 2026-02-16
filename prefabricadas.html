@@ -153,7 +153,7 @@
 
             <!-- 1. Model Selector -->
             <div class="model-selector">
-                <button class="model-btn active" onclick="selectModel('tiny')">Modelo Tiny 6x3 (18m²)</button>
+                <button class="model-btn active" onclick="selectModel('tiny')">Tiny 18m²</button>
                 <button class="model-btn" onclick="selectModel('m35')">Modelo 35m²</button>
             </div>
 
@@ -167,9 +167,35 @@
                             class="product-image crop-bottom" style="height: 100%; object-fit: cover;">
                     </div>
 
-                    <!-- Tier Selection -->
+                    <!-- 1. Construction Services (Only for Kit) -->
+                    <div id="addons-section">
+                        <h3 class="config-section-title">1. Servicios de Construcción (Opcional Kit)</h3>
+                        <div style="display: grid; gap: 15px; margin-bottom: 25px;">
+                            <label class="option-card">
+                                <div class="option-header">
+                                    <span>🔨 Servicio de Armado</span>
+                                    <input type="checkbox" id="check-armado" onchange="updatePrice()"
+                                        style="accent-color: var(--primary-500); transform: scale(1.2);">
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Nosotros armamos la
+                                    estructura en tu terreno.</p>
+                            </label>
+
+                            <label class="option-card">
+                                <div class="option-header">
+                                    <span>🧱 Radier de Hormigón</span>
+                                    <input type="checkbox" id="check-radier" onchange="updatePrice()"
+                                        style="accent-color: var(--primary-500); transform: scale(1.2);">
+                                </div>
+                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Construcción de base sólida
+                                    de concreto.</p>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 2. Tier Selection -->
                     <div>
-                        <h3 class="config-section-title">1. Nivel de Terminación</h3>
+                        <h3 class="config-section-title">2. Nivel de Terminación (Tier)</h3>
                         <div style="display: grid; gap: 15px;">
                             <label class="option-card selected" onclick="selectTier('kit', this)">
                                 <div class="option-header">
@@ -209,32 +235,6 @@
                         </div>
                     </div>
 
-                    <!-- Add-ons (Only for Kit) -->
-                    <div id="addons-section">
-                        <h3 class="config-section-title">2. Servicios Adicionales (Solo Kit)</h3>
-                        <div style="display: grid; gap: 15px;">
-                            <label class="option-card">
-                                <div class="option-header">
-                                    <span>🔨 Servicio de Armado</span>
-                                    <input type="checkbox" id="check-armado" onchange="updatePrice()"
-                                        style="accent-color: var(--primary-500); transform: scale(1.2);">
-                                </div>
-                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Nosotros armamos la
-                                    estructura en tu terreno.</p>
-                            </label>
-
-                            <label class="option-card">
-                                <div class="option-header">
-                                    <span>🧱 Radier de Hormigón</span>
-                                    <input type="checkbox" id="check-radier" onchange="updatePrice()"
-                                        style="accent-color: var(--primary-500); transform: scale(1.2);">
-                                </div>
-                                <p style="font-size: 0.85rem; color: var(--text-secondary);">Construcción de base sólida
-                                    de concreto.</p>
-                            </label>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- Right: Summary Panel -->
@@ -242,7 +242,7 @@
                     <h3 style="margin-bottom: 20px; color: var(--text-primary);">Resumen Cotización</h3>
 
                     <div class="price-row">
-                        <span id="summary-model">Modelo Tiny 6x3</span>
+                        <span id="summary-model">Tiny 18m²</span>
                         <span id="price-base">$3.990.000</span>
                     </div>
 
@@ -412,13 +412,13 @@
 
             // Image Update (Placeholder for m35 if missing, user has to fix)
             if (model === 'm35') {
-                modelImage.src = 'images/modelo35.jpg';
-                // Fallback if image fails loading (keep visually clean)
-                modelImage.onerror = function () { this.src = 'images/tiny6x3.jpg'; };
+                modelImage.src = 'images/m35_unified.jpg';
+                modelImage.onerror = function () { this.src = 'images/tiny6x3.jpg'; this.onerror = null; };
                 document.getElementById('summary-model').innerText = "Modelo 35m²";
             } else {
-                modelImage.src = 'images/tiny6x3.jpg';
-                document.getElementById('summary-model').innerText = "Modelo Tiny 6x3";
+                modelImage.src = 'images/tiny18m2_unified.jpg';
+                modelImage.onerror = function () { this.src = 'images/tiny6x3.jpg'; this.onerror = null; };
+                document.getElementById('summary-model').innerText = "Tiny 18m²";
             }
 
             updatePrice();
