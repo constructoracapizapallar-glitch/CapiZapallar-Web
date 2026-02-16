@@ -461,20 +461,20 @@
                     Recibe asesoría personalizada sobre tu configuración.
                 </p>
 
-                <form class="contact-form">
+                <form id="prefabricadasLeadForm" class="contact-form">
                     <input type="hidden" id="form-config" name="configuracion" value="">
 
                     <div class="form-group">
                         <label>Nombre Completo</label>
-                        <input type="text" required>
+                        <input type="text" name="nombre" placeholder="Su nombre..." required>
                     </div>
                     <div class="form-group">
                         <label>Teléfono</label>
-                        <input type="tel" required>
+                        <input type="tel" name="telefono" placeholder="+56 9..." required>
                     </div>
                     <div class="form-group">
                         <label>Región de Instalación</label>
-                        <select class="form-control"
+                        <select name="region" class="form-control"
                             style="width: 100%; padding: 15px; border-radius: 8px; background: var(--input-bg); color: var(--text-primary); border: 1px solid var(--input-border);">
                             <option value="RM">Región Metropolitana (Despacho Gratis)</option>
                             <option value="V">V Región (Despacho Gratis)</option>
@@ -483,7 +483,7 @@
                     </div>
                     <div class="form-group">
                         <label>Mensaje Adicional</label>
-                        <textarea rows="3"></textarea>
+                        <textarea name="mensaje" rows="3" placeholder="Comentarios..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
                 </form>

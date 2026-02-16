@@ -157,4 +157,55 @@ document.addEventListener('DOMContentLoaded', () => {
     viewer.addEventListener('click', (e) => {
         if (e.target === viewer) closeViewer();
     });
+
+    // 9. Form Handling for n8n Automations
+    const WEBHOOK_URL = 'https://capizapallar.app.n8n.cloud/webhook-test/leads-constructora'; // Using Test URL for now
+
+    const handleFormSubmit = async (formId, event) => {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerText;
+
+        // Visual feedback
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Enviando...';
+
+        try {
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    formId: formId,
+                    timestamp: new Date().toISOString(),
+                    ...data
+                })
+            });
+
+            if (response.ok) {
+                alert('¡Solicitud enviada con éxito! Nos contactaremos a la brevedad.');
+                form.reset();
+            } else {
+                throw new Error('Error en el servidor');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Hubo un problema al enviar la solicitud. Por favor, intente nuevamente o contáctenos por WhatsApp.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalBtnText;
+        }
+    };
+
+    const constructionForm = document.getElementById('constructionLeadForm');
+    if (constructionForm) {
+        constructionForm.addEventListener('submit', (e) => handleFormSubmit('construccion_general', e));
+    }
+
+    const prefabricadasForm = document.getElementById('prefabricadasLeadForm');
+    if (prefabricadasForm) {
+        prefabricadasForm.addEventListener('submit', (e) => handleFormSubmit('cotizador_prefabricadas', e));
+    }
 });
