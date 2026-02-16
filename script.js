@@ -185,14 +185,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                alert('¡Solicitud enviada con éxito! Nos contactaremos a la brevedad.');
+                alert('¡Solicitud enviada con éxito! ✅\n\nPronto serás contactado por WhatsApp o vía telefónica al número que nos dejaste para coordinar tu proyecto.');
                 form.reset();
             } else {
-                throw new Error('Error en el servidor');
+                throw new Error('Error en el servidor: ' + response.status);
             }
         } catch (error) {
-            console.error('Error:', error);
-            alert('Hubo un problema al enviar la solicitud. Por favor, intente nuevamente o contáctenos por WhatsApp.');
+            console.error('Error detallado:', error);
+            alert('Hubo un problema al conectar con el servidor. Por favor, asegúrese de que el evento en n8n esté activo o contáctenos por WhatsApp directamente.');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerText = originalBtnText;
