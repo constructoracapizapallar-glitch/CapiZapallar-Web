@@ -186,7 +186,7 @@
 
                     <!-- Image Preview (Improved) -->
                     <div class="product-image-wrapper glass-card">
-                        <img id="model-image" src="images/tiny18m2_unified.jpg" alt="Modelo Seleccionado">
+                        <img id="model-image" src="images/tiny6x3.jpg" alt="Modelo Seleccionado">
                     </div>
 
                     <!-- 1. Construction Services (Only for Kit) -->
@@ -423,22 +423,14 @@
             document.querySelectorAll('.model-btn').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
 
-            // Image Update Logic
-            modelImage.src = `images/${model}_unified.jpg`;
+            // Image Update Logic (Simpler Names)
+            modelImage.src = `images/${model}.jpg`;
 
-            // Fallback for m18 legacy name
-            if (model === 'tiny') {
-                modelImage.onerror = function () {
-                    this.src = 'images/tiny6x3.jpg';
-                    this.onerror = null;
-                };
-            } else {
-                modelImage.onerror = function () {
-                    this.src = 'images/tiny6x3.jpg'; // Global fallback
-                    this.onerror = null;
-                    console.log("No se encontró la imagen: " + model);
-                };
-            }
+            // Global Fallback to existing tiny image
+            modelImage.onerror = function () {
+                this.src = 'images/tiny6x3.jpg';
+                this.onerror = null;
+            };
 
             // Update Summary Name
             const names = {
