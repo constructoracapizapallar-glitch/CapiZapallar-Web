@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     message = `Hola Capi Zapallar, soy ${nombre}. Acabo de completar el formulario para un proyecto en ${data.comuna || 'mi comuna'}. Andrés, envíame el link para conversar el proyecto.`;
                 }
 
-                const waUrl = `https://wa.me/56981501641?text=${encodeURIComponent(message)}`;
+                const waUrl = `https://wa.me/56927382765?text=${encodeURIComponent(message)}`;
 
                 // Reset y Redirigir
                 form.reset();
