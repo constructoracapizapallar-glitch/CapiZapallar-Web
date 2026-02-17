@@ -237,14 +237,25 @@
             title.innerText = "Conectando...";
 
             try {
-                const response = await fetch('https://www.tsdnext.com/api/retell/web-call', {
+                console.log("☎️ Pidiendo token al servidor...");
+
+                // Agregamos un timestamp para que Safari no use una respuesta vieja guardada
+                const url = `https://www.tsdnext.com/api/retell/web-call?t=${Date.now()}`;
+
+                const response = await fetch(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    mode: 'cors', // Forzar modo CORS
+                    cache: 'no-cache', // Evitar caché de Safari
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
                     body: JSON.stringify({
                         agentId: agentId,
                         metadata: {
                             source: 'web_direct',
-                            tipo_proyecto: tipo
+                            tipo_proyecto: tipo,
+                            device: navigator.userAgent
                         }
                     })
                 });
