@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,8 @@
     <script src="https://unpkg.com/retell-client-js-sdk@latest/dist/retell-client-js-sdk.min.js"></script>
     <style>
         :root {
-            --primary: #d4a373; /* Bronce/Siena de Capi Zapallar */
+            --primary: #d4a373;
+            /* Bronce/Siena de Capi Zapallar */
             --dark: #1a1a1a;
             --white: #ffffff;
         }
@@ -112,9 +114,20 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
         }
 
         /* Wave animation when talking (optional enhancement) */
@@ -130,15 +143,17 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <img src="images/logo.png" alt="Capi Zapallar" class="logo">
-        
+        <img src="images/logo.svg" alt="Capi Zapallar" class="logo">
+
         <div id="visualizer" class="status-orb"></div>
 
         <h1 id="title">¿Hablamos de tu proyecto?</h1>
-        <p id="desc">Andrés, nuestro ejecutivo especialista, está listo para asesorarte en tu presupuesto de construcción.</p>
+        <p id="desc">Andrés, nuestro ejecutivo especialista, está listo para asesorarte en tu presupuesto de
+            construcción.</p>
 
         <button id="start-call" class="call-btn">
             <span>Iniciar Llamada</span>
@@ -171,8 +186,10 @@
         const tipo = params.get('tipo') || 'general';
         const agentId = AGENTS[tipo] || AGENTS['general'];
 
+        console.log("🚀 Agente seleccionado:", tipo, agentId);
+
         sdk.on('call_started', () => {
-            console.log('Llamada iniciada');
+            console.log('✅ Llamada iniciada correctamente');
             startBtn.style.display = 'none';
             stopBtn.style.display = 'flex';
             visualizer.classList.add('talking');
@@ -180,39 +197,47 @@
         });
 
         sdk.on('call_ended', () => {
-            console.log('Llamada terminada');
+            console.log('⏹️ Llamada terminada');
             startBtn.style.display = 'flex';
             stopBtn.style.display = 'none';
             visualizer.classList.remove('talking');
             title.innerText = "¿Hablamos de tu proyecto?";
-            // Opcional: Redirigir a éxito post-llamada
         });
 
         sdk.on('error', (error) => {
-            console.error('Error de Retell:', error);
+            console.error('❌ Error de Retell:', error);
+            errorMsg.innerText = "Error de conexión: " + (error.message || "Problema de red");
             errorMsg.style.display = 'block';
             startBtn.disabled = false;
         });
 
         startBtn.addEventListener('click', async () => {
+            console.log("☎️ Iniciando proceso de llamada...");
             startBtn.disabled = true;
             errorMsg.style.display = 'none';
+            title.innerText = "Conectando...";
 
             try {
                 // 1. Pedir el access_token a tu backend TSDNext
                 const response = await fetch('https://www.tsdnext.com/api/retell/web-call', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
+                    body: JSON.stringify({
                         agentId: agentId,
-                        metadata: { 
+                        metadata: {
                             source: 'web_direct',
-                            tipo_proyecto: tipo 
+                            tipo_proyecto: tipo
                         }
                     })
                 });
 
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Servidor respondió ${response.status}: ${errorText}`);
+                }
+
                 const data = await response.json();
+                console.log("🎫 Token recibido:", data.call_id);
 
                 if (data.access_token) {
                     // 2. Iniciar la llamada con el token recibido
@@ -223,9 +248,10 @@
                     throw new Error(data.error || 'No se pudo obtener el token');
                 }
             } catch (err) {
-                console.error(err);
+                console.error("🔥 Error fatal:", err);
                 errorMsg.innerText = "Error: " + err.message;
                 errorMsg.style.display = 'block';
+                title.innerText = "¿Hablamos de tu proyecto?";
                 startBtn.disabled = false;
             }
         });
@@ -235,4 +261,5 @@
         });
     </script>
 </body>
+
 </html>
