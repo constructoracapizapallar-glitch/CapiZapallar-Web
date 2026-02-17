@@ -3,10 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Andrés - Capi Zapallar | Llamada de Consulta</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/retell-client-js-sdk@latest/dist/retell-client-js-sdk.min.js"></script>
+
+    <!-- JSDelivr es más confiable para Safari/iOS que unpkg -->
+    <script src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@0.2.1/dist/retell-client-js-sdk.min.js"></script>
+
     <style>
         :root {
             --primary: #d4a373;
@@ -27,6 +30,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
@@ -39,12 +43,13 @@
         .logo {
             width: 120px;
             margin-bottom: 30px;
-            filter: brightness(0) invert(1);
+            /* Quitamos el filter para que se vea el original si es necesario, o lo dejamos suave */
+            opacity: 0.9;
         }
 
         .status-orb {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
             margin: 0 auto 40px;
@@ -93,6 +98,7 @@
             justify-content: center;
             gap: 10px;
             width: 100%;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .call-btn:hover {
@@ -111,6 +117,7 @@
             background-color: #ff4d4d;
             margin-top: 20px;
             display: none;
+            color: white;
         }
 
         @keyframes pulse {
@@ -130,9 +137,9 @@
             }
         }
 
-        /* Wave animation when talking (optional enhancement) */
-        .talking .status-orb {
-            animation: bounce 0.5s infinite alternate;
+        .status-orb.talking {
+            animation: pulse 0.5s infinite ease-in-out;
+            box-shadow: 0 0 50px var(--primary);
         }
 
         #error-msg {
@@ -167,22 +174,35 @@
     </div>
 
     <script>
-        console.log("🚀 Script de Capi Zapallar cargando...");
+        // Depuración para móviles
+        window.onerror = function (msg, url, line) {
+            console.error("📱 [Error]:", msg, "at", line);
+            // alert("Debug: " + msg + " (Línea " + line + ")");
+            return false;
+        };
+
+        console.log("🚀 Script Capi Zapallar v2.1 Iniciando...");
 
         let sdk;
-        try {
-            // Intentar diferentes nombres de constructor según la versión del SDK
-            const RetellSDK = window.RetellClient || window.Retell || (window.retellClient && window.retellClient.RetellClient);
-            if (RetellSDK) {
-                sdk = new RetellSDK();
-                console.log("✅ Retell SDK inicializado correctamente");
-            } else {
-                console.error("❌ No se encontró el constructor de RetellClient en el objeto window");
-                alert("Error técnico: No se pudo cargar el motor de llamadas. Por favor refresca la página.");
+        const initSDK = () => {
+            try {
+                const RetellSDK = window.RetellClient || (window.retellClient && window.retellClient.RetellClient);
+                if (RetellSDK) {
+                    sdk = new RetellSDK();
+                    console.log("✅ SDK Retell Listo");
+                    return true;
+                }
+                return false;
+            } catch (e) {
+                console.error("❌ Fallo init SDK:", e);
+                return false;
             }
-        } catch (e) {
-            console.error("🔥 Error inicializando SDK:", e);
-            alert("Error al iniciar: " + e.message);
+        };
+
+        // Primer intento de inicio
+        if (!initSDK()) {
+            console.warn("⚠️ SDK no encontrado, reintentando en 1s...");
+            setTimeout(initSDK, 1000);
         }
 
         const startBtn = document.getElementById('start-call');
@@ -201,11 +221,10 @@
         const tipo = params.get('tipo') || 'general';
         const agentId = AGENTS[tipo] || AGENTS['general'];
 
-        console.log("🚀 Agente seleccionado:", tipo, agentId);
-
-        if (sdk) {
+        const setListeners = () => {
+            if (!sdk) return;
             sdk.on('call_started', () => {
-                console.log('✅ Llamada iniciada correctamente');
+                console.log('✅ Llamada Iniciada');
                 startBtn.style.display = 'none';
                 stopBtn.style.display = 'flex';
                 visualizer.classList.add('talking');
@@ -213,7 +232,7 @@
             });
 
             sdk.on('call_ended', () => {
-                console.log('⏹️ Llamada terminada');
+                console.log('⏹️ Llamada Terminada');
                 startBtn.style.display = 'flex';
                 stopBtn.style.display = 'none';
                 visualizer.classList.remove('talking');
@@ -221,67 +240,57 @@
             });
 
             sdk.on('error', (error) => {
-                console.error('❌ Error de Retell:', error);
-                alert("Error de Retell: " + error.message);
-                errorMsg.style.display = 'block';
+                console.error('❌ SDK Error:', error);
+                alert("Error de Audio: " + (error.message || "Por favor revisa tus permisos de micrófono."));
                 startBtn.disabled = false;
             });
-        }
+        };
+
+        if (sdk) setListeners();
+        else setTimeout(setListeners, 1500);
 
         startBtn.addEventListener('click', async () => {
-            console.log("☎️ Click en Iniciar Llamada detectado");
-            // alert("Iniciando conexión..."); // Comentar si no quieres molestar mucho, pero útil para depurar
+            console.log("☎️ Click!");
+            if (!sdk && !initSDK()) {
+                alert("El motor de llamadas no cargó. Por favor refresca la página.");
+                return;
+            }
 
             startBtn.disabled = true;
             errorMsg.style.display = 'none';
             title.innerText = "Conectando...";
 
             try {
-                console.log("☎️ Pidiendo token al servidor...");
-
-                // Agregamos un timestamp para que Safari no use una respuesta vieja guardada
-                const url = `https://www.tsdnext.com/api/retell/web-call?t=${Date.now()}`;
-
+                // Forzamos modo CORS y evitamos caché para Safari
+                const url = `https://www.tsdnext.com/api/retell/web-call?cache_bust=${Date.now()}`;
                 const response = await fetch(url, {
                     method: 'POST',
-                    mode: 'cors', // Forzar modo CORS
-                    cache: 'no-cache', // Evitar caché de Safari
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    credentials: 'omit', // Crucial para Safari en peticiones wildcard
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         agentId: agentId,
-                        metadata: {
-                            source: 'web_direct',
-                            tipo_proyecto: tipo,
-                            device: navigator.userAgent
-                        }
+                        metadata: { source: 'web_safari', tipo: tipo }
                     })
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({}));
-                    throw new Error(errorData.error || `Servidor respondió ${response.status}`);
+                    const errTxt = await response.text();
+                    throw new Error(`Servidor: ${response.status}`);
                 }
 
                 const data = await response.json();
-                console.log("🎫 Token recibido:", data.call_id);
+                console.log("🎫 Token:", data.call_id);
 
                 if (data.access_token) {
-                    if (!sdk) throw new Error("SDK no inicializado");
-
-                    await sdk.startCall({
-                        accessToken: data.access_token
-                    });
+                    await sdk.startCall({ accessToken: data.access_token });
                 } else {
-                    throw new Error(data.error || 'No se pudo generar el acceso a la llamada');
+                    throw new Error('Token no válido');
                 }
             } catch (err) {
-                console.error("🔥 Error fatal:", err);
-                alert("Lo siento, no pude conectar: " + err.message);
-                errorMsg.innerText = "Error: " + err.message;
-                errorMsg.style.display = 'block';
+                console.error("🔥 Error:", err);
+                alert("Lo siento, no pude conectar con el servidor. Intenta de nuevo en un momento.");
                 title.innerText = "¿Hablamos de tu proyecto?";
                 startBtn.disabled = false;
             }
@@ -289,9 +298,10 @@
 
         stopBtn.addEventListener('click', () => {
             if (sdk) sdk.stopCall();
-            else alert("Llamada no activa");
         });
     </script>
 </body>
+
+</html>
 
 </html>
