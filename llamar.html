@@ -167,58 +167,76 @@
     </div>
 
     <script>
-        const sdk = new RetellClient();
+        console.log("🚀 Script de Capi Zapallar cargando...");
+
+        let sdk;
+        try {
+            // Intentar diferentes nombres de constructor según la versión del SDK
+            const RetellSDK = window.RetellClient || window.Retell || (window.retellClient && window.retellClient.RetellClient);
+            if (RetellSDK) {
+                sdk = new RetellSDK();
+                console.log("✅ Retell SDK inicializado correctamente");
+            } else {
+                console.error("❌ No se encontró el constructor de RetellClient en el objeto window");
+                alert("Error técnico: No se pudo cargar el motor de llamadas. Por favor refresca la página.");
+            }
+        } catch (e) {
+            console.error("🔥 Error inicializando SDK:", e);
+            alert("Error al iniciar: " + e.message);
+        }
+
         const startBtn = document.getElementById('start-call');
         const stopBtn = document.getElementById('stop-call');
         const visualizer = document.getElementById('visualizer');
         const title = document.getElementById('title');
         const errorMsg = document.getElementById('error-msg');
 
-        // Configuración de Agentes (IDs que ya me diste)
         const AGENTS = {
             'general': 'agent_78e4eb5e2660fff6ac4a9f04b9',
             'prefabricadas': 'agent_975cbbd9788ac52da9a1385b25',
             'industrial': 'agent_293104a667fa93be8d2c471899'
         };
 
-        // Obtener agente de la URL (ej: llamar.html?tipo=prefabricadas)
         const params = new URLSearchParams(window.location.search);
         const tipo = params.get('tipo') || 'general';
         const agentId = AGENTS[tipo] || AGENTS['general'];
 
         console.log("🚀 Agente seleccionado:", tipo, agentId);
 
-        sdk.on('call_started', () => {
-            console.log('✅ Llamada iniciada correctamente');
-            startBtn.style.display = 'none';
-            stopBtn.style.display = 'flex';
-            visualizer.classList.add('talking');
-            title.innerText = "Andrés te está escuchando...";
-        });
+        if (sdk) {
+            sdk.on('call_started', () => {
+                console.log('✅ Llamada iniciada correctamente');
+                startBtn.style.display = 'none';
+                stopBtn.style.display = 'flex';
+                visualizer.classList.add('talking');
+                title.innerText = "Andrés te está escuchando...";
+            });
 
-        sdk.on('call_ended', () => {
-            console.log('⏹️ Llamada terminada');
-            startBtn.style.display = 'flex';
-            stopBtn.style.display = 'none';
-            visualizer.classList.remove('talking');
-            title.innerText = "¿Hablamos de tu proyecto?";
-        });
+            sdk.on('call_ended', () => {
+                console.log('⏹️ Llamada terminada');
+                startBtn.style.display = 'flex';
+                stopBtn.style.display = 'none';
+                visualizer.classList.remove('talking');
+                title.innerText = "¿Hablamos de tu proyecto?";
+            });
 
-        sdk.on('error', (error) => {
-            console.error('❌ Error de Retell:', error);
-            errorMsg.innerText = "Error de conexión: " + (error.message || "Problema de red");
-            errorMsg.style.display = 'block';
-            startBtn.disabled = false;
-        });
+            sdk.on('error', (error) => {
+                console.error('❌ Error de Retell:', error);
+                alert("Error de Retell: " + error.message);
+                errorMsg.style.display = 'block';
+                startBtn.disabled = false;
+            });
+        }
 
         startBtn.addEventListener('click', async () => {
-            console.log("☎️ Iniciando proceso de llamada...");
+            console.log("☎️ Click en Iniciar Llamada detectado");
+            // alert("Iniciando conexión..."); // Comentar si no quieres molestar mucho, pero útil para depurar
+
             startBtn.disabled = true;
             errorMsg.style.display = 'none';
             title.innerText = "Conectando...";
 
             try {
-                // 1. Pedir el access_token a tu backend TSDNext
                 const response = await fetch('https://www.tsdnext.com/api/retell/web-call', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -232,23 +250,25 @@
                 });
 
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`Servidor respondió ${response.status}: ${errorText}`);
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || `Servidor respondió ${response.status}`);
                 }
 
                 const data = await response.json();
                 console.log("🎫 Token recibido:", data.call_id);
 
                 if (data.access_token) {
-                    // 2. Iniciar la llamada con el token recibido
+                    if (!sdk) throw new Error("SDK no inicializado");
+
                     await sdk.startCall({
                         accessToken: data.access_token
                     });
                 } else {
-                    throw new Error(data.error || 'No se pudo obtener el token');
+                    throw new Error(data.error || 'No se pudo generar el acceso a la llamada');
                 }
             } catch (err) {
                 console.error("🔥 Error fatal:", err);
+                alert("Lo siento, no pude conectar: " + err.message);
                 errorMsg.innerText = "Error: " + err.message;
                 errorMsg.style.display = 'block';
                 title.innerText = "¿Hablamos de tu proyecto?";
@@ -257,7 +277,8 @@
         });
 
         stopBtn.addEventListener('click', () => {
-            sdk.stopCall();
+            if (sdk) sdk.stopCall();
+            else alert("Llamada no activa");
         });
     </script>
 </body>
