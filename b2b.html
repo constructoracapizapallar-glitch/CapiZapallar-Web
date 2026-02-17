@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B Industrial & Ingeniería | Capi Zapallar</title>
+    <meta name="description"
+        content="Soluciones de ingeniería y construcción para empresas. Galpones industriales, locales comerciales y oficinas corporativas en la Región de Valparaíso.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .b2b-hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/b2b_industrial.png');
+            background-size: cover;
+            background-position: center;
+            margin-top: 80px;
+        }
+
+        .b2b-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 80px 0;
+        }
+
+        .b2b-card {
+            padding: 40px;
+            border-radius: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .b2b-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-500);
+        }
+
+        .b2b-card h3 {
+            margin-bottom: 20px;
+            color: var(--primary-500);
+        }
+
+        .b2b-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .industrial-stats {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 60px 0;
+            border-top: 1px solid var(--border-white);
+            border-bottom: 1px solid var(--border-white);
+            margin: 40px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            color: var(--primary-500);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.svg" alt="Capi Zapallar Logo" class="logo-img" style="height: 50px; width: auto;">
+                <span class="logo-text">Capi Zapallar</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="index.html#servicios" class="nav-link">Servicios</a>
+                <a href="b2b.html" class="nav-link active">B2B Industrial</a>
+                <a href="prefabricadas.html" class="nav-link">Prefabricadas</a>
+                <a href="index.html#contacto" class="nav-link">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="b2b-hero">
+        <div class="container shadow-text">
+            <span class="label-upper">Soluciones Corporativas</span>
+            <h1 class="hero-title" style="font-size: 4.5rem;">Ingeniería Industrial <br> de Alto Nivel</h1>
+            <p class="hero-subtitle">Construimos la infraestructura que su empresa necesita para crecer.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="b2b-grid">
+            <div class="b2b-card glass-card">
+                <h3>Galpones Industriales</h3>
+                <p>Estructuras metálicas de grandes luces para logística, almacenamiento y producción. Diseñamos para la
+                    máxima eficiencia operativa.</p>
+            </div>
+            <div class="b2b-card glass-card">
+                <h3>Retail & Locales</h3>
+                <p>Construcción de locales comerciales y showrooms con estándares corporativos, listos para recibir a
+                    sus clientes.</p>
+            </div>
+            <div class="b2b-card glass-card">
+                <h3>Oficinas Técnicas</h3>
+                <p>Espacios de trabajo modernos y funcionales, integrando ingeniería civil y acabados de vanguardia.</p>
+            </div>
+        </section>
+
+        <section class="industrial-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2>+15k</h2>
+                    <p>m² Construidos</p>
+                </div>
+                <div class="stat-item">
+                    <h2>100%</h2>
+                    <p>Cumplimiento Plazos</p>
+                </div>
+                <div class="stat-item">
+                    <h2>0</h2>
+                    <p>Accidentes Graves</p>
+                </div>
+                <div class="stat-item">
+                    <h2>+50</h2>
+                    <p>Empresas Clientes</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" style="padding: 100px 0;">
+            <div class="form-card glass-card">
+                <div class="section-header text-center">
+                    <span class="label-upper">Licitaciones & Cotizaciones</span>
+                    <h2 class="section-title">Inicie su Proyecto B2B</h2>
+                    <p class="section-subtitle">Nuestro equipo de ingeniería revisará su requerimiento en menos de 24
+                        horas.</p>
+                </div>
+                <form id="b2bLeadForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Nombre de Contacto / Empresa" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Correo Corporativo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="whatsapp" placeholder="Teléfono de Contacto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Detalles del requerimiento técnico..." rows="4"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Solicitar Revisión Técnica</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-container">
+                    <img src="images/logo.svg" alt="Logo" class="logo-img">
+                    <span class="logo-text">Capi Zapallar</span>
+                </div>
+                <p>Ingeniería y construcción con sello de excelencia.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('b2bLeadForm').addEventListener('submit', (e) => {
+            handleFormSubmit('b2b_corporate', e);
+        });
+    </script>
+</body>
+
+</html>
