@@ -105,6 +105,35 @@
             text-transform: uppercase;
             font-size: 0.8rem;
         }
+
+        /* Responsive Mobile Tweak */
+        @media (max-width: 768px) {
+            .b2b-hero {
+                height: 50vh;
+                margin-top: 60px;
+            }
+
+            .b2b-hero h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .b2b-hero p {
+                font-size: 1rem !important;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .stat-item h2 {
+                font-size: 2rem;
+            }
+
+            .b2b-grid {
+                padding: 40px 15px;
+            }
+        }
     </style>
 </head>
 
