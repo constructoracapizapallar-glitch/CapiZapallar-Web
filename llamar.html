@@ -261,17 +261,15 @@
             title.innerText = "Conectando...";
 
             try {
-                // Forzamos modo CORS y evitamos caché para Safari
-                const url = `https://www.tsdnext.com/api/retell/web-call?cache_bust=${Date.now()}`;
+                // Usamos el proxy PHP local para evitar problemas de CORS y bloqueos de Safari
+                const url = `retell_proxy.php?t=${Date.now()}`;
+
                 const response = await fetch(url, {
                     method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    credentials: 'omit', // Crucial para Safari en peticiones wildcard
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         agentId: agentId,
-                        metadata: { source: 'web_safari', tipo: tipo }
+                        metadata: { source: 'web_safari_proxy', tipo: tipo }
                     })
                 });
 
