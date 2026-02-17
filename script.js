@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 9. Form Handling for n8n Automations
-    const WEBHOOK_URL = 'https://capizapallar.app.n8n.cloud/webhook/leads-constructora'; // Production URL
+    const WEBHOOK_URL = 'https://capizapallar.app.n8n.cloud/webhook/capi-zapallar-leads-v2'; // Production URL
 
     const handleFormSubmit = async (formId, event) => {
         event.preventDefault();
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Determinar tipo de proyecto para el Agente de IA
         if (formId === 'cotizador_prefabricadas') {
             data.tipoProyecto = 'residencial_prefabricada';
-        } else if (window.location.hash === '#b2b' || data.mensaje?.toLowerCase().includes('galpon') || data.mensaje?.toLowerCase().includes('industrial')) {
+        } else if (formId === 'b2b_corporate' || window.location.pathname.includes('b2b') || data.mensaje?.toLowerCase().includes('galpon') || data.mensaje?.toLowerCase().includes('industrial')) {
             data.tipoProyecto = 'b2b_industrial';
         } else {
             data.tipoProyecto = 'construccion_general';
@@ -202,10 +202,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 // ESTRATEGIA TRAMPA: Redirigir inmediatamente a WhatsApp con los datos del formulario
                 let message = '';
+                const nombre = data.nombre || 'Diego';
                 if (formId === 'cotizador_prefabricadas') {
-                    message = `Hola Capi Zapallar, acabo de cotizar una casa prefabricada ${data.model} de ${data.m2}m2 para la comuna de ${data.comuna}. Andrés, envíame el link para que hablemos sobre la cotización.`;
+                    message = `Hola Capi Zapallar, soy ${nombre}. Acabo de cotizar una casa prefabricada ${data.model} de ${data.m2}m2 para la comuna de ${data.comuna}. Andrés, envíame el link para que hablemos sobre la cotización.`;
+                } else if (data.tipoProyecto === 'b2b_industrial') {
+                    message = `Hola Capi Zapallar, soy ${nombre}. Acabo de completar el formulario para un proyecto B2B/Industrial en ${data.comuna}. Andrés, envíame el link para conversar el proyecto.`;
                 } else {
-                    message = `Hola Capi Zapallar, acabo de completar el formulario para un proyecto de construcción en ${data.comuna || 'mi comuna'}. Andrés, envíame el link para conversar el proyecto.`;
+                    message = `Hola Capi Zapallar, soy ${nombre}. Acabo de completar el formulario para un proyecto en ${data.comuna || 'mi comuna'}. Andrés, envíame el link para conversar el proyecto.`;
                 }
 
                 const waUrl = `https://wa.me/56973732599?text=${encodeURIComponent(message)}`;

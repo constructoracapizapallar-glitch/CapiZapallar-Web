@@ -15,6 +15,16 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Script to prevent theme flash -->
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+
     <style>
         .b2b-hero {
             height: 70vh;
@@ -103,7 +113,16 @@
                 <a href="b2b.html" class="nav-link active">B2B Industrial</a>
                 <a href="prefabricadas.html" class="nav-link">Prefabricadas</a>
                 <a href="index.html#contacto" class="nav-link">Contacto</a>
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="theme-toggle" aria-label="Cambiar Tema">
+                    <span class="theme-icon">🌓</span>
+                </button>
             </div>
+            <button class="mobile-menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -164,16 +183,19 @@
                 </div>
                 <form id="b2bLeadForm" class="contact-form">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Nombre de Contacto / Empresa" required>
+                        <input type="text" name="nombre" placeholder="Nombre de Contacto / Empresa" required>
                     </div>
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Correo Corporativo" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" name="whatsapp" placeholder="Teléfono de Contacto" required>
+                        <input type="tel" name="telefono" placeholder="Teléfono de Contacto" required>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="Detalles del requerimiento técnico..." rows="4"
+                        <input type="text" name="comuna" placeholder="Comuna del Proyecto / Terreno" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="mensaje" placeholder="Detalles del requerimiento técnico..." rows="4"
                             required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Solicitar Revisión Técnica</button>
