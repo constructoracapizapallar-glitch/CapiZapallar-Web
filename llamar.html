@@ -7,9 +7,6 @@
     <title>Andrés - Capi Zapallar | Llamada de Consulta</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- JSDelivr es más confiable para Safari/iOS que unpkg -->
-    <script src="https://cdn.jsdelivr.net/npm/retell-client-js-sdk@0.2.1/dist/retell-client-js-sdk.min.js"></script>
-
     <style>
         :root {
             --primary: #d4a373;
@@ -43,7 +40,6 @@
         .logo {
             width: 120px;
             margin-bottom: 30px;
-            /* Quitamos el filter para que se vea el original si es necesario, o lo dejamos suave */
             opacity: 0.9;
         }
 
@@ -55,6 +51,7 @@
             margin: 0 auto 40px;
             position: relative;
             animation: pulse 2s infinite ease-in-out;
+            transition: all 0.3s ease;
         }
 
         .status-orb::after {
@@ -140,6 +137,7 @@
         .status-orb.talking {
             animation: pulse 0.5s infinite ease-in-out;
             box-shadow: 0 0 50px var(--primary);
+            transform: scale(1.1);
         }
 
         #error-msg {
@@ -173,37 +171,11 @@
         <p id="error-msg">Ocurrió un error. Por favor intenta de nuevo.</p>
     </div>
 
-    <script>
-        // Depuración para móviles
-        window.onerror = function (msg, url, line) {
-            console.error("📱 [Error]:", msg, "at", line);
-            // alert("Debug: " + msg + " (Línea " + line + ")");
-            return false;
-        };
+    <!-- Script Moderno (ESM) para evitar problemas globales -->
+    <script type="module">
+        import { RetellWebClient } from "https://esm.sh/retell-client-js-sdk@2.0.7";
 
-        console.log("🚀 Script Capi Zapallar v2.1 Iniciando...");
-
-        let sdk;
-        const initSDK = () => {
-            try {
-                const RetellSDK = window.RetellClient || (window.retellClient && window.retellClient.RetellClient);
-                if (RetellSDK) {
-                    sdk = new RetellSDK();
-                    console.log("✅ SDK Retell Listo");
-                    return true;
-                }
-                return false;
-            } catch (e) {
-                console.error("❌ Fallo init SDK:", e);
-                return false;
-            }
-        };
-
-        // Primer intento de inicio
-        if (!initSDK()) {
-            console.warn("⚠️ SDK no encontrado, reintentando en 1s...");
-            setTimeout(initSDK, 1000);
-        }
+        console.log("🚀 Capi Zapallar Audio Engine Loading...");
 
         const startBtn = document.getElementById('start-call');
         const stopBtn = document.getElementById('stop-call');
@@ -211,6 +183,18 @@
         const title = document.getElementById('title');
         const errorMsg = document.getElementById('error-msg');
 
+        let sdk = null;
+
+        // Inicializar SDK
+        try {
+            sdk = new RetellWebClient();
+            console.log("✅ Audio Engine Ready");
+        } catch (e) {
+            console.error("🔥 Audio Engine Failed:", e);
+            alert("Error crítico: No se pudo cargar el componente de audio. Refresca la página.");
+        }
+
+        // Configuración de Agentes
         const AGENTS = {
             'general': 'agent_78e4eb5e2660fff6ac4a9f04b9',
             'prefabricadas': 'agent_975cbbd9788ac52da9a1385b25',
@@ -221,10 +205,10 @@
         const tipo = params.get('tipo') || 'general';
         const agentId = AGENTS[tipo] || AGENTS['general'];
 
-        const setListeners = () => {
-            if (!sdk) return;
+        // Event Listeners
+        if (sdk) {
             sdk.on('call_started', () => {
-                console.log('✅ Llamada Iniciada');
+                console.log('✅ Call Started');
                 startBtn.style.display = 'none';
                 stopBtn.style.display = 'flex';
                 visualizer.classList.add('talking');
@@ -232,7 +216,7 @@
             });
 
             sdk.on('call_ended', () => {
-                console.log('⏹️ Llamada Terminada');
+                console.log('⏹️ Call Ended');
                 startBtn.style.display = 'flex';
                 stopBtn.style.display = 'none';
                 visualizer.classList.remove('talking');
@@ -240,66 +224,92 @@
             });
 
             sdk.on('error', (error) => {
-                console.error('❌ SDK Error:', error);
-                alert("Error de Audio: " + (error.message || "Por favor revisa tus permisos de micrófono."));
+                console.error('❌ Call Error:', error);
+
+                // Manejo especial de errores de micrófono
+                if (error.message && error.message.includes('microphone')) {
+                    alert("Por favor permite el acceso al micrófono para hablar con Andrés.");
+                } else {
+                    alert("Error en la llamada: " + error.message);
+                }
+
+                sdk.stopCall(); // Reset state
                 startBtn.disabled = false;
+                startBtn.style.display = 'flex';
+                stopBtn.style.display = 'none';
+                title.innerText = "Error de conexión";
             });
-        };
 
-        if (sdk) setListeners();
-        else setTimeout(setListeners, 1500);
+            sdk.on('agent_start_talking', () => {
+                visualizer.classList.add('talking');
+            });
 
+            sdk.on('agent_stop_talking', () => {
+                visualizer.classList.remove('talking');
+            });
+        }
+
+        // Logic de Inicio
         startBtn.addEventListener('click', async () => {
-            console.log("☎️ Click!");
-            if (!sdk && !initSDK()) {
-                alert("El motor de llamadas no cargó. Por favor refresca la página.");
+            if (!sdk) {
+                alert("El sistema de audio no está listo. Por favor refresca la página.");
                 return;
             }
 
+            console.log("☎️ Starting connection sequence...");
             startBtn.disabled = true;
             errorMsg.style.display = 'none';
-            title.innerText = "Conectando...";
+            title.innerText = "Conectando con Andrés...";
 
             try {
-                // Usamos el proxy PHP local para evitar problemas de CORS y bloqueos de Safari
-                const url = `retell_proxy.php?t=${Date.now()}`;
-
-                const response = await fetch(url, {
+                // 1. Obtener Token via Proxy Local (PHP)
+                // Se usa timestamp para evitar caché agresivo de Safari
+                const response = await fetch(`retell_proxy.php?t=${Date.now()}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         agentId: agentId,
-                        metadata: { source: 'web_safari_proxy', tipo: tipo }
+                        metadata: {
+                            source: 'web_direct_esm',
+                            tipo_proyecto: tipo,
+                            device: navigator.userAgent
+                        }
                     })
                 });
 
                 if (!response.ok) {
-                    const errTxt = await response.text();
-                    throw new Error(`Servidor: ${response.status}`);
+                    throw new Error(`Server status: ${response.status}`);
                 }
 
                 const data = await response.json();
-                console.log("🎫 Token:", data.call_id);
 
-                if (data.access_token) {
-                    await sdk.startCall({ accessToken: data.access_token });
-                } else {
-                    throw new Error('Token no válido');
+                if (!data.access_token) {
+                    throw new Error("Token de acceso no recibido");
                 }
+
+                console.log("🎫 Token Received. Starting Call...");
+
+                // 2. Iniciar Llamada Audio
+                await sdk.startCall({
+                    accessToken: data.access_token
+                });
+
             } catch (err) {
-                console.error("🔥 Error:", err);
-                alert("Lo siento, no pude conectar con el servidor. Intenta de nuevo en un momento.");
+                console.error("🔥 Connection Failed:", err);
+                alert("No se pudo establecer la conexión: " + err.message);
+
                 title.innerText = "¿Hablamos de tu proyecto?";
                 startBtn.disabled = false;
+                errorMsg.innerText = "Error: " + err.message;
+                errorMsg.style.display = 'block';
             }
         });
 
+        // Logic de Fin
         stopBtn.addEventListener('click', () => {
             if (sdk) sdk.stopCall();
         });
     </script>
 </body>
-
-</html>
 
 </html>
