@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador Casas Prefabricadas | Capi Zapallar</title>
+    <title>Cotizador de Casas Prefabricadas SIP | Capi Zapallar</title>
     <meta name="description"
-        content="Cotiza tu Casa Prefabricada SIP. Modelos Tiny 18m2 y 35m2. Desde Kits de autoconstrucción hasta Llave en Mano.">
+        content="Configura y cotiza tu casa prefabricada con paneles SIP. Modelos desde 18m2 hasta 140m2. Kits de autoconstrucción y proyectos residenciales llave en mano.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -636,6 +636,45 @@
         // Init
         updatePrice();
     </script>
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal glass-card" style="display: none;">
+        <div class="modal-content">
+            <h3 style="color: var(--primary-500); margin-bottom: 15px;">¡Cotización Recibida! ✅</h3>
+            <p style="margin-bottom: 10px;">Hemos recibido tu configuración. Un asesor se contactará contigo pronto.</p>
+            <p id="modalQuoteInfo" style="margin-bottom: 25px; font-weight: 500; font-size: 0.9rem; opacity: 0.8;"></p>
+            <div class="modal-ctas" style="display: flex; flex-direction: column; gap: 10px;">
+                <a id="whatsappBtn" href="#" target="_blank" class="btn btn-primary"
+                    style="width: 100%; text-decoration: none; display: inline-block; padding: 12px; border-radius: 12px;">Hablar
+                    por WhatsApp ahora</a>
+                <button onclick="closeSuccessModal()" class="btn btn-outline"
+                    style="width: 100%; border-radius: 12px; padding: 10px;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .success-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            padding: 40px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            border-radius: 30px;
+            border: 1px solid var(--primary-500);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            background: var(--bg-secondary);
+        }
+
+        .success-modal .modal-content h3 {
+            font-size: 1.8rem;
+        }
+    </style>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -171,6 +171,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const form = event.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+        data.formId = formId;
+
+        // Determinar tipo de proyecto para el Agente de IA
+        if (formId === 'cotizador_prefabricadas') {
+            data.tipoProyecto = 'residencial_prefabricada';
+        } else if (window.location.hash === '#b2b' || data.mensaje?.toLowerCase().includes('galpon') || data.mensaje?.toLowerCase().includes('industrial')) {
+            data.tipoProyecto = 'b2b_industrial';
+        } else {
+            data.tipoProyecto = 'construccion_general';
+        }
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerText;
 
@@ -190,8 +200,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                alert('¡Solicitud enviada con éxito! ✅\n\nPronto serás contactado por WhatsApp o vía telefónica al número que nos dejaste para coordinar tu proyecto.');
+                // ESTRATEGIA TRAMPA: Redirigir inmediatamente a WhatsApp con los datos del formulario
+                let message = '';
+                if (formId === 'cotizador_prefabricadas') {
+                    message = `Hola Capi Zapallar, acabo de cotizar una casa prefabricada ${data.model} de ${data.m2}m2 para la comuna de ${data.comuna}. Andrés, envíame el link para que hablemos sobre la cotización.`;
+                } else {
+                    message = `Hola Capi Zapallar, acabo de completar el formulario para un proyecto de construcción en ${data.comuna || 'mi comuna'}. Andrés, envíame el link para conversar el proyecto.`;
+                }
+
+                const waUrl = `https://wa.me/56973732599?text=${encodeURIComponent(message)}`;
+
+                // Reset y Redirigir
                 form.reset();
+                window.location.href = waUrl;
             } else {
                 throw new Error('Error en el servidor: ' + response.status);
             }
@@ -202,6 +223,35 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = false;
             submitBtn.innerText = originalBtnText;
         }
+    };
+
+    // --- Success Modal & WhatsApp Redirection ---
+    const showSuccessModal = (data, formId) => {
+        const modal = document.getElementById('successModal');
+        const modalInfo = document.getElementById('modalQuoteInfo');
+        const waBtn = document.getElementById('whatsappBtn');
+
+        if (!modal || !waBtn) return;
+
+        let message = '';
+        let quoteText = '';
+
+        if (formId === 'cotizador_prefabricadas') {
+            quoteText = `Modelo: ${data.model} | Superficie: ${data.m2}m² | Comuna: ${data.comuna}`;
+            message = `Hola Capi Zapallar, acabo de cotizar una casa prefabricada ${data.model} de ${data.m2}m2 para la comuna de ${data.comuna}. Me gustaría agendar una reunión o recibir el catálogo.`;
+        } else {
+            quoteText = `Interés: Construcción General | Comuna: ${data.comuna || 'No especificada'}`;
+            message = `Hola Capi Zapallar, acabo de completar el formulario en la web para un proyecto de construcción en ${data.comuna || 'mi comuna'}. Me gustaría recibir más información.`;
+        }
+
+        modalInfo.innerText = quoteText;
+        waBtn.href = `https://wa.me/56973732599?text=${encodeURIComponent(message)}`;
+        modal.style.display = 'block';
+    };
+
+    window.closeSuccessModal = () => {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.style.display = 'none';
     };
 
     const constructionForm = document.getElementById('constructionLeadForm');

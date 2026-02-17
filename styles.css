@@ -1526,3 +1526,63 @@ h2 {
         top: 0;
     }
 }
+
+/* --- B2B SECTION --- */
+.b2b-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.b2b-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    padding: 60px;
+    align-items: center;
+    border-radius: 40px;
+}
+
+.b2b-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0 35px 0;
+}
+
+.b2b-list li {
+    padding: 12px 0;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.b2b-list li::before {
+    content: '→';
+    margin-right: 15px;
+    color: var(--primary-500);
+    font-weight: bold;
+}
+
+.b2b-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.b2b-wrapper:hover .b2b-image img {
+    transform: scale(1.03);
+}
+
+@media (max-width: 992px) {
+    .b2b-wrapper {
+        grid-template-columns: 1fr;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .b2b-list li {
+        justify-content: center;
+    }
+}
