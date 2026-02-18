@@ -1,0 +1,112 @@
+[
+    {
+        "id": "1",
+        "name": "Retell Tool Receiver",
+        "nodes": [
+            {
+                "parameters": {
+                    "httpMethod": "POST",
+                    "path": "retell/action",
+                    "responseMode": "lastNode",
+                    "options": {}
+                },
+                "name": "Webhook (Retell)",
+                "type": "n8n-nodes-base.webhook",
+                "typeVersion": 1,
+                "position": [
+                    100,
+                    300
+                ],
+                "webhookId": "retell-action-id"
+            },
+            {
+                "parameters": {
+                    "conditions": {
+                        "string": [
+                            {
+                                "value1": "={{$node[\"Webhook (Retell)\"].json[\"body\"][\"args\"][\"resource_type\"]}}",
+                                "value2": "zoom_link"
+                            }
+                        ]
+                    }
+                },
+                "name": "IF Zoom?",
+                "type": "n8n-nodes-base.if",
+                "typeVersion": 1,
+                "position": [
+                    350,
+                    300
+                ]
+            },
+            {
+                "parameters": {
+                    "method": "POST",
+                    "url": "https://www.tsdnext.com/api/whatsapp/send",
+                    "sendBody": true,
+                    "bodyParameters": {
+                        "parameters": [
+                            {
+                                "name": "phoneId",
+                                "value": "YOUR_PHONE_ID"
+                            },
+                            {
+                                "name": "to",
+                                "value": "={{$node[\"Webhook (Retell)\"].json[\"body\"][\"args\"][\"user_phone\"]}}"
+                            },
+                            {
+                                "name": "message",
+                                "value": "🚀 Hola! Andrés por aquí. Te dejo el link directo a nuestra reunión de Zoom: https://zoom.us/j/YOUR_ZOOM_ID"
+                            }
+                        ]
+                    },
+                    "options": {}
+                },
+                "name": "Send WhatsApp (Zoom)",
+                "type": "n8n-nodes-base.httpRequest",
+                "typeVersion": 1,
+                "position": [
+                    600,
+                    200
+                ]
+            },
+            {
+                "parameters": {
+                    "content": "Importante:\n1. Copia la URL de este Webhook (Production URL).\n2. Pégala en el campo \"URL\" de la Custom Tool en Retell AI.\n3. Asegúrate de que el body reciba 'args.resource_type' y 'args.user_phone'.",
+                    "height": 200,
+                    "width": 300
+                },
+                "name": "Note",
+                "type": "n8n-nodes-base.stickyNote",
+                "typeVersion": 1,
+                "position": [
+                    100,
+                    100
+                ]
+            }
+        ],
+        "connections": {
+            "Webhook (Retell)": {
+                "main": [
+                    [
+                        {
+                            "node": "IF Zoom?",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            },
+            "IF Zoom?": {
+                "main": [
+                    [
+                        {
+                            "node": "Send WhatsApp (Zoom)",
+                            "type": "main",
+                            "index": 0
+                        }
+                    ]
+                ]
+            }
+        }
+    }
+]

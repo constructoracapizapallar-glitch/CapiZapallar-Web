@@ -203,6 +203,7 @@
 
         const params = new URLSearchParams(window.location.search);
         const tipo = params.get('tipo') || 'general';
+        const userPhone = params.get('tel') || ''; // Capturamos el teléfono del link
         const agentId = AGENTS[tipo] || AGENTS['general'];
 
         // Event Listeners
@@ -272,6 +273,7 @@
                         metadata: {
                             source: 'web_direct_esm',
                             tipo_proyecto: tipo,
+                            user_phone: userPhone, // Pasamos el teléfono a Andrés
                             device: navigator.userAgent
                         }
                     })

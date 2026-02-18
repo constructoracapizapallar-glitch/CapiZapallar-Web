@@ -1,0 +1,26 @@
+{
+    "name": "send_whatsapp_resource",
+    "description": "Call this tool whenever the user agrees to receive information, asks for a Zoom link, or wants to schedule a meeting. Do not just say you sent it; you must trigger this tool.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "resource_type": {
+                "type": "string",
+                "enum": [
+                    "zoom_link",
+                    "agenda_meeting",
+                    "company_brochure",
+                    "contact_info"
+                ],
+                "description": "The specific type of resource the user requested."
+            },
+            "user_phone": {
+                "type": "string",
+                "description": "The user's phone number as strictly E.164 format (e.g. +569...). If not available in context, ask for it."
+            }
+        },
+        "required": [
+            "resource_type"
+        ]
+    }
+}
