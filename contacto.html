@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructora Capi Zapallar | IngenierÃ­a B2B, Galpones y Casas Llave en Mano</title>
+    <meta name="description"
+        content="Constructora e IngenierÃ­a Capi Zapallar. Expertos en proyectos industriales (B2B), construcciÃ³n de galpones, locales comerciales y casas de lujo llave en mano. Liderando en la RegiÃ³n de ValparaÃ­so y Santiago.">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Constructora Capi Zapallar",
+      "image": "https://capizapallar.cl/images/hero_visual.png",
+      "@id": "https://capizapallar.cl",
+      "url": "https://capizapallar.cl",
+      "telephone": "+56973732599",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Zapallar",
+        "addressLocality": "Zapallar",
+        "addressRegion": "ValparaÃ­so",
+        "postalCode": "2060000",
+        "addressCountry": "CL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -32.55,
+        "longitude": -71.46
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/capizapallar",
+        "https://www.instagram.com/capizapallar"
+      ],
+      "department": [
+        {
+          "@type": "ProfessionalService",
+          "name": "IngenierÃ­a B2B y Galpones",
+          "description": "Desarrollo de infraestructura industrial y comercial."
+        },
+        {
+          "@type": "GeneralContractor",
+          "name": "ConstrucciÃ³n Residencial Llave en Mano",
+          "description": "Casas personalizadas en Metalcom, SIP y HormigÃ³n."
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dark-mode">
+    <div id="particles-js"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.svg" alt="Capi Zapallar Logo" class="logo-img" style="height: 50px; width: auto;">
+                <span class="logo-text">Capi Zapallar</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#hero" class="nav-link">Inicio</a>
+                <a href="index.html#servicios" class="nav-link">Servicios</a>
+                <a href="index.html#proyectos" class="nav-link">Proyectos</a>
+                <a href="index.html#nosotros" class="nav-link">Nosotros</a>
+                <a href="b2b.html" class="nav-link">B2B Industrial</a>
+                <a href="prefabricadas.html" class="nav-link">Prefabricadas</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="theme-toggle" aria-label="Cambiar Tema">
+                    <span class="theme-icon">ðŸŒ“</span>
+                </button>
+            </div>
+            <button class="mobile-menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="lead-form-section" id="contacto">
+        <div class="container">
+            <div class="form-card glass-card">
+                <div class="section-header text-center">
+                    <span class="label-upper">Contacto</span>
+                    <h2 class="section-title">Inicie su Proyecto</h2>
+                    <p class="section-subtitle">Complete el formulario y nos contactaremos a la brevedad para una
+                        asesorÃ­a personalizada.</p>
+                </div>
+                <form id="constructionLeadForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="nombre" placeholder="Nombre Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Correo ElectrÃ³nico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="whatsapp" name="telefono" placeholder="WhatsApp / TelÃ©fono" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="comuna" placeholder="Comuna del Proyecto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="mensaje" placeholder="CuÃ©ntenos sobre su proyecto..." rows="4"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Enviar Solicitud</button>
+                    <p id="formStatus" class="form-status"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img src="images/logo.svg" alt="Capi Zapallar" class="footer-logo">
+                <p class="footer-desc">Constructora lÃ­der en proyectos llave en mano de lujo y personalizados.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/capi_zapallar_constructora?igsh=MWo5YWQ1NGI3ZWEybA%3D%3D&utm_source=qr"
+                        target="_blank" class="social-link">Instagram</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Empresa</h4>
+                <a href="#hero">Inicio</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#nosotros">Nosotros</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <a href="privacidad.html">Privacidad</a>
+                <a href="terminos.html">TÃ©rminos</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Cobertura</h4>
+                <p>Zapallar, Maitencillo, Papudo y PuchuncavÃ­.</p>
+                <p>Santiago: Vitacura, Lo Barnechea, Lampa y Colina.</p>
+                <p>V RegiÃ³n: ConcÃ³n, QuilpuÃ© y ViÃ±a del Mar.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Constructora Capi Zapallar. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modern Photo Viewer Modal -->
+    <div id="photoViewer" class="photo-viewer">
+        <span class="viewer-close" onclick="closeViewer()">&times;</span>
+        <img class="viewer-content" id="viewerImg">
+        <div class="viewer-nav">
+            <button onclick="prevImg()">&#10094;</button>
+            <button onclick="nextImg()">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal glass-card" style="display: none;">
+        <div class="modal-content">
+            <h3 style="color: var(--primary-500); margin-bottom: 15px;">Â¡Solicitud Recibida! âœ…</h3>
+            <p style="margin-bottom: 10px;">Tu proyecto ya estÃ¡ en proceso de revisiÃ³n por nuestro equipo.</p>
+            <p id="modalQuoteInfo" style="margin-bottom: 25px; font-weight: 500; font-size: 0.9rem; opacity: 0.8;"></p>
+            <div class="modal-ctas" style="display: flex; flex-direction: column; gap: 10px;">
+                <a id="whatsappBtn" href="#" target="_blank" class="btn btn-primary"
+                    style="width: 100%; text-decoration: none; display: inline-block;">Hablar por WhatsApp ahora</a>
+                <button onclick="closeSuccessModal()" class="btn btn-outline"
+                    style="width: 100%; border-radius: 12px; padding: 10px;">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .success-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            padding: 40px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            border-radius: 30px;
+            border: 1px solid var(--primary-500);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            background: var(--bg-secondary);
+        }
+
+        .success-modal .modal-content h3 {
+            font-size: 1.8rem;
+        }
+    </style>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
