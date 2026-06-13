@@ -3,7 +3,7 @@
 ## 🚨 Prioridad Alta: "Captación por Formulario"
 - [x] **Creación de Landing Page para Google Ads:** Extraer el formulario a `contacto.html`.
 - [x] **Actualización de Navegación:** Modificar menú en todas las vistas para enlazar a `contacto.html`.
-- [ ] **Test de Inyección de Leads:** Enviar un lead de prueba desde la nueva página web y verificar que llegue a TSDNext.
+- [x] **Test de Inyección de Leads:** Enviar un lead de prueba desde la nueva página web y verificar que llegue a TSDNext.
 
 ## ✅ Completado
 - [x] **Branding:** Logo y colores aplicados en sitio web.
