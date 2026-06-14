@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Prefill form from URL Parameters ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const mensajeParam = urlParams.get('mensaje');
+    if (mensajeParam) {
+        const textarea = document.getElementById('message');
+        if (textarea) textarea.value = mensajeParam;
+    }
+    // ----------------------------------------
+
     // 1. Scroll Reveal Animation for Sections
     const observerOptions = {
         threshold: 0.1
