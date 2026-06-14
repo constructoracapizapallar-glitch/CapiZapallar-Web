@@ -8,6 +8,7 @@
 ## ✅ Completado
 - [x] **Branding:** Logo y colores aplicados en sitio web.
 - [x] **Pivote Estratégico:** Cancelación de despliegue de Retell AI a favor de formularios web.
+- [x] **Instalar Google Tag:** Añadir la etiqueta base de Google Ads (`AW-...`) en el `<head>` de todos los archivos HTML.
 - [x] **Sincronizar Webhook:** Cambiar el endpoint en `script.js` hacia TSDNext.
 - [x] **Limpieza de UI de Llamadas:** Eliminar archivos residuales de Retell AI.
 
