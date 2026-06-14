@@ -200,6 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
+                // Disparar evento de conversión para Google Ads
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', {
+                        'event_category': 'contacto',
+                        'event_label': data.tipoProyecto || formId
+                    });
+                }
+
                 // ESTRATEGIA TRAMPA: Redirigir inmediatamente a WhatsApp con los datos del formulario
                 let message = '';
                 const nombre = data.nombre || 'Diego';
