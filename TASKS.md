@@ -25,3 +25,5 @@
 
 - [x] **Corrección Encoding:** Restaurada la codificación UTF-8 para arreglar caracteres extraños () en formularios.
 - [x] **Optimización Favicon:** Monograma CZ aislado y encuadrado en 1:1 para perfecta legibilidad en pestañas.
+
+- [x] **Tracking y SEO:** Completada la optimización de Meta Tags y Schema.org (JSON-LD) para separación B2B y B2C.
