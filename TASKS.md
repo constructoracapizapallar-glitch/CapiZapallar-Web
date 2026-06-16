@@ -22,3 +22,6 @@
 - [x] **Optimización Visual:** Removido fondo blanco del logo y favicon, convertido a canal Alfa (Transparente).
 
 - [x] **Filtro Avanzado (Luma Key):** Extracción perfecta de la tipografía negra eliminando toda sombra, recuadro y fondo generado por IA.
+
+- [x] **Corrección Encoding:** Restaurada la codificación UTF-8 para arreglar caracteres extraños () en formularios.
+- [x] **Optimización Favicon:** Monograma CZ aislado y encuadrado en 1:1 para perfecta legibilidad en pestañas.
