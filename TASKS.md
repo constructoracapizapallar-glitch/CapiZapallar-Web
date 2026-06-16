@@ -20,3 +20,5 @@
 - [x] **Branding (Favicon & Logo):** Implementado logo tipográfico (Opción 3) en toda la web y como favicon.
 
 - [x] **Optimización Visual:** Removido fondo blanco del logo y favicon, convertido a canal Alfa (Transparente).
+
+- [x] **Filtro Avanzado (Luma Key):** Extracción perfecta de la tipografía negra eliminando toda sombra, recuadro y fondo generado por IA.
