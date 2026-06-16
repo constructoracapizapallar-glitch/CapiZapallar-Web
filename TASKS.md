@@ -16,3 +16,5 @@
 
 ## ğŸ“ Pendientes (Mejoras)
 - [ ] **Tracking y SEO:** Aplicar mejoras segÃºn `seo_plan.md`.
+
+- [x] **Branding (Favicon & Logo):** Implementado logo tipográfico (Opción 3) en toda la web y como favicon.
