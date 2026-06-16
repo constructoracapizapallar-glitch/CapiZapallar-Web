@@ -1,7 +1,9 @@
 # Capi Zapallar - Lista de Tareas y Estado
 
 ## 🚨 Prioridad Alta: "Captación por Formulario"
-- [x] **Creación de Landing Page para Google Ads:** Extraer el formulario a `contacto.html`.
+- [x] **Configurar Evento de Conversión:** Evento de Google Ads ('generate_lead').
+- [x] **Landing Page para Google Ads:** Extraer el formulario a `contacto.html`.
+- [x] **Inyección Visual:** Implementar las fotografías realistas generadas con IA en la página web principal.
 - [x] **Actualización de Navegación:** Modificar menú en todas las vistas para enlazar a `contacto.html`.
 - [x] **Test de Inyección de Leads:** Enviar un lead de prueba desde la nueva página web y verificar que llegue a TSDNext.
 
