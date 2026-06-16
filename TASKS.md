@@ -18,3 +18,5 @@
 - [ ] **Tracking y SEO:** Aplicar mejoras segÃºn `seo_plan.md`.
 
 - [x] **Branding (Favicon & Logo):** Implementado logo tipográfico (Opción 3) en toda la web y como favicon.
+
+- [x] **Optimización Visual:** Removido fondo blanco del logo y favicon, convertido a canal Alfa (Transparente).
