@@ -47,14 +47,14 @@ export default function FerreteriaDashboard() {
   };
 
   const cardStyle = {
-    background: 'rgba(255, 255, 255, 0.05)',
-    backdropFilter: 'blur(16px)',
-    WebkitBackdropFilter: 'blur(16px)',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    borderRadius: '16px',
+    background: 'rgba(255, 255, 255, 0.7)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    border: '1px solid rgba(0, 0, 0, 0.05)',
+    borderRadius: '20px',
     padding: '30px',
-    color: 'white',
-    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+    color: 'var(--capi-navy)',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
     position: 'relative' as const,
     overflow: 'hidden' as const,
   };
@@ -65,40 +65,70 @@ export default function FerreteriaDashboard() {
       <div style={{ marginBottom: '40px' }}>
         <h1 style={{ 
           fontSize: '2.5rem', 
-          background: 'linear-gradient(90deg, var(--capi-gold) 0%, #fff 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          color: 'var(--capi-navy)',
           marginBottom: '10px'
         }}>
           Portal B2B Ferretero
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '1.1rem' }}>Sincroniza tu inventario y recibe órdenes de compra de la Red Capi.</p>
+        <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Sincroniza tu inventario y recibe órdenes de compra de constructoras.</p>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '30px' }}>
+        
+        {/* Inbox de Cotizaciones B2B */}
+        <div style={cardStyle}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #f59e0b, #ef4444)' }}></div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+            <span style={{ background: '#fef3c7', color: '#b45309', padding: '5px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>1 COTIZACIÓN PENDIENTE</span>
+          </div>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '10px', color: 'var(--capi-navy)' }}>Inbox de Órdenes B2B</h2>
+          <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.6' }}>Constructora Pacífico ha solicitado cotizar una lista de 45 materiales de obra gruesa.</p>
+          
+          <button style={{
+            background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%'
+          }}>
+            Responder Cotización
+          </button>
+        </div>
+
+        {/* Ofertas Flash */}
+        <div style={cardStyle}>
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }}></div>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Ofertas Flash Capi Red</h2>
+          <p style={{ color: '#64748b', marginBottom: '25px', lineHeight: '1.6' }}>Notifica a todos los Maestros y Constructoras de la zona sobre liquidaciones o stock crítico.</p>
+          
+          <button style={{
+            background: 'transparent', color: '#3b82f6', border: '2px solid #3b82f6', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.2s', width: '100%',
+          }}>
+            Lanzar Oferta Local
+          </button>
+        </div>
       </div>
 
       <div style={cardStyle}>
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #10b981, #3b82f6)' }}></div>
-        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#e2e8f0' }}>Mi Catálogo de Productos</h2>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: 'var(--capi-navy)' }}>Mi Catálogo de Productos</h2>
         
-        {loading ? <p style={{ color: '#8892b0' }}>Cargando inventario...</p> : (
+        {loading ? <p style={{ color: '#64748b' }}>Cargando inventario...</p> : (
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '600px' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                  <th style={{ padding: '15px 10px', color: '#8892b0' }}>Producto</th>
-                  <th style={{ padding: '15px 10px', color: '#8892b0' }}>Categoría</th>
-                  <th style={{ padding: '15px 10px', color: '#8892b0' }}>Precio Público</th>
+                <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
+                  <th style={{ padding: '15px 10px', color: '#64748b' }}>Producto</th>
+                  <th style={{ padding: '15px 10px', color: '#64748b' }}>Categoría</th>
+                  <th style={{ padding: '15px 10px', color: '#64748b' }}>Precio Público</th>
                   <th style={{ padding: '15px 10px', color: '#ef4444' }}>Comisión Capi (10%)</th>
                   <th style={{ padding: '15px 10px', color: '#10b981' }}>Tu Ganancia Neta</th>
                 </tr>
               </thead>
               <tbody>
                 {products.length === 0 ? (
-                  <tr><td colSpan={5} style={{ padding: '30px 10px', textAlign: 'center', color: '#8892b0' }}>No tienes productos en tu catálogo.</td></tr>
+                  <tr><td colSpan={5} style={{ padding: '30px 10px', textAlign: 'center', color: '#64748b' }}>No tienes productos en tu catálogo.</td></tr>
                 ) : products.map(p => (
-                  <tr key={p.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#e2e8f0' }}>{p.name}</td>
-                    <td style={{ padding: '15px 10px', color: '#a8b2d1' }}>{p.category}</td>
-                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#e2e8f0' }}>${p.price}</td>
+                  <tr key={p.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: 'var(--capi-navy)' }}>{p.name}</td>
+                    <td style={{ padding: '15px 10px', color: '#64748b' }}>{p.category}</td>
+                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: 'var(--capi-navy)' }}>${p.price}</td>
                     <td style={{ padding: '15px 10px', color: '#ef4444' }}>-${p.comision || Math.round(p.price * 0.1)}</td>
                     <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#10b981' }}>${p.gananciaNeta || Math.round(p.price * 0.9)}</td>
                   </tr>
@@ -119,21 +149,21 @@ export default function FerreteriaDashboard() {
       </div>
 
       {showAddModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(10, 25, 47, 0.8)', backdropFilter: 'blur(5px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
-          <div style={{ background: 'var(--capi-navy)', border: '1px solid var(--capi-gold)', padding: '30px', borderRadius: '15px', width: '90%', maxWidth: '400px', color: 'white' }}>
-            <h3 style={{ marginBottom: '20px', color: 'var(--capi-gold)' }}>Agregar Producto</h3>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(253, 251, 247, 0.8)', backdropFilter: 'blur(5px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
+          <div style={{ background: 'white', border: '1px solid var(--capi-border)', padding: '30px', borderRadius: '15px', width: '90%', maxWidth: '400px', color: 'var(--capi-navy)', boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}>
+            <h3 style={{ marginBottom: '20px', color: 'var(--capi-navy)' }}>Agregar Producto</h3>
             <form onSubmit={handleAddProduct} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <input type="text" placeholder="Nombre del Producto" required value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} style={{ padding: '12px', border: 'none', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white' }} />
-              <select value={newProduct.category} onChange={e => setNewProduct({...newProduct, category: e.target.value})} style={{ padding: '12px', border: 'none', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white' }}>
-                <option value="Obra Gruesa" style={{ color: 'black' }}>Obra Gruesa</option>
-                <option value="Terminaciones" style={{ color: 'black' }}>Terminaciones</option>
-                <option value="Herramientas" style={{ color: 'black' }}>Herramientas</option>
-                <option value="Fijaciones" style={{ color: 'black' }}>Fijaciones</option>
+              <input type="text" placeholder="Nombre del Producto" required value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} style={{ padding: '12px', border: '1px solid var(--capi-border)', borderRadius: '8px', background: '#f8fafc', color: 'var(--capi-navy)' }} />
+              <select value={newProduct.category} onChange={e => setNewProduct({...newProduct, category: e.target.value})} style={{ padding: '12px', border: '1px solid var(--capi-border)', borderRadius: '8px', background: '#f8fafc', color: 'var(--capi-navy)' }}>
+                <option value="Obra Gruesa">Obra Gruesa</option>
+                <option value="Terminaciones">Terminaciones</option>
+                <option value="Herramientas">Herramientas</option>
+                <option value="Fijaciones">Fijaciones</option>
               </select>
-              <input type="number" placeholder="Precio de Venta al Público" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '12px', border: 'none', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white' }} />
-              <p style={{ fontSize: '0.9rem', color: '#8892b0' }}>Capi Red cobrará un 10% de comisión por venta.</p>
+              <input type="number" placeholder="Precio de Venta al Público" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '12px', border: '1px solid var(--capi-border)', borderRadius: '8px', background: '#f8fafc', color: 'var(--capi-navy)' }} />
+              <p style={{ fontSize: '0.9rem', color: '#64748b' }}>Capi Red cobrará un 10% de comisión por venta.</p>
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                <button type="button" onClick={() => setShowAddModal(false)} style={{ flex: 1, padding: '10px', background: 'transparent', border: '1px solid #8892b0', color: '#8892b0', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
+                <button type="button" onClick={() => setShowAddModal(false)} style={{ flex: 1, padding: '10px', background: 'transparent', border: '1px solid #cbd5e1', color: '#64748b', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
                 <button type="submit" style={{ flex: 1, padding: '10px', background: 'var(--capi-gold)', border: 'none', color: 'var(--capi-navy)', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer' }}>Guardar</button>
               </div>
             </form>

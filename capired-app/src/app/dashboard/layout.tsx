@@ -49,10 +49,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }[role] || 'Capi Red';
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--capi-navy)', display: 'flex', flexDirection: 'column' }}>
-      {/* Header Premium */}
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--capi-bg)', display: 'flex', flexDirection: 'column' }}>
+      {/* Header Premium Light */}
       <header style={{
-        background: 'rgba(26, 26, 29, 0.95)',
+        background: 'rgba(255, 255, 255, 0.85)',
         backdropFilter: 'blur(10px)',
         borderBottom: '2px solid var(--capi-gold)',
         padding: '15px 40px',
@@ -62,7 +62,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         position: 'sticky',
         top: 0,
         zIndex: 1000,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
+        boxShadow: '0 4px 20px rgba(0,0,0,0.05)'
       }}>
         {/* Logo Capi Red */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -74,17 +74,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             letterSpacing: '2px',
             textTransform: 'uppercase'
           }}>
-            CAPI<br/><span style={{ color: 'var(--capi-white)' }}>RED</span>
+            CAPI<br/><span style={{ color: 'var(--capi-navy)' }}>RED</span>
           </h1>
           
           <div style={{
             height: '40px',
             width: '2px',
-            background: 'rgba(255,255,255,0.2)'
+            background: 'var(--capi-border)'
           }}></div>
 
           <span style={{
-            color: 'var(--capi-white)',
+            color: 'var(--capi-navy)',
             fontSize: '1.1rem',
             fontWeight: '600',
             letterSpacing: '1px'
@@ -96,8 +96,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Perfil y Cerrar Sesión */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <div style={{ textAlign: 'right' }}>
-            <p style={{ margin: 0, color: 'var(--capi-white)', fontWeight: 'bold', fontSize: '0.9rem' }}>{userName}</p>
-            <p style={{ margin: 0, color: '#a8b2d1', fontSize: '0.8rem', textTransform: 'capitalize' }}>Conectado</p>
+            <p style={{ margin: 0, color: 'var(--capi-navy)', fontWeight: 'bold', fontSize: '0.9rem' }}>{userName}</p>
+            <p style={{ margin: 0, color: '#64748b', fontSize: '0.8rem', textTransform: 'capitalize' }}>Conectado</p>
           </div>
           
           <button 
