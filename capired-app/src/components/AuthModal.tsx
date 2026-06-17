@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { auth, db } from '../lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { useRouter } from 'next/navigation';
 
 export default function AuthModal({ onClose, initialIsLogin = false }: { onClose: () => void, initialIsLogin?: boolean }) {
   const [isLogin, setIsLogin] = useState(initialIsLogin);
@@ -11,6 +12,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
   const [role, setRole] = useState('cliente');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
           targetRole = docSnap.data().role;
         }
         
-        window.location.href = `/dashboard/${targetRole}`;
+        router.push(`/dashboard/${targetRole}`);
       } else {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
@@ -48,7 +50,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
           createdAt: new Date()
         });
         
-        window.location.href = `/dashboard/${role}`;
+        router.push(`/dashboard/${role}`);
       }
     } catch (err: any) {
       setError(err.message || 'Error en la autenticación');
