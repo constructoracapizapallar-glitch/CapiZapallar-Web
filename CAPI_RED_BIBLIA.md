@@ -83,3 +83,6 @@ Pasar 200 millones por MercadoPago es suicidio tributario por las comisiones.
 *   **Sistema de Referidos:** Si un Maestro o Constructora inscribe a una Ferretería u a otro trabajador con su código, recibe un **50% de descuento en la comisión de su próximo trabajo completado**. Crecimiento orgánico sin gastar en publicidad.
 
 
+
+### Identidad Visual y UI
+*   **Regla de Iconografía:** Queda estrictamente prohibido el uso de emojis o iconos genéricos en la interfaz pública. Todos los gráficos, iconos y logos deben ser **propios, exclusivos y generados por IA**, manteniendo un estilo minimalista de lujo (trazos dorados sobre fondos neutros) para proyectar alto estándar.
