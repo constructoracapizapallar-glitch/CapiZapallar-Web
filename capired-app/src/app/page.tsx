@@ -31,7 +31,7 @@ export default function CapiRedLanding() {
             El marketplace cerrado más seguro para maestros, arquitectos, constructoras y ferreterías.
           </p>
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
-            <button className="btn-primary" onClick={() => setShowRegister(true)}>Crear Cuenta Gratis</button>
+            <button className="btn-primary" onClick={() => setAuthModalType('register')}>Crear Cuenta Gratis</button>
             <a href="#como-funciona" className="btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Cómo Funciona</a>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function CapiRedLanding() {
           <p style={{ maxWidth: '600px', margin: '0 auto 40px auto', color: '#a8b2d1' }}>
             Constructoras, Profesionales y Maestros: regístrense hoy para ser los primeros en acceder al muro de oportunidades B2B y proyectos de alta rentabilidad.
           </p>
-          <button className="btn-primary" style={{ fontSize: '1.2rem', padding: '15px 40px' }} onClick={() => setShowRegister(true)}>
+          <button className="btn-primary" style={{ fontSize: '1.2rem', padding: '15px 40px' }} onClick={() => setAuthModalType('register')}>
             Quiero postular a Capi Red
           </button>
         </div>
