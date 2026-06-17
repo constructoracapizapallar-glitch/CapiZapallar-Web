@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+  --capi-navy: #0A192F;
+  --capi-gold: #D4AF37;
+  --capi-gold-hover: #b5952f;
+  --capi-bg: #f8fafc;
+  --capi-text: #333333;
+  --capi-white: #ffffff;
+  --capi-red: #e74c3c;
+  --capi-border: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--capi-bg);
+  color: var(--capi-text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  color: var(--capi-navy);
+}
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--capi-gold);
+  color: var(--capi-navy);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--capi-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--capi-gold);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: 2px solid var(--capi-gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background-color: var(--capi-gold);
+  color: var(--capi-navy);
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.bg-navy {
+  background-color: var(--capi-navy);
+  color: var(--capi-white);
+}
+
+.bg-navy h2 {
+  color: var(--capi-white);
+}
+
+/* Landing Page Styles */
+.hero {
+  background-color: var(--capi-navy);
+  color: var(--capi-white);
+  padding: 120px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  color: var(--capi-white);
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: #a8b2d1;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.feature-card {
+  background-color: var(--capi-white);
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+  border-bottom: 4px solid var(--capi-gold);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-card h3 {
+  margin: 20px 0 15px;
+  font-size: 1.5rem;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  color: var(--capi-gold);
+}
+
+/* Registration Form */
+.auth-container {
+  max-width: 500px;
+  margin: 60px auto;
+  background: var(--capi-white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--capi-navy);
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--capi-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus, .form-group select:focus {
+  outline: none;
+  border-color: var(--capi-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.badge-unverified {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Header */
+.navbar {
+  background-color: var(--capi-navy);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--capi-gold);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
