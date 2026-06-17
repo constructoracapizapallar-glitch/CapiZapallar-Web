@@ -4,8 +4,8 @@ import { auth, db } from '../lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
-export default function AuthModal({ onClose }: { onClose: () => void }) {
-  const [isLogin, setIsLogin] = useState(false);
+export default function AuthModal({ onClose, initialIsLogin = false }: { onClose: () => void, initialIsLogin?: boolean }) {
+  const [isLogin, setIsLogin] = useState(initialIsLogin);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('cliente');

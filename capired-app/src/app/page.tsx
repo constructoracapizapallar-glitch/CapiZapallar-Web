@@ -4,61 +4,22 @@ import React, { useState } from 'react';
 import AuthModal from "../components/AuthModal";
 
 export default function CapiRedLanding() {
-  const [showRegister, setShowRegister] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsRegistered(true);
-  };
-
-  if (isRegistered) {
-    return (
-      <>
-        <header className="navbar">
-          <div className="container">
-            <div className="logo">CAPI RED</div>
-            <button className="btn-outline" onClick={() => setIsRegistered(false)}>Cerrar Sesión</button>
-          </div>
-        </header>
-        <main className="container" style={{ marginTop: '60px' }}>
-          <div className="auth-container" style={{ maxWidth: '800px' }}>
-            <span className="badge-unverified">⚠️ ESTADO: NO VERIFICADO</span>
-            <h2>Bienvenido a tu Panel de Control</h2>
-            <p style={{ marginBottom: '30px' }}>
-              Tu cuenta ha sido creada exitosamente. Sin embargo, por políticas de seguridad (Filtro Cero Chasquillas), 
-              <strong> no podrás aceptar trabajos ni ver cotizaciones </strong> hasta que subas la documentación obligatoria.
-            </p>
-            
-            <div style={{ background: '#f8fafc', padding: '20px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ marginBottom: '15px' }}>Documentos Pendientes:</h3>
-              <ul style={{ listStyleType: 'none', padding: 0 }}>
-                <li style={{ padding: '15px 0', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span>📸 Cédula de Identidad (Ambos Lados)</span>
-                  <button className="btn-outline" style={{ padding: '8px 16px' }}>Subir PDF/JPG</button>
-                </li>
-                <li style={{ padding: '15px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span>📜 Certificado de Antecedentes Fines Especiales</span>
-                  <button className="btn-outline" style={{ padding: '8px 16px' }}>Subir PDF</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </main>
-      </>
-    );
-  }
+  const [authModalType, setAuthModalType] = useState<'login' | 'register' | null>(null);
 
   return (
     <>
       <header className="navbar">
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className="logo" style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px', color: 'var(--capi-white)' }}>
-              CAPI<span style={{ color: 'var(--capi-gold)' }}>RED</span>
-            </span>
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1' }}>
+              <span style={{ fontSize: '1.8rem', fontWeight: '900', color: 'var(--capi-gold)', letterSpacing: '2px' }}>CAPI</span>
+              <span style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--capi-white)', letterSpacing: '4px' }}>RED</span>
+            </div>
           </div>
-          <button className="btn-primary" onClick={() => setShowRegister(true)}>Únete a la Red</button>
+          <div style={{ display: 'flex', gap: '15px' }}>
+            <button className="btn-outline" onClick={() => setAuthModalType('login')}>Iniciar Sesión</button>
+            <button className="btn-primary" onClick={() => setAuthModalType('register')}>Únete a la Red</button>
+          </div>
         </div>
       </header>
 
@@ -167,7 +128,12 @@ export default function CapiRedLanding() {
         </div>
       </section>
       
-      {showRegister && <AuthModal onClose={() => setShowRegister(false)} />}
+      {authModalType && (
+        <AuthModal 
+          initialIsLogin={authModalType === 'login'} 
+          onClose={() => setAuthModalType(null)} 
+        />
+      )}
     </>
   );
 }
