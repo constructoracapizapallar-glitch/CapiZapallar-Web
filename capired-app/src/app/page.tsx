@@ -125,24 +125,32 @@ export default function CapiRedLanding() {
           <h2 className="text-center" style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Por qué elegir Capi Red</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">🛡️</div>
+              <div className="feature-icon">
+                <img src="/capired-app/out/icons/guarantee.png" alt="Garantía" style={{width: '60px', height: '60px'}} />
+              </div>
               <h3>Garantía Financiera</h3>
               <p>El cliente paga la obra antes de que llegues a su puerta. Si trabajas bien, tu dinero está 100% asegurado en nuestro fondo fiduciario.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🤖</div>
-              <h3>Cero Visitas Técnicas</h3>
-              <p>El cliente sube un video, nuestra IA calcula el costo justo de mercado, y tú solo aceptas o rechazas. Ahorra bencina y tiempo.</p>
+              <div className="feature-icon">
+                <img src="/capired-app/out/icons/ai-quote.png" alt="Cotización IA" style={{width: '60px', height: '60px'}} />
+              </div>
+              <h3>Cotización Inmediata por IA</h3>
+              <p>El cliente sube un video, nuestra IA calcula el costo justo de mercado, y tú solo aceptas o rechazas. Cero tiempo perdido.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">🧱</div>
+              <div className="feature-icon">
+                <img src="/capired-app/out/icons/hardware-store.png" alt="Ferretería" style={{width: '60px', height: '60px'}} />
+              </div>
               <h3>Ferretería Integrada</h3>
               <p>Compra materiales con descuentos exclusivos desde la App. Las ferreterías asociadas despachan directo a tu obra.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">⚖️</div>
-              <h3>Filtro Anti-Chasquilla</h3>
-              <p>Solo entran los mejores. Verificación de antecedentes con el Registro Civil. El que falla o estafa, queda fuera de la red para siempre.</p>
+              <div className="feature-icon">
+                <img src="/capired-app/out/icons/verified.png" alt="Verificado" style={{width: '60px', height: '60px'}} />
+              </div>
+              <h3>Red de Excelencia Verificada</h3>
+              <p>Solo entran los mejores. Verificación estricta de antecedentes y perfiles comerciales para elevar el estándar de la industria.</p>
             </div>
           </div>
         </div>
