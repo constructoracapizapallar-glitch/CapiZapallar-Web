@@ -12,6 +12,7 @@ const usersToSeed = [
   { email: 'cliente@capired.cl', password: 'password123', role: 'cliente', name: 'Cliente Prueba' },
   { email: 'ferreteria@capired.cl', password: 'password123', role: 'ferreteria', name: 'Ferreteria Prueba' },
   { email: 'constructora@capired.cl', password: 'password123', role: 'constructora', name: 'Constructora Prueba' },
+  { email: 'admin@capired.cl', password: 'password123', role: 'admin', name: 'Comandante Capi Red' },
 ];
 
 export default function SeedPage() {
@@ -24,14 +25,28 @@ export default function SeedPage() {
     
     for (const user of usersToSeed) {
       try {
-        const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password);
-        await setDoc(doc(db, 'users', userCredential.user.uid), {
+        let uid = "";
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, user.email, user.password);
+          uid = userCredential.user.uid;
+        } catch (err: any) {
+          if (err.code === 'auth/email-already-in-use') {
+            // Si ya existe, iniciamos sesión para obtener el UID
+            const userCredential = await import('firebase/auth').then(m => m.signInWithEmailAndPassword(auth, user.email, user.password));
+            uid = userCredential.user.uid;
+          } else {
+            throw err;
+          }
+        }
+
+        await setDoc(doc(db, 'users', uid), {
           email: user.email,
           role: user.role,
           name: user.name,
+          isVerified: false,
           createdAt: new Date()
         });
-        setLog(prev => [...prev, `✅ Creado: ${user.email} (${user.role})`]);
+        setLog(prev => [...prev, `✅ Creado/Actualizado: ${user.email} (${user.role})`]);
       } catch (error: any) {
         setLog(prev => [...prev, `❌ Error con ${user.email}: ${error.message}`]);
       }
