@@ -130,8 +130,8 @@ export default function CapiRedLanding() {
           
           {/* Nivel 1 */}
           <div style={{ marginBottom: '60px', textAlign: 'left', background: 'rgba(255,255,255,0.03)', padding: '40px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.08)' }}>
-            <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 1: Reparaciones y "Pololitos"</h3>
-            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para trabajos rápidos de 1 a 3 días. Soluciones inmediatas con inteligencia artificial.</p>
+            <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 1: Reparaciones Menores</h3>
+            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para trabajos de rápida ejecución (entre 1 día y 1 semana). Soluciones inmediatas con inteligencia artificial.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
               <div><strong style={{ color: 'var(--capi-gold)' }}>01. Video Cotización:</strong> <span style={{ color: 'var(--capi-white)' }}>Graba el problema con tu celular.</span></div>
               <div><strong style={{ color: 'var(--capi-gold)' }}>02. Valor IA:</strong> <span style={{ color: 'var(--capi-white)' }}>El sistema dicta el precio justo de mano de obra en segundos.</span></div>
@@ -143,7 +143,7 @@ export default function CapiRedLanding() {
           {/* Nivel 2 */}
           <div style={{ marginBottom: '60px', textAlign: 'left', background: 'rgba(255,255,255,0.03)', padding: '40px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.08)' }}>
             <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 2: Obras Mayores y Arquitectura</h3>
-            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para radieres, ampliaciones, y construcción desde cero. El núcleo de nuestra constructora.</p>
+            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para ampliaciones y construcción llave en mano desde cero. Proyectos de alto estándar.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
               <div><strong style={{ color: 'var(--capi-gold)' }}>01. Sube tus Planos:</strong> <span style={{ color: 'var(--capi-white)' }}>Sube especificaciones, CAD o ideas de diseño.</span></div>
               <div><strong style={{ color: 'var(--capi-gold)' }}>02. Validación Técnica:</strong> <span style={{ color: 'var(--capi-white)' }}>Nuestros Arquitectos y Calculistas asumen la responsabilidad legal.</span></div>
