@@ -13,10 +13,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-// Initialize Firebase only if there are no apps initialized
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+let app, auth: any, db: any, storage: any;
+
+if (firebaseConfig.apiKey) {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+} else {
+  console.warn("Faltan credenciales de Firebase en .env.local");
+}
 
 export { app, auth, db, storage };

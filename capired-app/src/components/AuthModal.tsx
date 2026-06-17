@@ -15,6 +15,12 @@ export default function AuthModal({ onClose }: { onClose: () => void }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (!auth) {
+      setError('Las llaves de Firebase no están configuradas. Habla con el administrador.');
+      return;
+    }
+
     setLoading(true);
 
     try {
