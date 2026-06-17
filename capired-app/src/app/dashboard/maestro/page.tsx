@@ -36,6 +36,17 @@ export default function MaestroDashboard() {
           <button className="btn-primary" style={{ marginTop: '10px' }}>Aceptar Trabajo</button>
         </div>
       </div>
+
+      <div style={{ background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)', padding: '20px', borderRadius: '10px', border: '1px solid #cbd5e1' }}>
+        <h2 style={{ marginBottom: '10px', color: 'var(--capi-navy)' }}>✨ Capi IA (Premium)</h2>
+        <p style={{ color: '#475569', marginBottom: '15px' }}>Obtén ventajas exclusivas con nuestro asistente de Inteligencia Artificial para maestros.</p>
+        <ul style={{ listStyle: 'none', padding: 0, marginBottom: '20px', color: '#334155' }}>
+          <li>✅ Chat para interpretar planos básicos en PDF.</li>
+          <li>✅ Prioridad de notificaciones para trabajos cerca de ti.</li>
+          <li>✅ Generación automática de presupuesto de materiales.</li>
+        </ul>
+        <button className="btn-outline" style={{ background: 'white' }}>Desbloquear Capi IA</button>
+      </div>
     </div>
   );
 }

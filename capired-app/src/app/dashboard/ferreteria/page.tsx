@@ -28,11 +28,13 @@ export default function FerreteriaDashboard() {
 
   const handleAddProduct = async (e: React.FormEvent) => {
     e.preventDefault();
-    const capiPrice = Math.round(newProduct.price * 0.85); // 15% discount algorithm
+    const comision = Math.round(newProduct.price * 0.10); // 10% Platform fee
+    const gananciaNeta = newProduct.price - comision;
     try {
       await addDoc(collection(db, "products"), {
         ...newProduct,
-        capiPrice,
+        comision,
+        gananciaNeta,
         createdAt: new Date()
       });
       setShowAddModal(false);
@@ -57,19 +59,21 @@ export default function FerreteriaDashboard() {
               <tr style={{ borderBottom: '2px solid #e2e8f0' }}>
                 <th style={{ padding: '10px' }}>Producto</th>
                 <th style={{ padding: '10px' }}>Categoría</th>
-                <th style={{ padding: '10px' }}>Precio Normal</th>
-                <th style={{ padding: '10px', color: 'var(--capi-gold)' }}>Precio Capi Red</th>
+                <th style={{ padding: '10px' }}>Precio Público</th>
+                <th style={{ padding: '10px', color: '#ef4444' }}>Comisión Capi (10%)</th>
+                <th style={{ padding: '10px', color: '#22c55e' }}>Tu Ganancia Neta</th>
               </tr>
             </thead>
             <tbody>
               {products.length === 0 ? (
-                <tr><td colSpan={4} style={{ padding: '15px 10px', textAlign: 'center', color: '#94a3b8' }}>No tienes productos en tu catálogo.</td></tr>
+                <tr><td colSpan={5} style={{ padding: '15px 10px', textAlign: 'center', color: '#94a3b8' }}>No tienes productos en tu catálogo.</td></tr>
               ) : products.map(p => (
                 <tr key={p.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
                   <td style={{ padding: '15px 10px', fontWeight: 'bold' }}>{p.name}</td>
                   <td style={{ padding: '15px 10px' }}>{p.category}</td>
-                  <td style={{ padding: '15px 10px', textDecoration: 'line-through', color: '#94a3b8' }}>${p.price}</td>
-                  <td style={{ padding: '15px 10px', fontWeight: 'bold', color: 'var(--capi-gold)' }}>${p.capiPrice}</td>
+                  <td style={{ padding: '15px 10px', fontWeight: 'bold' }}>${p.price}</td>
+                  <td style={{ padding: '15px 10px', color: '#ef4444' }}>-${p.comision || Math.round(p.price * 0.1)}</td>
+                  <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#22c55e' }}>${p.gananciaNeta || Math.round(p.price * 0.9)}</td>
                 </tr>
               ))}
             </tbody>
@@ -91,11 +95,11 @@ export default function FerreteriaDashboard() {
                 <option value="Herramientas">Herramientas</option>
                 <option value="Fijaciones">Fijaciones</option>
               </select>
-              <input type="number" placeholder="Precio Público Normal" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }} />
-              <p style={{ fontSize: '0.9rem', color: '#64748b' }}>El precio Capi Red se calcula automáticamente (-15%).</p>
+              <input type="number" placeholder="Precio de Venta al Público" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }} />
+              <p style={{ fontSize: '0.9rem', color: '#64748b' }}>Capi Red cobrará un 10% de comisión por venta.</p>
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
                 <button type="button" className="btn-outline" onClick={() => setShowAddModal(false)} style={{ flex: 1 }}>Cancelar</button>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>Guardar</button>
+                <button type="submit" className="btn-primary" style={{ flex: 1 }}>Publicar Producto</button>
               </div>
             </form>
           </div>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { auth, db } from '../lib/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 export default function AuthModal({ onClose, initialIsLogin = false }: { onClose: () => void, initialIsLogin?: boolean }) {
   const [isLogin, setIsLogin] = useState(initialIsLogin);
@@ -25,9 +25,17 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
 
     try {
       if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert('Sesión iniciada con éxito');
-        onClose();
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        
+        let targetRole = 'cliente';
+        if (docSnap.exists()) {
+          targetRole = docSnap.data().role;
+        }
+        
+        window.location.href = `/dashboard/${targetRole}`;
       } else {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
@@ -40,8 +48,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
           createdAt: new Date()
         });
         
-        alert('Cuenta creada. Debes subir tus documentos para verificarte.');
-        onClose();
+        window.location.href = `/dashboard/${role}`;
       }
     } catch (err: any) {
       setError(err.message || 'Error en la autenticación');
