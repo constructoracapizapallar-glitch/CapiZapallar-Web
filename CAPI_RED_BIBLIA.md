@@ -13,6 +13,7 @@ Cualquier solicitud de trabajo que entra a la plataforma llega **primero y en ex
 ---
 
 ## 2. FILTRADO Y REGLAS DE USUARIOS (CERO CHASQUILLAS)
+El registro en la App es rápido y toma 1 minuto, pero el usuario queda marcado como **'NO VERIFICADO'** (no puede tomar trabajos ni ver datos) hasta que suba la documentación exigida.
 Para purgar la delincuencia y el trabajo informal del ecosistema, el registro de profesionales exige:
 *   **Maestros / Ayudantes:** Cédula de Identidad al día + Certificado de Antecedentes. 
     *   *Validación IA:* Conexión API al Registro Civil chileno. Si el folio es adulterado, baneo automático.
@@ -30,9 +31,9 @@ Para purgar la delincuencia y el trabajo informal del ecosistema, el registro de
 **Se elimina la "Visita Técnica Gratuita".**
 1.  **Ingreso Media-First:** El cliente graba un video del problema/terreno y anota medidas.
 2.  **El Cotizador Estandarizado:** La IA de Capi Red dictamina el precio de mercado de la mano de obra. (Ej: "Este radier vale .000").
-3.  **Filtro Anti-Preguntones (Ingreso Pasivo):** Para que el sistema revele el precio final y lance la oferta a los maestros, el cliente debe asociar su tarjeta y pagar **.990 CLP (Abono de Cotización)**.
-    *   *Si el cliente contrata:* Los .990 se descuentan de la factura final.
-    *   *Si el cliente abandona:* Capi Red gana .990 por "Servicio de Cotización". (Con 100 cotizaciones fantasma al día, son .000.000 mensuales de ganancia pasiva).
+3.  **Filtro Anti-Preguntones (Ingreso Pasivo):** Para que el sistema revele el precio final y lance la oferta a los maestros, el cliente debe asociar su tarjeta y pagar **2.990 CLP (Abono de Cotización)**.
+    *   *Si el cliente contrata:* Los 2.990 se descuentan de la factura final.
+    *   *Si el cliente abandona:* Capi Red gana 2.990 por "Servicio de Cotización". (Con 100 cotizaciones fantasma al día, son .000.000 mensuales de ganancia pasiva).
 
 ---
 
@@ -55,6 +56,7 @@ Pasar 200 millones por MercadoPago es suicidio tributario por las comisiones.
 *   **Blindaje Legal:** Capi Red es intermediario. La responsabilidad civil por caída de estructuras es exclusiva de la patente del profesional, estipulado en el contrato digital.
 
 ### D) RED DE FERRETERÍAS (El Modelo Dropshipping)
+*   **Suscripción Maestros:** Para acceder a los precios con descuento de las ferreterías de la red, los maestros deben pagar una suscripción base de **$2.990 mensuales**. Este es otro flujo de ingreso pasivo masivo.
 *   **Flujo:** La Ferretería asociada sube su catálogo. El maestro compra insumos desde la App.
 *   **Cobro:** El cliente paga todo vía la App. Capi Red retiene un **12% de comisión**. Capi Red transfiere el dinero restante a la Ferretería.
 *   **Logística:** La Ferretería despacha y emite la boleta directamente al cliente. **Riesgo Logístico Cero para Capi Red.**
@@ -79,4 +81,5 @@ Pasar 200 millones por MercadoPago es suicidio tributario por las comisiones.
 
 ## 6. GROWTH HACKING (CRECIMIENTO VIRAL)
 *   **Sistema de Referidos:** Si un Maestro o Constructora inscribe a una Ferretería u a otro trabajador con su código, recibe un **50% de descuento en la comisión de su próximo trabajo completado**. Crecimiento orgánico sin gastar en publicidad.
+
 
