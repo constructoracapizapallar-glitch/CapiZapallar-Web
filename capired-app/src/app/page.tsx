@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import AuthModal from "../components/AuthModal";
 
 export default function CapiRedLanding() {
   const [showRegister, setShowRegister] = useState(false);
@@ -44,55 +45,6 @@ export default function CapiRedLanding() {
             </div>
           </div>
         </main>
-      </>
-    );
-  }
-
-  if (showRegister) {
-    return (
-      <>
-        <header className="navbar">
-          <div className="container">
-            <div className="logo" style={{ cursor: 'pointer' }} onClick={() => setShowRegister(false)}>CAPI RED</div>
-            <button className="btn-outline" onClick={() => setShowRegister(false)}>Volver al Inicio</button>
-          </div>
-        </header>
-        <div className="container">
-          <div className="auth-container">
-            <h2>Crear Cuenta en Capi Red</h2>
-            <form onSubmit={handleRegister}>
-              <div className="form-group">
-                <label>Nombre Completo</label>
-                <input type="text" required placeholder="Ej: Juan Pérez" />
-              </div>
-              <div className="form-group">
-                <label>RUT</label>
-                <input type="text" required placeholder="12.345.678-9" />
-              </div>
-              <div className="form-group">
-                <label>Perfil (Rol)</label>
-                <select required>
-                  <option value="">Seleccione un rol...</option>
-                  <option value="maestro">Maestro / Ayudante / Contratista</option>
-                  <option value="profesional">Profesional (Arquitecto / Ingeniero)</option>
-                  <option value="constructora">Empresa Constructora</option>
-                  <option value="ferreteria">Ferretería Asociada</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Correo Electrónico</label>
-                <input type="email" required placeholder="correo@ejemplo.com" />
-              </div>
-              <div className="form-group">
-                <label>Contraseña</label>
-                <input type="password" required />
-              </div>
-              <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '10px' }}>
-                Registrarse Ahora
-              </button>
-            </form>
-          </div>
-        </div>
       </>
     );
   }
@@ -214,6 +166,8 @@ export default function CapiRedLanding() {
           </button>
         </div>
       </section>
+      
+      {showRegister && <AuthModal onClose={() => setShowRegister(false)} />}
     </>
   );
 }
