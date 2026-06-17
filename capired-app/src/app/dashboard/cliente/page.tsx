@@ -22,7 +22,7 @@ export default function ClienteDashboard() {
   });
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#0a192f', borderRadius: '20px', minHeight: '80vh' }}>
+    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
       
       <div style={{ marginBottom: '40px' }}>
         <h1 style={{ 
@@ -34,7 +34,7 @@ export default function ClienteDashboard() {
         }}>
           Centro de Proyectos
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '1.1rem' }}>Gestiona tus cotizaciones, pololitos y obras mayores.</p>
+        <p style={{ color: '#8892b0', fontSize: '1.1rem' }}>Gestiona tus cotizaciones, obras menores y obras mayores.</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '30px' }}>
@@ -46,7 +46,7 @@ export default function ClienteDashboard() {
           onMouseLeave={() => setIsHovered(null)}
         >
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, var(--capi-gold), #f59e0b)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: '#e2e8f0' }}>Nueva Cotización (Pololito)</h2>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: '#e2e8f0' }}>Nueva Cotización (Obra Menor)</h2>
           <p style={{ color: '#8892b0', marginBottom: '25px', lineHeight: '1.6' }}>Crea una carpeta y sube imágenes del problema. Capi IA cotizará el trabajo al instante analizando las fotos.</p>
           
           <button style={{

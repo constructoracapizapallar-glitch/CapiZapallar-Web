@@ -34,7 +34,7 @@ export default function MaestroDashboard() {
   });
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#0a192f', borderRadius: '20px', minHeight: '80vh' }}>
+    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
       
       {/* Header del Panel */}
       <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -48,7 +48,7 @@ export default function MaestroDashboard() {
           }}>
             Radar Operativo
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '1.1rem' }}>Sincronizando pololitos y obras cercanas a ti en tiempo real.</p>
+          <p style={{ color: '#8892b0', fontSize: '1.1rem' }}>Sincronizando Obras Menores y proyectos cercanos a ti en tiempo real.</p>
         </div>
         
         {/* Radar Widget */}

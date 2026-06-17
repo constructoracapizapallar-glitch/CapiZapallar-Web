@@ -49,10 +49,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }[role] || 'Capi Red';
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--capi-navy)', display: 'flex', flexDirection: 'column' }}>
       {/* Header Premium */}
       <header style={{
-        background: 'rgba(10, 25, 47, 0.95)',
+        background: 'rgba(26, 26, 29, 0.95)',
         backdropFilter: 'blur(10px)',
         borderBottom: '2px solid var(--capi-gold)',
         padding: '15px 40px',
@@ -62,7 +62,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         position: 'sticky',
         top: 0,
         zIndex: 1000,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
       }}>
         {/* Logo Capi Red */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>

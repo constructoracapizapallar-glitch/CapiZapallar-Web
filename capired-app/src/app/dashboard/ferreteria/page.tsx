@@ -46,60 +46,95 @@ export default function FerreteriaDashboard() {
     }
   };
 
+  const cardStyle = {
+    background: 'rgba(255, 255, 255, 0.05)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
+    border: '1px solid rgba(255, 255, 255, 0.1)',
+    borderRadius: '16px',
+    padding: '30px',
+    color: 'white',
+    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
+    position: 'relative' as const,
+    overflow: 'hidden' as const,
+  };
+
   return (
-    <div style={{ padding: '40px', color: 'var(--capi-navy)' }}>
-      <h1 style={{ color: 'var(--capi-navy)', marginBottom: '10px' }}>Portal de Ventas B2B (Ferretería)</h1>
-      <p style={{ marginBottom: '30px', color: '#64748b' }}>Gestiona tu inventario y recibe órdenes de la red Capi.</p>
+    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
       
-      <div style={{ background: 'white', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
-        <h2 style={{ marginBottom: '20px' }}>Mi Catálogo</h2>
-        {loading ? <p>Cargando inventario...</p> : (
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <thead>
-              <tr style={{ borderBottom: '2px solid #e2e8f0' }}>
-                <th style={{ padding: '10px' }}>Producto</th>
-                <th style={{ padding: '10px' }}>Categoría</th>
-                <th style={{ padding: '10px' }}>Precio Público</th>
-                <th style={{ padding: '10px', color: '#ef4444' }}>Comisión Capi (10%)</th>
-                <th style={{ padding: '10px', color: '#22c55e' }}>Tu Ganancia Neta</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.length === 0 ? (
-                <tr><td colSpan={5} style={{ padding: '15px 10px', textAlign: 'center', color: '#94a3b8' }}>No tienes productos en tu catálogo.</td></tr>
-              ) : products.map(p => (
-                <tr key={p.id} style={{ borderBottom: '1px solid #e2e8f0' }}>
-                  <td style={{ padding: '15px 10px', fontWeight: 'bold' }}>{p.name}</td>
-                  <td style={{ padding: '15px 10px' }}>{p.category}</td>
-                  <td style={{ padding: '15px 10px', fontWeight: 'bold' }}>${p.price}</td>
-                  <td style={{ padding: '15px 10px', color: '#ef4444' }}>-${p.comision || Math.round(p.price * 0.1)}</td>
-                  <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#22c55e' }}>${p.gananciaNeta || Math.round(p.price * 0.9)}</td>
+      <div style={{ marginBottom: '40px' }}>
+        <h1 style={{ 
+          fontSize: '2.5rem', 
+          background: 'linear-gradient(90deg, var(--capi-gold) 0%, #fff 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          marginBottom: '10px'
+        }}>
+          Portal B2B Ferretero
+        </h1>
+        <p style={{ color: '#8892b0', fontSize: '1.1rem' }}>Sincroniza tu inventario y recibe órdenes de compra de la Red Capi.</p>
+      </div>
+
+      <div style={cardStyle}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #10b981, #3b82f6)' }}></div>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#e2e8f0' }}>Mi Catálogo de Productos</h2>
+        
+        {loading ? <p style={{ color: '#8892b0' }}>Cargando inventario...</p> : (
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '600px' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                  <th style={{ padding: '15px 10px', color: '#8892b0' }}>Producto</th>
+                  <th style={{ padding: '15px 10px', color: '#8892b0' }}>Categoría</th>
+                  <th style={{ padding: '15px 10px', color: '#8892b0' }}>Precio Público</th>
+                  <th style={{ padding: '15px 10px', color: '#ef4444' }}>Comisión Capi (10%)</th>
+                  <th style={{ padding: '15px 10px', color: '#10b981' }}>Tu Ganancia Neta</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {products.length === 0 ? (
+                  <tr><td colSpan={5} style={{ padding: '30px 10px', textAlign: 'center', color: '#8892b0' }}>No tienes productos en tu catálogo.</td></tr>
+                ) : products.map(p => (
+                  <tr key={p.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#e2e8f0' }}>{p.name}</td>
+                    <td style={{ padding: '15px 10px', color: '#a8b2d1' }}>{p.category}</td>
+                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#e2e8f0' }}>${p.price}</td>
+                    <td style={{ padding: '15px 10px', color: '#ef4444' }}>-${p.comision || Math.round(p.price * 0.1)}</td>
+                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#10b981' }}>${p.gananciaNeta || Math.round(p.price * 0.9)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
         
-        <button className="btn-primary" style={{ marginTop: '20px' }} onClick={() => setShowAddModal(true)}>+ Agregar Nuevo Producto</button>
+        <button 
+          style={{
+            marginTop: '30px', background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s'
+          }}
+          onClick={() => setShowAddModal(true)}
+        >
+          + Agregar Nuevo Producto
+        </button>
       </div>
 
       {showAddModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
-          <div style={{ background: 'white', padding: '30px', borderRadius: '10px', width: '90%', maxWidth: '400px' }}>
-            <h3 style={{ marginBottom: '20px' }}>Agregar Producto</h3>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(10, 25, 47, 0.8)', backdropFilter: 'blur(5px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
+          <div style={{ background: 'var(--capi-navy)', border: '1px solid var(--capi-gold)', padding: '30px', borderRadius: '15px', width: '90%', maxWidth: '400px', color: 'white' }}>
+            <h3 style={{ marginBottom: '20px', color: 'var(--capi-gold)' }}>Agregar Producto</h3>
             <form onSubmit={handleAddProduct} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <input type="text" placeholder="Nombre del Producto" required value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }} />
-              <select value={newProduct.category} onChange={e => setNewProduct({...newProduct, category: e.target.value})} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
-                <option value="Obra Gruesa">Obra Gruesa</option>
-                <option value="Terminaciones">Terminaciones</option>
-                <option value="Herramientas">Herramientas</option>
-                <option value="Fijaciones">Fijaciones</option>
+              <input type="text" placeholder="Nombre del Producto" required value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} style={{ padding: '12px', border: 'none', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white' }} />
+              <select value={newProduct.category} onChange={e => setNewProduct({...newProduct, category: e.target.value})} style={{ padding: '12px', border: 'none', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white' }}>
+                <option value="Obra Gruesa" style={{ color: 'black' }}>Obra Gruesa</option>
+                <option value="Terminaciones" style={{ color: 'black' }}>Terminaciones</option>
+                <option value="Herramientas" style={{ color: 'black' }}>Herramientas</option>
+                <option value="Fijaciones" style={{ color: 'black' }}>Fijaciones</option>
               </select>
-              <input type="number" placeholder="Precio de Venta al Público" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }} />
-              <p style={{ fontSize: '0.9rem', color: '#64748b' }}>Capi Red cobrará un 10% de comisión por venta.</p>
+              <input type="number" placeholder="Precio de Venta al Público" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '12px', border: 'none', borderRadius: '8px', background: 'rgba(255,255,255,0.1)', color: 'white' }} />
+              <p style={{ fontSize: '0.9rem', color: '#8892b0' }}>Capi Red cobrará un 10% de comisión por venta.</p>
               <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                <button type="button" className="btn-outline" onClick={() => setShowAddModal(false)} style={{ flex: 1 }}>Cancelar</button>
-                <button type="submit" className="btn-primary" style={{ flex: 1 }}>Publicar Producto</button>
+                <button type="button" onClick={() => setShowAddModal(false)} style={{ flex: 1, padding: '10px', background: 'transparent', border: '1px solid #8892b0', color: '#8892b0', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
+                <button type="submit" style={{ flex: 1, padding: '10px', background: 'var(--capi-gold)', border: 'none', color: 'var(--capi-navy)', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer' }}>Guardar</button>
               </div>
             </form>
           </div>

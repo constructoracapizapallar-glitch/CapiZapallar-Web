@@ -22,7 +22,7 @@ export default function ProfesionalDashboard() {
   });
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#0a192f', borderRadius: '20px', minHeight: '80vh' }}>
+    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
       
       <div style={{ marginBottom: '40px' }}>
         <h1 style={{ 
