@@ -102,7 +102,9 @@ export default function CapiRedLanding() {
       <header className="navbar">
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className="logo" style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="/capired-app/out/icons/capired-logo.png" alt="Capi Red Logo" style={{ height: '40px', objectFit: 'contain' }} />
+            <span style={{ fontFamily: '"Plus Jakarta Sans", sans-serif', fontWeight: 800, fontSize: '1.5rem', letterSpacing: '2px', color: 'var(--capi-white)' }}>
+              CAPI<span style={{ color: 'var(--capi-gold)' }}>RED</span>
+            </span>
           </div>
           <button className="btn-primary" onClick={() => setShowRegister(true)}>Únete a la Red</button>
         </div>
@@ -122,7 +124,35 @@ export default function CapiRedLanding() {
         </div>
       </section>
 
-      <section id="como-funciona" className="section bg-white">
+      <section id="como-funciona" className="section bg-navy text-center" style={{ padding: '80px 0', borderBottom: '1px solid var(--capi-border)' }}>
+        <div className="container">
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '50px' }}>Cómo funciona Capi Red</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', textAlign: 'left' }}>
+            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>01</div>
+              <h3 style={{ marginBottom: '15px' }}>Sube tu Proyecto</h3>
+              <p style={{ color: '#a8b2d1' }}>Sube un video o fotos del trabajo. Especifica medidas y detalles básicos sin necesidad de agendar una visita técnica presencial.</p>
+            </div>
+            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>02</div>
+              <h3 style={{ marginBottom: '15px' }}>Cotización IA</h3>
+              <p style={{ color: '#a8b2d1' }}>Nuestra IA analiza tu solicitud y propone un presupuesto de mano de obra ajustado al mercado en tiempo real.</p>
+            </div>
+            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>03</div>
+              <h3 style={{ marginBottom: '15px' }}>Match Inmediato</h3>
+              <p style={{ color: '#a8b2d1' }}>La oferta se publica en nuestro muro exclusivo. Maestros y contratistas verificados aceptan el trabajo al instante.</p>
+            </div>
+            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>04</div>
+              <h3 style={{ marginBottom: '15px' }}>Pago Protegido</h3>
+              <p style={{ color: '#a8b2d1' }}>El dinero queda resguardado. Solo se libera al profesional cuando la obra se entrega conforme a tus exigencias.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-white">
         <div className="container">
           <h2 className="text-center" style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Por qué elegir Capi Red</h2>
           <div className="features-grid">
