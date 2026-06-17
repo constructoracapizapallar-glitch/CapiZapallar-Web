@@ -126,29 +126,44 @@ export default function CapiRedLanding() {
 
       <section id="como-funciona" className="section bg-navy text-center" style={{ padding: '80px 0', borderBottom: '1px solid var(--capi-border)' }}>
         <div className="container">
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '50px' }}>Cómo funciona Capi Red</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', textAlign: 'left' }}>
-            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>01</div>
-              <h3 style={{ marginBottom: '15px' }}>Sube tu Proyecto</h3>
-              <p style={{ color: '#a8b2d1' }}>Sube un video o fotos del trabajo. Especifica medidas y detalles básicos sin necesidad de agendar una visita técnica presencial.</p>
-            </div>
-            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>02</div>
-              <h3 style={{ marginBottom: '15px' }}>Cotización IA</h3>
-              <p style={{ color: '#a8b2d1' }}>Nuestra IA analiza tu solicitud y propone un presupuesto de mano de obra ajustado al mercado en tiempo real.</p>
-            </div>
-            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>03</div>
-              <h3 style={{ marginBottom: '15px' }}>Match Inmediato</h3>
-              <p style={{ color: '#a8b2d1' }}>La oferta se publica en nuestro muro exclusivo. Maestros y contratistas verificados aceptan el trabajo al instante.</p>
-            </div>
-            <div style={{ padding: '30px', background: 'rgba(255,255,255,0.03)', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.05)' }}>
-              <div style={{ color: 'var(--capi-gold)', fontSize: '2rem', fontWeight: 800, marginBottom: '15px' }}>04</div>
-              <h3 style={{ marginBottom: '15px' }}>Pago Protegido</h3>
-              <p style={{ color: '#a8b2d1' }}>El dinero queda resguardado. Solo se libera al profesional cuando la obra se entrega conforme a tus exigencias.</p>
+          <h2 style={{ fontSize: '2.5rem', marginBottom: '50px', color: 'var(--capi-white)' }}>El Ecosistema Capi Red</h2>
+          
+          {/* Nivel 1 */}
+          <div style={{ marginBottom: '60px', textAlign: 'left', background: 'rgba(255,255,255,0.03)', padding: '40px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 1: Reparaciones y "Pololitos"</h3>
+            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para trabajos rápidos de 1 a 3 días. Soluciones inmediatas con inteligencia artificial.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>01. Video Cotización:</strong> <span style={{ color: 'var(--capi-white)' }}>Graba el problema con tu celular.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>02. Valor IA:</strong> <span style={{ color: 'var(--capi-white)' }}>El sistema dicta el precio justo de mano de obra en segundos.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>03. Match Rápido:</strong> <span style={{ color: 'var(--capi-white)' }}>Un maestro verificado acepta el trabajo al instante.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>04. Pago Retenido:</strong> <span style={{ color: 'var(--capi-white)' }}>Pagas online, el dinero se libera al terminar.</span></div>
             </div>
           </div>
+
+          {/* Nivel 2 */}
+          <div style={{ marginBottom: '60px', textAlign: 'left', background: 'rgba(255,255,255,0.03)', padding: '40px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 2: Obras Mayores y Arquitectura</h3>
+            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para radieres, ampliaciones, y construcción desde cero. El núcleo de nuestra constructora.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>01. Sube tus Planos:</strong> <span style={{ color: 'var(--capi-white)' }}>Sube especificaciones, CAD o ideas de diseño.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>02. Validación Técnica:</strong> <span style={{ color: 'var(--capi-white)' }}>Nuestros Arquitectos y Calculistas asumen la responsabilidad legal.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>03. Licitación VIP:</strong> <span style={{ color: 'var(--capi-white)' }}>Constructoras de la red compiten por tu proyecto.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>04. Contrato y Póliza:</strong> <span style={{ color: 'var(--capi-white)' }}>Firma digital, póliza de garantía y pagos seguros por hitos de avance.</span></div>
+            </div>
+          </div>
+
+          {/* Nivel 3 */}
+          <div style={{ textAlign: 'left', background: 'rgba(255,255,255,0.03)', padding: '40px', borderRadius: '15px', border: '1px solid rgba(255,255,255,0.08)' }}>
+            <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 3: Suministros y Ferretería B2B</h3>
+            <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Compras al por mayor directamente desde la obra para maestros y empresas.</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>01. Lista de Materiales:</strong> <span style={{ color: 'var(--capi-white)' }}>Arma tu carrito directo en la App.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>02. Descuentos Red:</strong> <span style={{ color: 'var(--capi-white)' }}>Accede a precios exclusivos B2B por tu membresía.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>03. Pago Unificado:</strong> <span style={{ color: 'var(--capi-white)' }}>Paga todo con un solo clic.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>04. Despacho Directo:</strong> <span style={{ color: 'var(--capi-white)' }}>Las ferreterías asociadas entregan directo en el terreno.</span></div>
+            </div>
+          </div>
+
         </div>
       </section>
 
