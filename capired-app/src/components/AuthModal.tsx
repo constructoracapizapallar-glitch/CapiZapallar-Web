@@ -37,7 +37,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
           targetRole = docSnap.data().role;
         }
         
-        router.push(`/dashboard/${targetRole}`);
+        window.location.href = `/capired-app/out/dashboard/${targetRole}.html`;
       } else {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
@@ -50,7 +50,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
           createdAt: new Date()
         });
         
-        router.push(`/dashboard/${role}`);
+        window.location.href = `/capired-app/out/dashboard/${role}.html`;
       }
     } catch (err: any) {
       setError(err.message || 'Error en la autenticación');
