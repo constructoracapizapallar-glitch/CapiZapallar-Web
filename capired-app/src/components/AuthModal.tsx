@@ -83,6 +83,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
             required 
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(e as any); }}
             style={{ padding: '15px', borderRadius: '8px', border: 'none', background: 'rgba(255,255,255,0.1)', color: 'var(--capi-white)' }}
           />
           <input 
@@ -91,6 +92,7 @@ export default function AuthModal({ onClose, initialIsLogin = false }: { onClose
             required 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') handleSubmit(e as any); }}
             style={{ padding: '15px', borderRadius: '8px', border: 'none', background: 'rgba(255,255,255,0.1)', color: 'var(--capi-white)' }}
           />
           
