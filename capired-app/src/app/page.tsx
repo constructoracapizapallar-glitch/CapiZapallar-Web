@@ -100,8 +100,10 @@ export default function CapiRedLanding() {
   return (
     <>
       <header className="navbar">
-        <div className="container">
-          <div className="logo">CAPI RED</div>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="logo" style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/capired-app/out/icons/capired-logo.png" alt="Capi Red Logo" style={{ height: '40px', objectFit: 'contain' }} />
+          </div>
           <button className="btn-primary" onClick={() => setShowRegister(true)}>Únete a la Red</button>
         </div>
       </header>
@@ -115,12 +117,12 @@ export default function CapiRedLanding() {
           </p>
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}>
             <button className="btn-primary" onClick={() => setShowRegister(true)}>Crear Cuenta Gratis</button>
-            <button className="btn-outline">Cómo Funciona</button>
+            <a href="#como-funciona" className="btn-outline" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>Cómo Funciona</a>
           </div>
         </div>
       </section>
 
-      <section className="section bg-white">
+      <section id="como-funciona" className="section bg-white">
         <div className="container">
           <h2 className="text-center" style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Por qué elegir Capi Red</h2>
           <div className="features-grid">
