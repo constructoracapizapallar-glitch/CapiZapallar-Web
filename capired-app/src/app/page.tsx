@@ -97,9 +97,9 @@ export default function CapiRedLanding() {
             <h3 style={{ fontSize: '1.8rem', color: 'var(--capi-gold)', marginBottom: '20px' }}>Nivel 2: Obras Mayores y Arquitectura</h3>
             <p style={{ color: 'var(--capi-white)', fontSize: '1.1rem', marginBottom: '20px' }}>Para ampliaciones y construcción llave en mano desde cero. Proyectos de alto estándar.</p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
-              <div><strong style={{ color: 'var(--capi-gold)' }}>01. Sube tus Planos:</strong> <span style={{ color: 'var(--capi-white)' }}>Sube especificaciones, CAD o ideas de diseño.</span></div>
-              <div><strong style={{ color: 'var(--capi-gold)' }}>02. Validación Técnica:</strong> <span style={{ color: 'var(--capi-white)' }}>Nuestros Arquitectos y Calculistas asumen la responsabilidad legal.</span></div>
-              <div><strong style={{ color: 'var(--capi-gold)' }}>03. Licitación VIP:</strong> <span style={{ color: 'var(--capi-white)' }}>Constructoras de la red compiten por tu proyecto.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>01. Sube tu Idea:</strong> <span style={{ color: 'var(--capi-white)' }}>Describe tu proyecto. Si no tienes planos, se licita el diseño a Arquitectos y Calculistas de la red.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>02. Tienes Planos?:</strong> <span style={{ color: 'var(--capi-white)' }}>Si ya tienes tus planos aprobados, saltas directo a la etapa de construcción.</span></div>
+              <div><strong style={{ color: 'var(--capi-gold)' }}>03. Licitación a Constructoras:</strong> <span style={{ color: 'var(--capi-white)' }}>Tu proyecto se publica para las constructoras verificadas. Se lo adjudica la primera que acepte las condiciones comerciales.</span></div>
               <div><strong style={{ color: 'var(--capi-gold)' }}>04. Contrato y Póliza:</strong> <span style={{ color: 'var(--capi-white)' }}>Firma digital, póliza de garantía y pagos seguros por hitos de avance.</span></div>
             </div>
           </div>
