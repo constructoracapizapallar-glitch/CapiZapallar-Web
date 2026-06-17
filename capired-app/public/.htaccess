@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Si la ruta termina sin .html, buscamos internamente si existe el archivo con .html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Evitar 404 para Next.js (Redirigir todo al index.html si es una ruta dinámica, opcional)
+# Fallback a 404.html si no existe
+ErrorDocument 404 /404.html
