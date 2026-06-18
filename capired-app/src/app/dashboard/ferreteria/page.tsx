@@ -46,125 +46,141 @@ export default function FerreteriaDashboard() {
     }
   };
 
-  const cardStyle = {
-    background: 'rgba(255, 255, 255, 0.7)',
-    backdropFilter: 'blur(20px)',
-    WebkitBackdropFilter: 'blur(20px)',
-    border: '1px solid rgba(0, 0, 0, 0.05)',
-    borderRadius: '20px',
-    padding: '30px',
-    color: 'var(--capi-navy)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-    position: 'relative' as const,
-    overflow: 'hidden' as const,
+  const getCategoryColor = (cat: string) => {
+    switch (cat) {
+      case 'Obra Gruesa': return '#ef4444';
+      case 'Terminaciones': return '#3b82f6';
+      case 'Herramientas': return '#f59e0b';
+      case 'Fijaciones': return '#8b5cf6';
+      default: return '#10b981';
+    }
   };
 
   return (
-    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
+    <div style={{ display: 'flex', gap: '20px', padding: '20px', minHeight: '80vh', fontFamily: 'system-ui, sans-serif' }}>
       
-      <div style={{ marginBottom: '40px' }}>
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          color: 'var(--capi-navy)',
-          marginBottom: '10px'
-        }}>
-          Portal B2B Ferretero
-        </h1>
-        <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Sincroniza tu inventario y recibe órdenes de compra de constructoras.</p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '30px' }}>
+      {/* SIDEBAR IZQUIERDO */}
+      <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         
-        {/* Inbox de Cotizaciones B2B */}
-        <div style={cardStyle}>
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #f59e0b, #ef4444)' }}></div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-            <span style={{ background: '#fef3c7', color: '#b45309', padding: '5px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>1 COTIZACIÓN PENDIENTE</span>
+        {/* Header Ferretería */}
+        <div style={{ background: 'var(--capi-navy)', borderRadius: '20px', padding: '25px', color: 'white', boxShadow: '0 10px 30px rgba(15, 23, 42, 0.2)' }}>
+          <h1 style={{ fontSize: '1.8rem', margin: '0 0 10px 0' }}>Panel B2B</h1>
+          <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0 }}>Sincroniza inventario y recibe órdenes de constructoras.</p>
+        </div>
+
+        {/* Acciones Rápidas */}
+        <div style={{ background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          
+          <div style={{ border: '1px solid #fef08a', background: '#fefce8', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}>
+             <span style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#ef4444', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>1</span>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#854d0e' }}>Inbox B2B</h3>
+             <p style={{ fontSize: '0.8rem', color: '#a16207', margin: 0 }}>Cotización pendiente de Constructora Pacífico.</p>
           </div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '10px', color: 'var(--capi-navy)' }}>Inbox de Órdenes B2B</h2>
-          <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.6' }}>Constructora Pacífico ha solicitado cotizar una lista de 45 materiales de obra gruesa.</p>
-          
-          <button style={{
-            background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%'
-          }}>
-            Responder Cotización
-          </button>
-        </div>
 
-        {/* Ofertas Flash */}
-        <div style={cardStyle}>
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Ofertas Flash Capi Red</h2>
-          <p style={{ color: '#64748b', marginBottom: '25px', lineHeight: '1.6' }}>Notifica a todos los Maestros y Constructoras de la zona sobre liquidaciones o stock crítico.</p>
-          
-          <button style={{
-            background: 'transparent', color: '#3b82f6', border: '2px solid #3b82f6', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.2s', width: '100%',
-          }}>
-            Lanzar Oferta Local
-          </button>
+          <div style={{ border: '1px solid #bfdbfe', background: '#eff6ff', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s' }}>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#1e40af' }}>Ofertas Flash ⚡</h3>
+             <p style={{ fontSize: '0.8rem', color: '#1d4ed8', margin: 0 }}>Lanza liquidaciones a la red local.</p>
+          </div>
+
         </div>
       </div>
 
-      <div style={cardStyle}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #10b981, #3b82f6)' }}></div>
-        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: 'var(--capi-navy)' }}>Mi Catálogo de Productos</h2>
+      {/* ÁREA PRINCIPAL: E-COMMERCE GRID */}
+      <div style={{ flex: '1', background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '30px', display: 'flex', flexDirection: 'column' }}>
         
-        {loading ? <p style={{ color: '#64748b' }}>Cargando inventario...</p> : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '600px' }}>
-              <thead>
-                <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}>
-                  <th style={{ padding: '15px 10px', color: '#64748b' }}>Producto</th>
-                  <th style={{ padding: '15px 10px', color: '#64748b' }}>Categoría</th>
-                  <th style={{ padding: '15px 10px', color: '#64748b' }}>Precio Público</th>
-                  <th style={{ padding: '15px 10px', color: '#ef4444' }}>Comisión Capi (10%)</th>
-                  <th style={{ padding: '15px 10px', color: '#10b981' }}>Tu Ganancia Neta</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.length === 0 ? (
-                  <tr><td colSpan={5} style={{ padding: '30px 10px', textAlign: 'center', color: '#64748b' }}>No tienes productos en tu catálogo.</td></tr>
-                ) : products.map(p => (
-                  <tr key={p.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: 'var(--capi-navy)' }}>{p.name}</td>
-                    <td style={{ padding: '15px 10px', color: '#64748b' }}>{p.category}</td>
-                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: 'var(--capi-navy)' }}>${p.price}</td>
-                    <td style={{ padding: '15px 10px', color: '#ef4444' }}>-${p.comision || Math.round(p.price * 0.1)}</td>
-                    <td style={{ padding: '15px 10px', fontWeight: 'bold', color: '#10b981' }}>${p.gananciaNeta || Math.round(p.price * 0.9)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+          <h2 style={{ fontSize: '1.8rem', color: 'var(--capi-navy)', margin: 0 }}>Mi Catálogo de Productos</h2>
+          <button 
+            style={{ background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '10px 20px', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.2s' }}
+            onClick={() => setShowAddModal(true)}
+          >
+            + Agregar Producto
+          </button>
+        </div>
+
+        {loading ? (
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#64748b' }}>Cargando inventario...</div>
+        ) : products.length === 0 ? (
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#64748b', border: '2px dashed #cbd5e1', borderRadius: '15px' }}>
+            No tienes productos publicados. Agrega uno para empezar a vender.
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }}>
+            {products.map(p => (
+              <div key={p.id} style={{ border: '1px solid #e2e8f0', borderRadius: '15px', overflow: 'hidden', transition: 'all 0.3s', cursor: 'pointer', position: 'relative' }}>
+                
+                {/* Image Placeholder */}
+                <div style={{ height: '160px', background: '#f1f5f9', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem' }}>
+                  {p.category === 'Obra Gruesa' ? '🧱' : p.category === 'Terminaciones' ? '🎨' : p.category === 'Herramientas' ? '🪚' : '🔩'}
+                </div>
+
+                {/* Badge Category */}
+                <div style={{ position: 'absolute', top: '10px', right: '10px', background: getCategoryColor(p.category), color: 'white', fontSize: '0.7rem', fontWeight: 'bold', padding: '4px 8px', borderRadius: '10px' }}>
+                  {p.category}
+                </div>
+
+                {/* Details */}
+                <div style={{ padding: '15px' }}>
+                  <h3 style={{ margin: '0 0 10px 0', fontSize: '1.1rem', color: 'var(--capi-navy)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</h3>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    <div>
+                      <p style={{ margin: '0', fontSize: '0.8rem', color: '#64748b' }}>Precio B2B</p>
+                      <p style={{ margin: '0', fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--capi-navy)' }}>${p.price.toLocaleString('es-CL')}</p>
+                    </div>
+                  </div>
+                  <div style={{ marginTop: '15px', paddingTop: '10px', borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem' }}>
+                    <span style={{ color: '#ef4444' }}>Capi: -${(p.comision || Math.round(p.price * 0.1)).toLocaleString('es-CL')}</span>
+                    <span style={{ color: '#10b981', fontWeight: 'bold' }}>Neto: ${(p.gananciaNeta || Math.round(p.price * 0.9)).toLocaleString('es-CL')}</span>
+                  </div>
+                </div>
+
+              </div>
+            ))}
           </div>
         )}
-        
-        <button 
-          style={{
-            marginTop: '30px', background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s'
-          }}
-          onClick={() => setShowAddModal(true)}
-        >
-          + Agregar Nuevo Producto
-        </button>
+
       </div>
 
+      {/* MODAL AGREGAR PRODUCTO */}
       {showAddModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(253, 251, 247, 0.8)', backdropFilter: 'blur(5px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
-          <div style={{ background: 'white', border: '1px solid var(--capi-border)', padding: '30px', borderRadius: '15px', width: '90%', maxWidth: '400px', color: 'var(--capi-navy)', boxShadow: '0 10px 40px rgba(0,0,0,0.1)' }}>
-            <h3 style={{ marginBottom: '20px', color: 'var(--capi-navy)' }}>Agregar Producto</h3>
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(5px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
+          <div style={{ background: 'white', padding: '30px', borderRadius: '20px', width: '90%', maxWidth: '400px', boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }}>
+            <h3 style={{ margin: '0 0 20px 0', color: 'var(--capi-navy)', fontSize: '1.5rem' }}>Nuevo Producto</h3>
             <form onSubmit={handleAddProduct} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <input type="text" placeholder="Nombre del Producto" required value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} style={{ padding: '12px', border: '1px solid var(--capi-border)', borderRadius: '8px', background: '#f8fafc', color: 'var(--capi-navy)' }} />
-              <select value={newProduct.category} onChange={e => setNewProduct({...newProduct, category: e.target.value})} style={{ padding: '12px', border: '1px solid var(--capi-border)', borderRadius: '8px', background: '#f8fafc', color: 'var(--capi-navy)' }}>
-                <option value="Obra Gruesa">Obra Gruesa</option>
-                <option value="Terminaciones">Terminaciones</option>
-                <option value="Herramientas">Herramientas</option>
-                <option value="Fijaciones">Fijaciones</option>
-              </select>
-              <input type="number" placeholder="Precio de Venta al Público" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ padding: '12px', border: '1px solid var(--capi-border)', borderRadius: '8px', background: '#f8fafc', color: 'var(--capi-navy)' }} />
-              <p style={{ fontSize: '0.9rem', color: '#64748b' }}>Capi Red cobrará un 10% de comisión por venta.</p>
-              <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                <button type="button" onClick={() => setShowAddModal(false)} style={{ flex: 1, padding: '10px', background: 'transparent', border: '1px solid #cbd5e1', color: '#64748b', borderRadius: '8px', cursor: 'pointer' }}>Cancelar</button>
-                <button type="submit" style={{ flex: 1, padding: '10px', background: 'var(--capi-gold)', border: 'none', color: 'var(--capi-navy)', fontWeight: 'bold', borderRadius: '8px', cursor: 'pointer' }}>Guardar</button>
+              <div>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '0.9rem', color: '#64748b' }}>Nombre de Artículo</label>
+                <input type="text" placeholder="Ej: Cemento Melón 25kg" required value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} style={{ width: '100%', padding: '12px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem' }} />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '0.9rem', color: '#64748b' }}>Categoría</label>
+                <select value={newProduct.category} onChange={e => setNewProduct({...newProduct, category: e.target.value})} style={{ width: '100%', padding: '12px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem', background: 'white' }}>
+                  <option value="Obra Gruesa">Obra Gruesa</option>
+                  <option value="Terminaciones">Terminaciones</option>
+                  <option value="Herramientas">Herramientas</option>
+                  <option value="Fijaciones">Fijaciones</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', marginBottom: '5px', fontSize: '0.9rem', color: '#64748b' }}>Precio de Venta</label>
+                <input type="number" placeholder="$0" required value={newProduct.price || ''} onChange={e => setNewProduct({...newProduct, price: parseInt(e.target.value)})} style={{ width: '100%', padding: '12px', border: '1px solid #cbd5e1', borderRadius: '10px', fontSize: '1rem' }} />
+              </div>
+              
+              <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '10px', marginTop: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', marginBottom: '5px' }}>
+                  <span style={{ color: '#64748b' }}>Comisión Capi Red (10%)</span>
+                  <span style={{ color: '#ef4444' }}>-${newProduct.price ? Math.round(newProduct.price * 0.1).toLocaleString('es-CL') : '0'}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem', fontWeight: 'bold' }}>
+                  <span style={{ color: 'var(--capi-navy)' }}>Tu Ganancia Neta</span>
+                  <span style={{ color: '#10b981' }}>${newProduct.price ? Math.round(newProduct.price * 0.9).toLocaleString('es-CL') : '0'}</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '15px', marginTop: '10px' }}>
+                <button type="button" onClick={() => setShowAddModal(false)} style={{ flex: 1, padding: '12px', background: '#f1f5f9', border: 'none', color: '#64748b', fontWeight: 'bold', borderRadius: '10px', cursor: 'pointer' }}>Cancelar</button>
+                <button type="submit" style={{ flex: 1, padding: '12px', background: 'var(--capi-gold)', border: 'none', color: 'var(--capi-navy)', fontWeight: 'bold', borderRadius: '10px', cursor: 'pointer' }}>Publicar</button>
               </div>
             </form>
           </div>

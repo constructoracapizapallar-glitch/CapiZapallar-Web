@@ -1,110 +1,109 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function ClienteDashboard() {
-  const [isHovered, setIsHovered] = useState<number | null>(null);
-
-  const cardStyle = (index: number) => ({
-    background: 'rgba(255, 255, 255, 0.7)',
-    backdropFilter: 'blur(20px)',
-    WebkitBackdropFilter: 'blur(20px)',
-    border: '1px solid rgba(0, 0, 0, 0.05)',
-    borderRadius: '20px',
-    padding: '30px',
-    color: 'var(--capi-navy)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    transform: isHovered === index ? 'translateY(-5px) scale(1.02)' : 'translateY(0) scale(1)',
-    cursor: 'pointer',
-    position: 'relative' as const,
-    overflow: 'hidden' as const,
-  });
-
   return (
-    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
+    <div style={{ display: 'flex', gap: '20px', padding: '20px', minHeight: '80vh', fontFamily: 'system-ui, sans-serif' }}>
       
-      <div style={{ marginBottom: '40px' }}>
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          color: 'var(--capi-navy)',
-          marginBottom: '10px'
-        }}>
-          Centro de Proyectos
-        </h1>
-        <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Gestiona tus cotizaciones, seguimiento de obras y profesionales favoritos.</p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '30px' }}>
+      {/* SIDEBAR IZQUIERDO */}
+      <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         
-        {/* Card Cotización IA */}
-        <div 
-          style={cardStyle(1)}
-          onMouseEnter={() => setIsHovered(1)}
-          onMouseLeave={() => setIsHovered(null)}
-        >
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, var(--capi-gold), #f59e0b)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Capi IA Visión (Nueva Cotización)</h2>
-          <p style={{ color: '#64748b', marginBottom: '25px', lineHeight: '1.6' }}>Sube imágenes de la reparación que necesitas. Nuestra IA analizará el problema y generará un pre-presupuesto al instante.</p>
-          
-          <button style={{
-            background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%',
-            transform: isHovered === 1 ? 'scale(1.02)' : 'scale(1)',
-            boxShadow: isHovered === 1 ? '0 0 15px rgba(212, 175, 55, 0.4)' : 'none'
-          }}>
-            📷 Subir Fotos y Cotizar
-          </button>
+        {/* Header Cliente */}
+        <div style={{ background: 'var(--capi-navy)', borderRadius: '20px', padding: '25px', color: 'white', boxShadow: '0 10px 30px rgba(15, 23, 42, 0.2)' }}>
+          <h1 style={{ fontSize: '1.8rem', margin: '0 0 10px 0' }}>Mi Hogar</h1>
+          <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0 }}>Gestiona tus proyectos de construcción y reparaciones.</p>
         </div>
 
-        {/* Card Seguimiento de Proyectos */}
-        <div 
-          style={cardStyle(2)}
-          onMouseEnter={() => setIsHovered(2)}
-          onMouseLeave={() => setIsHovered(null)}
-        >
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #3b82f6, #8b5cf6)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Seguimiento de Obras Activas</h2>
-          <p style={{ color: '#64748b', marginBottom: '15px', lineHeight: '1.6' }}>Supervisa el avance de tus proyectos en tiempo real.</p>
+        {/* Acciones Rápidas */}
+        <div style={{ background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
           
-          <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '10px', marginBottom: '20px', border: '1px solid #e2e8f0' }}>
-            <h4 style={{ margin: '0 0 10px 0', color: 'var(--capi-navy)' }}>Remodelación Baño Principal</h4>
-            <div style={{ width: '100%', background: '#e2e8f0', borderRadius: '10px', height: '10px', overflow: 'hidden' }}>
-              <div style={{ width: '65%', background: '#3b82f6', height: '100%' }}></div>
+          <div style={{ border: '1px solid #fef08a', background: '#fefce8', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#854d0e' }}>Capi IA Visión 📷</h3>
+             <p style={{ fontSize: '0.8rem', color: '#a16207', margin: 0 }}>Sube una foto y cotiza tu problema gratis.</p>
+          </div>
+
+          <div style={{ border: '1px solid #bbf7d0', background: '#f0fdf4', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s' }}>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#166534' }}>Directorio Local</h3>
+             <p style={{ fontSize: '0.8rem', color: '#15803d', margin: 0 }}>Busca maestros verificados en Zapallar.</p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ÁREA PRINCIPAL: TIMELINE / SEGUIMIENTO */}
+      <div style={{ flex: '1', background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '40px', display: 'flex', flexDirection: 'column' }}>
+        
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+          <h2 style={{ fontSize: '1.8rem', color: 'var(--capi-navy)', margin: 0 }}>Seguimiento de Obras Activas</h2>
+        </div>
+
+        {/* PROYECTO PRINCIPAL (TIMELINE) */}
+        <div style={{ border: '1px solid #e2e8f0', borderRadius: '15px', padding: '30px', marginBottom: '30px' }}>
+          
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+            <div>
+              <h3 style={{ margin: '0 0 5px 0', fontSize: '1.5rem', color: 'var(--capi-navy)' }}>Remodelación Baño Principal</h3>
+              <p style={{ margin: 0, color: '#64748b' }}>A cargo de: Maestro Juan Pérez (Gasfitería y Cerámicos)</p>
             </div>
-            <p style={{ fontSize: '0.8rem', color: '#64748b', margin: '5px 0 0 0', textAlign: 'right' }}>65% Completado</p>
+            <span style={{ background: '#dbeafe', color: '#1e40af', padding: '5px 12px', borderRadius: '10px', fontSize: '0.9rem', fontWeight: 'bold' }}>EN PROCESO</span>
           </div>
 
-          <button style={{
-            background: 'transparent', color: '#3b82f6', border: '2px solid #3b82f6', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.2s', width: '100%',
-          }}>
-            Ver Detalles del Proyecto
-          </button>
-        </div>
-
-        {/* Card Directorio Favoritos */}
-        <div 
-          style={cardStyle(3)}
-          onMouseEnter={() => setIsHovered(3)}
-          onMouseLeave={() => setIsHovered(null)}
-        >
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #10b981, #059669)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Directorio de Confianza</h2>
-          <p style={{ color: '#64748b', marginBottom: '25px', lineHeight: '1.6' }}>Guarda a tus Maestros, Arquitectos y Constructoras favoritos para contactarlos rápidamente en el futuro.</p>
-          
-          <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-            <div style={{ background: '#f0fdf4', color: '#166534', padding: '5px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '600' }}>⭐ Juan Pérez (Gasfiter)</div>
-            <div style={{ background: '#f0fdf4', color: '#166534', padding: '5px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '600' }}>⭐ Arq. Silva</div>
+          {/* Barra de Progreso Global */}
+          <div style={{ marginBottom: '30px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '0.9rem', color: '#64748b', fontWeight: 'bold' }}>
+              <span>Avance General</span>
+              <span style={{ color: '#3b82f6' }}>65%</span>
+            </div>
+            <div style={{ width: '100%', background: '#f1f5f9', borderRadius: '10px', height: '12px', overflow: 'hidden' }}>
+              <div style={{ width: '65%', background: '#3b82f6', height: '100%', borderRadius: '10px' }}></div>
+            </div>
           </div>
 
-          <button style={{
-            background: '#10b981', color: 'white', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%',
-            transform: isHovered === 3 ? 'scale(1.02)' : 'scale(1)',
-          }}>
-            Ver Mi Directorio
-          </button>
+          {/* TIMELINE VERTICAL */}
+          <div style={{ position: 'relative', paddingLeft: '20px', borderLeft: '2px solid #e2e8f0' }}>
+            
+            {/* Hito 1 (Completado) */}
+            <div style={{ position: 'relative', marginBottom: '25px' }}>
+              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#10b981', border: '2px solid white', borderRadius: '50%' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: '#10b981', fontSize: '1.1rem' }}>Desarme y Retiro de Escombros</h4>
+              <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>Completado el 12 de Junio.</p>
+            </div>
+
+            {/* Hito 2 (Completado) */}
+            <div style={{ position: 'relative', marginBottom: '25px' }}>
+              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#10b981', border: '2px solid white', borderRadius: '50%' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: '#10b981', fontSize: '1.1rem' }}>Instalación de Red de Agua</h4>
+              <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>Completado el 15 de Junio. Prueba de presión superada.</p>
+            </div>
+
+            {/* Hito 3 (En Progreso) */}
+            <div style={{ position: 'relative', marginBottom: '25px' }}>
+              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#3b82f6', border: '2px solid white', borderRadius: '50%', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.2)' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem' }}>Instalación de Cerámicas</h4>
+              <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>En ejecución hoy. Faltan terminaciones y fragüe.</p>
+            </div>
+
+            {/* Hito 4 (Pendiente) */}
+            <div style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#e2e8f0', border: '2px solid white', borderRadius: '50%' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: '#94a3b8', fontSize: '1.1rem' }}>Instalación de Artefactos</h4>
+              <p style={{ margin: 0, color: '#cbd5e1', fontSize: '0.9rem' }}>Por iniciar (WC, Vanitorio, Grifería).</p>
+            </div>
+
+          </div>
+
         </div>
+        
+        {/* Historial Corto */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h3 style={{ color: 'var(--capi-navy)', fontSize: '1.2rem', margin: 0 }}>Proyectos Anteriores</h3>
+          <button style={{ background: 'transparent', border: 'none', color: '#3b82f6', fontWeight: 'bold', cursor: 'pointer' }}>Ver Historial Completo</button>
+        </div>
+        <p style={{ color: '#64748b' }}>No hay proyectos finalizados aún.</p>
 
       </div>
+
     </div>
   );
 }

@@ -1,106 +1,100 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function ProfesionalDashboard() {
-  const [isHovered, setIsHovered] = useState<number | null>(null);
-
-  const cardStyle = (index: number) => ({
-    background: 'rgba(255, 255, 255, 0.7)',
-    backdropFilter: 'blur(20px)',
-    WebkitBackdropFilter: 'blur(20px)',
-    border: '1px solid rgba(0, 0, 0, 0.05)',
-    borderRadius: '20px',
-    padding: '30px',
-    color: 'var(--capi-navy)',
-    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.05)',
-    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-    transform: isHovered === index ? 'translateY(-5px) scale(1.02)' : 'translateY(0) scale(1)',
-    cursor: 'pointer',
-    position: 'relative' as const,
-    overflow: 'hidden' as const,
-  });
-
   return (
-    <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
+    <div style={{ display: 'flex', gap: '20px', padding: '20px', minHeight: '80vh', fontFamily: 'system-ui, sans-serif' }}>
       
-      <div style={{ marginBottom: '40px' }}>
-        <h1 style={{ 
-          fontSize: '2.5rem', 
-          color: 'var(--capi-navy)',
-          marginBottom: '10px'
-        }}>
-          Estudio Profesional
-        </h1>
-        <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Gestiona tus diseños, normativas locales y conéctate con Constructoras.</p>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '30px' }}>
+      {/* SIDEBAR IZQUIERDO */}
+      <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         
-        {/* Gestor de Planos */}
-        <div 
-          style={cardStyle(1)}
-          onMouseEnter={() => setIsHovered(1)}
-          onMouseLeave={() => setIsHovered(null)}
-        >
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #ec4899, #8b5cf6)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Gestor de Planos y Firmas</h2>
-          <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.6' }}>Sube tus proyectos arquitectónicos (EETT, DWG, PDF) listos para licitar a constructoras de la Red Capi.</p>
+        {/* Header Profesional */}
+        <div style={{ background: 'var(--capi-navy)', borderRadius: '20px', padding: '25px', color: 'white', boxShadow: '0 10px 30px rgba(15, 23, 42, 0.2)' }}>
+          <h1 style={{ fontSize: '1.8rem', margin: '0 0 10px 0' }}>Estudio</h1>
+          <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0 }}>Gestión de diseños, planos y normativas.</p>
+        </div>
+
+        {/* Acciones Rápidas */}
+        <div style={{ background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
           
-          <div style={{ background: '#f8fafc', padding: '15px', borderRadius: '10px', border: '1px dashed #cbd5e1', marginBottom: '20px', textAlign: 'center' }}>
+          <div style={{ border: '1px solid #bfdbfe', background: '#eff6ff', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#1e40af' }}>Capi IA Normativo 🧠</h3>
+             <p style={{ fontSize: '0.8rem', color: '#1d4ed8', margin: 0 }}>Consulta Ordenanzas de Zapallar/Cachagua.</p>
+          </div>
+
+          <div style={{ border: '1px solid #bbf7d0', background: '#f0fdf4', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s' }}>
+             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#166534' }}>Directorio B2B</h3>
+             <p style={{ fontSize: '0.8rem', color: '#15803d', margin: 0 }}>Busca Constructoras Aliadas.</p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ÁREA PRINCIPAL: GESTOR DE PLANOS (Estilo Drive) */}
+      <div style={{ flex: '1', background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '30px', display: 'flex', flexDirection: 'column' }}>
+        
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+          <h2 style={{ fontSize: '1.8rem', color: 'var(--capi-navy)', margin: 0 }}>Repositorio de Proyectos</h2>
+          <button style={{ background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '10px 20px', borderRadius: '10px', fontWeight: 'bold', cursor: 'pointer' }}>
+            + Subir Planos
+          </button>
+        </div>
+
+        {/* CARPETAS / DIRECTORIOS */}
+        <h3 style={{ margin: '0 0 15px 0', color: '#64748b', fontSize: '1rem' }}>Carpetas Recientes</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', marginBottom: '30px' }}>
+          
+          <div style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '15px', display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer', transition: 'all 0.2s', background: '#f8fafc' }}>
             <span style={{ fontSize: '2rem' }}>📁</span>
-            <p style={{ margin: '5px 0 0 0', color: '#64748b', fontSize: '0.9rem' }}>Arrastra tus archivos aquí</p>
+            <div>
+              <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.95rem' }}>Casa Zapallar Sur</h4>
+              <p style={{ margin: 0, color: '#64748b', fontSize: '0.8rem' }}>4 Archivos</p>
+            </div>
+          </div>
+          
+          <div style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '15px', display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer', transition: 'all 0.2s', background: '#f8fafc' }}>
+            <span style={{ fontSize: '2rem' }}>📁</span>
+            <div>
+              <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.95rem' }}>Local Comercial</h4>
+              <p style={{ margin: 0, color: '#64748b', fontSize: '0.8rem' }}>12 Archivos</p>
+            </div>
           </div>
 
-          <button style={{
-            background: 'var(--capi-gold)', color: 'var(--capi-navy)', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%',
-            transform: isHovered === 1 ? 'scale(1.02)' : 'scale(1)',
-          }}>
-            Subir Nuevo Proyecto
-          </button>
         </div>
 
-        {/* Asistente Normativo */}
-        <div 
-          style={cardStyle(2)}
-          onMouseEnter={() => setIsHovered(2)}
-          onMouseLeave={() => setIsHovered(null)}
-        >
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #3b82f6, #0ea5e9)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Capi IA Normativo</h2>
-          <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.6' }}>Consulta al instante la Ordenanza Local de Zapallar o Cachagua sobre rasantes, alturas y coeficientes de constructibilidad.</p>
+        {/* ARCHIVOS (GRID) */}
+        <h3 style={{ margin: '0 0 15px 0', color: '#64748b', fontSize: '1rem' }}>Archivos Subidos (Planos, EETT, Renders)</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '20px' }}>
           
-          <button style={{
-            background: 'transparent', border: '2px solid #3b82f6', color: '#3b82f6', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s', width: '100%',
-          }}>
-            Abrir Chat Normativo
-          </button>
-        </div>
-
-        {/* Directorio de Constructoras */}
-        <div 
-          style={cardStyle(3)}
-          onMouseEnter={() => setIsHovered(3)}
-          onMouseLeave={() => setIsHovered(null)}
-        >
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #10b981, #059669)' }}></div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--capi-navy)' }}>Directorio de Constructoras</h2>
-          <p style={{ color: '#64748b', marginBottom: '25px', lineHeight: '1.6' }}>Encuentra constructoras certificadas en la zona para ejecutar tus diseños con altos estándares de calidad.</p>
-          
-          <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-            <span style={{ background: '#f0fdf4', color: '#166534', padding: '5px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '600' }}>⭐ Constructora Pacífico</span>
-            <span style={{ background: '#f0fdf4', color: '#166534', padding: '5px 12px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '600' }}>⭐ Z&C SpA</span>
+          <div style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '15px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s' }}>
+            <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', color: '#3b82f6', marginBottom: '10px' }}>
+              📄
+            </div>
+            <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>EETT_Arquitectura.pdf</h4>
+            <p style={{ margin: '5px 0 0 0', color: '#64748b', fontSize: '0.75rem' }}>Actualizado ayer</p>
           </div>
 
-          <button style={{
-            background: '#10b981', color: 'white', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%',
-            transform: isHovered === 3 ? 'scale(1.02)' : 'scale(1)',
-          }}>
-            Ver Empresas Aliadas
-          </button>
+          <div style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '15px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s' }}>
+            <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', color: '#10b981', marginBottom: '10px' }}>
+              📐
+            </div>
+            <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Plano_Planta_v2.dwg</h4>
+            <p style={{ margin: '5px 0 0 0', color: '#64748b', fontSize: '0.75rem' }}>Actualizado hace 2 días</p>
+          </div>
+          
+          <div style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '15px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s' }}>
+            <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', color: '#f59e0b', marginBottom: '10px' }}>
+              🖼️
+            </div>
+            <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.9rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Render_Fachada.png</h4>
+            <p style={{ margin: '5px 0 0 0', color: '#64748b', fontSize: '0.75rem' }}>Actualizado hace 1 semana</p>
+          </div>
+
         </div>
 
       </div>
+
     </div>
   );
 }
