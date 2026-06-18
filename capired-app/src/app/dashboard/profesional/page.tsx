@@ -10,7 +10,7 @@ export default function ProfesionalDashboard() {
       {/* HEADER SECTION */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px', borderBottom: '1px solid #E7E5E4' }}>
         <div>
-          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Tablón de Licitaciones</h2>
+          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Tablón de Obras Mayores</h2>
           <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>Encuentra proyectos de arquitectura, cálculo y especialidades.</p>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
@@ -83,10 +83,10 @@ export default function ProfesionalDashboard() {
         </button>
       </div>
 
-      {/* LISTADO DE LICITACIONES */}
+      {/* LISTADO DE OBRAS MAYORES */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         
-        {/* Licitación 1 */}
+        {/* Obra Mayor 1 */}
         <div style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '8px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', transition: 'box-shadow 0.2s', cursor: 'pointer' }}>
           
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -122,7 +122,7 @@ export default function ProfesionalDashboard() {
           </div>
         </div>
 
-        {/* Licitación 2 */}
+        {/* Obra Mayor 2 */}
         <div style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '8px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', transition: 'box-shadow 0.2s', cursor: 'pointer' }}>
           
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>

@@ -9,15 +9,15 @@
 - [x] Eliminar tarjetas gigantes e iconos pesados.
 
 ## Fase 3: Dashboards Funcionales (40%)
-- [x] Panel Constructora (Mis Obras, Licitaciones, Contratistas).
+- [x] Panel Constructora (Mis Obras, Obras Mayores, Contratistas).
 - [x] Panel Ferretería (Catálogo B2B).
 - [x] Panel Cliente (Mi Hogar).
 - [x] Panel Maestro (Mapa de Pegas B2B - Modo "Uber").
-- [x] Panel Profesional (Muro de Licitaciones B2B).
+- [x] Panel Profesional (Muro de Obras Mayores B2B).
 - [x] Solucionar redirecciones y ruteo estático (`trailingSlash`).
 
 ## Fase 4: Próximos Pasos (Para llegar al 100%)
 - [ ] Conectar Mapa del Maestro con API de Mapas Real.
-- [ ] Programar lógica de Postulación a Licitaciones (Profesional).
-- [ ] Sistema de creación de licitaciones (Constructora).
+- [ ] Programar lógica de Postulación a Obras Mayores (Profesional).
+- [ ] Sistema de creación de obras mayores (Constructora).
 - [ ] *[Pendiente definir por el Jefe]*

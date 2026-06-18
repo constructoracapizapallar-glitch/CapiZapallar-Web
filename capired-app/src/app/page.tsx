@@ -154,7 +154,7 @@ export default function CapiRedLanding() {
               <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Términos y Condiciones Generales</a></li>
               <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Política de Retención y Pagos (Fideicomiso)</a></li>
               <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Política Anti-Soborno y Tratos por Fuera</a></li>
-              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Contratos de Licitación B2B</a></li>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Contratos de Obras Mayores B2B</a></li>
             </ul>
           </div>
 

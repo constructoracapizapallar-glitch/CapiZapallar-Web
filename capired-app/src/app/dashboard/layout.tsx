@@ -74,7 +74,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       case 'constructora':
         return [
           { name: 'Mis Obras', icon: <LayoutDashboard size={20} />, href: '/dashboard/constructora' },
-          { name: 'Licitaciones', icon: <FileText size={20} />, href: '/dashboard/constructora/licitaciones' },
+          { name: 'Obras Mayores', icon: <FileText size={20} />, href: '/dashboard/constructora/obras-mayores' },
           { name: 'Contratistas', icon: <Users size={20} />, href: '/dashboard/constructora/contratistas' },
         ];
       case 'cliente':

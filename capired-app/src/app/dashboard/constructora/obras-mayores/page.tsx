@@ -3,13 +3,13 @@
 import React from 'react';
 import { FileText, Plus, Search, Filter, Eye, MoreHorizontal } from 'lucide-react';
 
-export default function ConstructoraLicitaciones() {
+export default function ConstructoraObrasMayores() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px', borderBottom: '1px solid #E7E5E4' }}>
         <div>
-          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Licitaciones Activas</h2>
-          <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>Gestiona los concursos y recibe propuestas de contratistas.</p>
+          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Obras Mayores Activas</h2>
+          <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>Gestiona los proyectos y recibe propuestas de contratistas.</p>
         </div>
         <button style={{ 
           background: '#292524', 
@@ -24,7 +24,7 @@ export default function ConstructoraLicitaciones() {
           alignItems: 'center',
           gap: '6px',
         }}>
-          <Plus size={16} /> Crear Licitación
+          <Plus size={16} /> Crear Obra Mayor
         </button>
       </div>
 
@@ -43,7 +43,7 @@ export default function ConstructoraLicitaciones() {
           <Search size={16} color="#A8A29E" />
           <input 
             type="text" 
-            placeholder="Buscar licitación por nombre o ID..." 
+            placeholder="Buscar obra por nombre o ID..." 
             style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.85rem', color: '#292524' }} 
           />
         </div>
