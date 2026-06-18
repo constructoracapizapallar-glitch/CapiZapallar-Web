@@ -16,6 +16,7 @@ export default function ConstructoraObrasMayores() {
   const [presupuesto, setPresupuesto] = useState('');
   const [latitud, setLatitud] = useState('-32.5539'); // Zapallar approx
   const [longitud, setLongitud] = useState('-71.4646');
+  const [solicitarMateriales, setSolicitarMateriales] = useState(false);
 
   useEffect(() => {
     fetchObras();
@@ -46,11 +47,13 @@ export default function ConstructoraObrasMayores() {
         estado: 'ABIERTA',
         constructoraId: currentUser?.uid || 'anon',
         createdAt: new Date(),
-        propuestas: 0
+        propuestas: 0,
+        solicitarMateriales
       });
       setShowModal(false);
       setTitulo('');
       setPresupuesto('');
+      setSolicitarMateriales(false);
       fetchObras(); // Refresh
     } catch (error) {
       console.error("Error saving obra", error);
@@ -202,6 +205,16 @@ export default function ConstructoraObrasMayores() {
                   <input required value={longitud} onChange={e => setLongitud(e.target.value)} type="text" placeholder="Longitud" style={{ width: '50%', padding: '10px', borderRadius: '6px', border: '1px solid #E7E5E4' }} />
                 </div>
                 <p style={{ margin: '5px 0 0', fontSize: '0.75rem', color: '#A8A29E' }}>Por defecto: Coordenadas de Zapallar.</p>
+              </div>
+
+              <div style={{ background: '#F5F5F4', padding: '15px', borderRadius: '8px', border: '1px solid #E7E5E4' }}>
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
+                  <input type="checkbox" checked={solicitarMateriales} onChange={e => setSolicitarMateriales(e.target.checked)} style={{ width: '18px', height: '18px', accentColor: '#292524', marginTop: '2px' }} />
+                  <div>
+                    <span style={{ display: 'block', fontSize: '0.9rem', color: '#292524', fontWeight: '700' }}>Solicitar Cotización Automática a Ferreterías</span>
+                    <span style={{ display: 'block', fontSize: '0.8rem', color: '#78716C' }}>Tu obra aparecerá en el Radar B2B de proveedores locales.</span>
+                  </div>
+                </label>
               </div>
 
               <button 

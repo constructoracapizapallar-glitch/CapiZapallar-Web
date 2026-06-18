@@ -63,16 +63,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         return [
           { name: 'Radar B2B (Mapa)', icon: <Search size={20} />, href: '/dashboard/ferreteria' },
           { name: 'Catálogo e Inventario', icon: <Package size={20} />, href: '/dashboard/ferreteria/catalogo' },
-          { name: 'Despachos', icon: <Truck size={20} />, href: '#' },
-          { name: 'Ventas', icon: <BarChart3 size={20} />, href: '#' },
-          { name: 'Ajustes', icon: <Settings size={20} />, href: '#' },
+          { name: 'Despachos', icon: <Truck size={20} />, href: '/dashboard/ferreteria/despachos' },
+          { name: 'Ventas', icon: <BarChart3 size={20} />, href: '/dashboard/ferreteria/ventas' },
+          { name: 'Ajustes', icon: <Settings size={20} />, href: '/dashboard/ferreteria/ajustes' },
         ];
       case 'admin':
         return [
           { name: 'Comando', icon: <LayoutDashboard size={20} />, href: '/dashboard/admin' },
-          { name: 'KYC & Validaciones', icon: <ShieldCheck size={20} />, href: '#' },
-          { name: 'Usuarios', icon: <Users size={20} />, href: '#' },
-          { name: 'Finanzas', icon: <Wallet size={20} />, href: '#' },
+          { name: 'KYC & Validaciones', icon: <ShieldCheck size={20} />, href: '/dashboard/admin/kyc' },
+          { name: 'Usuarios', icon: <Users size={20} />, href: '/dashboard/admin/usuarios' },
+          { name: 'Finanzas', icon: <Wallet size={20} />, href: '/dashboard/admin/finanzas' },
         ];
       case 'constructora':
         return [
@@ -83,21 +83,21 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       case 'cliente':
         return [
           { name: 'Mi Hogar', icon: <Home size={20} />, href: '/dashboard/cliente' },
-          { name: 'Capi IA Visión', icon: <Camera size={20} />, href: '#' },
-          { name: 'Garantías', icon: <ShieldCheck size={20} />, href: '#' },
+          { name: 'Capi IA Visión', icon: <Camera size={20} />, href: '/dashboard/cliente/vision' },
+          { name: 'Garantías', icon: <ShieldCheck size={20} />, href: '/dashboard/cliente/garantias' },
         ];
       case 'profesional':
         return [
           { name: 'Radar de Proyectos', icon: <Search size={20} />, href: '/dashboard/profesional' },
           { name: 'Mis Postulaciones', icon: <FileText size={20} />, href: '/dashboard/profesional/postulaciones' },
-          { name: 'Normativa', icon: <BookOpen size={20} />, href: '#' },
-          { name: 'Red B2B', icon: <Users size={20} />, href: '#' },
+          { name: 'Normativa', icon: <BookOpen size={20} />, href: '/dashboard/profesional/normativa' },
+          { name: 'Red B2B', icon: <Users size={20} />, href: '/dashboard/profesional/red-b2b' },
         ];
       case 'maestro':
         return [
           { name: 'Radar de Obras', icon: <Search size={20} />, href: '/dashboard/maestro' },
-          { name: 'Billetera', icon: <Wallet size={20} />, href: '#' },
-          { name: 'Materiales', icon: <Package size={20} />, href: '#' },
+          { name: 'Billetera', icon: <Wallet size={20} />, href: '/dashboard/maestro/billetera' },
+          { name: 'Materiales', icon: <Package size={20} />, href: '/dashboard/maestro/materiales' },
         ];
       default:
         return [];
