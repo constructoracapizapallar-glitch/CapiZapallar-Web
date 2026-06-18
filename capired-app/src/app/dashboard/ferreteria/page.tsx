@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { MapPin, Search, Filter, Briefcase, Zap, Clock, DollarSign, Wallet, ArrowUpRight, Package } from 'lucide-react';
+import { MapPin, Search, Filter, Briefcase, Zap, Clock, DollarSign, Wallet, ArrowUpRight, Package, Building } from 'lucide-react';
 import { db } from '../../../lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
