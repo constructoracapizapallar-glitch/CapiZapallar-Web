@@ -40,7 +40,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           setRole(data.role || '');
         }
       } else {
-        window.location.href = '/capired-app/out/index.html';
+        window.location.href = '/capired-app/out/';
       }
     });
     return () => unsubscribe();
@@ -49,7 +49,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      window.location.href = '/capired-app/out/index.html';
+      window.location.href = '/capired-app/out/';
     } catch (error) {
       console.error("Error al cerrar sesión", error);
     }
