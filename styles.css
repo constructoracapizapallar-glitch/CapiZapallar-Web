@@ -1,9 +1,9 @@
 :root {
     /* --- LIGHT MODE (Default - Pastel/Neutral) --- */
     /* Backgrounds: Soft Creams & Sand */
-    --bg-primary: #FDFBF7;
-    --bg-secondary: #F4F1EA;
-    --bg-tertiary: #EAE6dc;
+    --bg-primary: #F4F0E6;
+    --bg-secondary: #EBE5D8;
+    --bg-tertiary: #E1DACB;
 
     /* Accents: Muted Gold & Earthy Tones */
     --primary-500: #D4AF37;
@@ -17,15 +17,15 @@
     --text-tertiary: #8C8C8C;
 
     /* UI Elements */
-    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-bg: rgba(244, 240, 230, 0.8);
     --glass-border: rgba(0, 0, 0, 0.12);
-    --nav-bg-scrolled: rgba(253, 251, 247, 0.95);
+    --nav-bg-scrolled: rgba(244, 240, 230, 0.95);
     --glow-color: rgba(212, 175, 55, 0.08);
 
     --input-bg: rgba(0, 0, 0, 0.04);
     --input-border: rgba(0, 0, 0, 0.1);
     --input-focus-bg: rgba(0, 0, 0, 0.08);
-    --glass-bg-rgb: 255, 255, 255;
+    --glass-bg-rgb: 244, 240, 230;
 
     --transition-base: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
