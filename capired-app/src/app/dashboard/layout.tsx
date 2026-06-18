@@ -103,13 +103,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const menuItems = getMenu();
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F8F9FA', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#F5F5F4', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       
       {/* SIDEBAR FIJO GLOBAL */}
       <aside style={{
         width: '280px',
         background: '#FFFFFF',
-        borderRight: '1px solid #E2E8F0',
+        borderRight: '1px solid #E7E5E4',
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
@@ -118,12 +118,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       }}>
         {/* LOGO AREA */}
         <div style={{ padding: '30px 30px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ width: '40px', height: '40px', background: '#0F172A', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ color: '#D4AF37', fontWeight: 'bold', fontSize: '1.2rem' }}>C</span>
+          <div style={{ width: '40px', height: '40px', background: '#292524', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ color: '#F5F5F4', fontWeight: 'bold', fontSize: '1.2rem' }}>C</span>
           </div>
           <div>
-            <h1 style={{ margin: 0, fontSize: '1.2rem', fontWeight: '800', color: '#0F172A', letterSpacing: '-0.5px' }}>CAPI<span style={{ color: '#D4AF37' }}>RED</span></h1>
-            <p style={{ margin: 0, fontSize: '0.75rem', color: '#64748B', textTransform: 'uppercase', letterSpacing: '1px' }}>{role || 'Plataforma B2B'}</p>
+            <h1 style={{ margin: 0, fontSize: '1.2rem', fontWeight: '800', color: '#292524', letterSpacing: '-0.5px' }}>CAPI<span style={{ color: '#78716C' }}>RED</span></h1>
+            <p style={{ margin: 0, fontSize: '0.75rem', color: '#A8A29E', textTransform: 'uppercase', letterSpacing: '1px' }}>{role || 'Plataforma B2B'}</p>
           </div>
         </div>
 
@@ -141,13 +141,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     padding: '12px 16px',
                     borderRadius: '10px',
                     textDecoration: 'none',
-                    color: isActive ? '#0F172A' : '#64748B',
-                    background: isActive ? '#F1F5F9' : 'transparent',
+                    color: isActive ? '#292524' : '#78716C',
+                    background: isActive ? '#F5F5F4' : 'transparent',
                     fontWeight: isActive ? '600' : '500',
                     transition: 'all 0.2s ease',
                     fontSize: '0.95rem'
                   }}>
-                    <span style={{ color: isActive ? '#0F172A' : '#94A3B8' }}>{item.icon}</span>
+                    <span style={{ color: isActive ? '#292524' : '#A8A29E' }}>{item.icon}</span>
                     {item.name}
                   </Link>
                 </li>
@@ -157,14 +157,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* USER PROFILE BOTTOM */}
-        <div style={{ padding: '20px', borderTop: '1px solid #E2E8F0' }}>
+        <div style={{ padding: '20px', borderTop: '1px solid #E7E5E4' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '15px' }}>
-            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#64748B', fontWeight: 'bold' }}>
+            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#F5F5F4', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#78716C', fontWeight: 'bold', border: '1px solid #E7E5E4' }}>
               {userName.charAt(0).toUpperCase()}
             </div>
             <div style={{ overflow: 'hidden' }}>
-              <p style={{ margin: 0, fontWeight: '600', color: '#0F172A', fontSize: '0.9rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{userName}</p>
-              <p style={{ margin: 0, fontSize: '0.75rem', color: '#64748B', textTransform: 'capitalize' }}>{role}</p>
+              <p style={{ margin: 0, fontWeight: '600', color: '#292524', fontSize: '0.9rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{userName}</p>
+              <p style={{ margin: 0, fontSize: '0.75rem', color: '#A8A29E', textTransform: 'capitalize' }}>{role}</p>
             </div>
           </div>
           <button 
@@ -176,9 +176,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               justifyContent: 'center',
               gap: '8px',
               padding: '10px',
-              background: '#FFF1F2',
-              color: '#E11D48',
-              border: 'none',
+              background: '#FFFFFF',
+              color: '#292524',
+              border: '1px solid #E7E5E4',
               borderRadius: '8px',
               fontWeight: '600',
               cursor: 'pointer',

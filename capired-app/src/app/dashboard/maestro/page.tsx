@@ -9,15 +9,15 @@ export default function MaestroDashboard() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
       {/* HEADER SECTION */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px', borderBottom: '1px solid #E2E8F0' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px', borderBottom: '1px solid #E7E5E4' }}>
         <div>
-          <h2 style={{ fontSize: '1.75rem', color: '#0F172A', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Encontrar Trabajo</h2>
-          <p style={{ margin: 0, color: '#64748B', fontSize: '0.85rem' }}>Postula a trabajos locales y expande tu red de clientes.</p>
+          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Encontrar Trabajo</h2>
+          <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>Postula a trabajos locales y expande tu red de clientes.</p>
         </div>
         <button style={{ 
-          background: '#0F172A', 
-          color: '#D4AF37', 
-          border: '1px solid #0F172A', 
+          background: '#292524', 
+          color: '#FAFAF9', 
+          border: 'none', 
           padding: '8px 16px', 
           borderRadius: '6px', 
           fontWeight: '600', 
@@ -36,38 +36,38 @@ export default function MaestroDashboard() {
         <div style={{ 
           flex: 1, 
           background: '#FFFFFF', 
-          border: '1px solid #E2E8F0', 
+          border: '1px solid #E7E5E4', 
           borderRadius: '6px', 
           padding: '8px 12px',
           display: 'flex',
           alignItems: 'center',
           gap: '8px'
         }}>
-          <Search size={16} color="#94A3B8" />
+          <Search size={16} color="#A8A29E" />
           <input 
             type="text" 
             placeholder="Buscar por especialidad o comuna..." 
-            style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.85rem', color: '#0F172A' }} 
+            style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.85rem', color: '#292524' }} 
           />
         </div>
         <div style={{
-          background: '#F8FAFC',
-          border: '1px solid #E2E8F0',
+          background: '#F5F5F4',
+          border: '1px solid #E7E5E4',
           padding: '8px 16px',
           borderRadius: '6px',
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          color: '#0F172A',
+          color: '#292524',
           fontSize: '0.85rem',
           fontWeight: '600',
         }}>
-          <MapPin size={16} color="#D4AF37" /> Zapallar +15km
+          <MapPin size={16} color="#78716C" /> Zapallar +15km
         </div>
       </div>
 
       {/* RADAR DE OBRAS COMPONENTE */}
-      <div style={{ background: '#FFFFFF', borderRadius: '8px', padding: '24px', border: '1px solid #E2E8F0' }}>
+      <div style={{ background: '#FFFFFF', borderRadius: '8px', padding: '24px', border: '1px solid #E7E5E4' }}>
         <RadarObras />
       </div>
 
