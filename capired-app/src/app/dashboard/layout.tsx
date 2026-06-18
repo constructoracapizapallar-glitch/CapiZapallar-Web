@@ -61,7 +61,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     switch (role) {
       case 'ferreteria':
         return [
-          { name: 'Catálogo B2B', icon: <Package size={20} />, href: '/dashboard/ferreteria' },
+          { name: 'Radar B2B (Mapa)', icon: <Search size={20} />, href: '/dashboard/ferreteria' },
+          { name: 'Catálogo e Inventario', icon: <Package size={20} />, href: '/dashboard/ferreteria/catalogo' },
           { name: 'Despachos', icon: <Truck size={20} />, href: '#' },
           { name: 'Ventas', icon: <BarChart3 size={20} />, href: '#' },
           { name: 'Ajustes', icon: <Settings size={20} />, href: '#' },
@@ -75,7 +76,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         ];
       case 'constructora':
         return [
-          { name: 'Mis Obras', icon: <LayoutDashboard size={20} />, href: '/dashboard/constructora' },
+          { name: 'Mi Mapa de Obras', icon: <Search size={20} />, href: '/dashboard/constructora' },
           { name: 'Obras Mayores', icon: <FileText size={20} />, href: '/dashboard/constructora/obras-mayores' },
           { name: 'Contratistas', icon: <Users size={20} />, href: '/dashboard/constructora/contratistas' },
         ];
@@ -87,7 +88,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         ];
       case 'profesional':
         return [
-          { name: 'Drive Proyectos', icon: <FileText size={20} />, href: '/dashboard/profesional' },
+          { name: 'Radar de Proyectos', icon: <Search size={20} />, href: '/dashboard/profesional' },
+          { name: 'Mis Postulaciones', icon: <FileText size={20} />, href: '/dashboard/profesional/postulaciones' },
           { name: 'Normativa', icon: <BookOpen size={20} />, href: '#' },
           { name: 'Red B2B', icon: <Users size={20} />, href: '#' },
         ];

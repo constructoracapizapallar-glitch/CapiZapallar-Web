@@ -1,20 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Briefcase, Building, Search, Filter, Calendar, MapPin, ChevronRight, FileText, X } from 'lucide-react';
-import { db, auth } from '../../../lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy, where } from 'firebase/firestore';
+import { MapPin, Search, Filter, Briefcase, Zap, Clock, DollarSign, Wallet, ArrowUpRight, FileText } from 'lucide-react';
+import { db } from '../../../../lib/firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import dynamic from 'next/dynamic';
 
-export default function ProfesionalDashboard() {
+const MapWithNoSSR = dynamic(() => import('../../../../components/MapComponent'), { ssr: false });
+
+export default function ProfesionalRadar() {
+  const [activeTab, setActiveTab] = useState('todas');
   const [obras, setObras] = useState<any[]>([]);
-  const [showModal, setShowModal] = useState(false);
   const [selectedObra, setSelectedObra] = useState<any>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  // Form Postulación
-  const [presupuestoPropuesto, setPresupuestoPropuesto] = useState('');
-  const [tiempoEstimado, setTiempoEstimado] = useState('');
-  const [mensaje, setMensaje] = useState('');
 
   useEffect(() => {
     fetchObras();
@@ -31,174 +28,111 @@ export default function ProfesionalDashboard() {
     }
   };
 
-  const handlePostular = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      const currentUser = auth.currentUser;
-      await addDoc(collection(db, 'postulaciones'), {
-        obraId: selectedObra.id,
-        profesionalId: currentUser?.uid || 'anon',
-        presupuestoPropuesto,
-        tiempoEstimado,
-        mensaje,
-        estado: 'PENDIENTE',
-        createdAt: new Date(),
-      });
-      setShowModal(false);
-      setPresupuestoPropuesto('');
-      setTiempoEstimado('');
-      setMensaje('');
-      alert("Postulación enviada con éxito");
-    } catch (error) {
-      console.error("Error saving postulación", error);
-      alert("Error al enviar postulación");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const openPostulacion = (obra: any) => {
-    setSelectedObra(obra);
-    setShowModal(true);
-  };
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 80px)', gap: '20px' }}>
       
       {/* HEADER SECTION */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px', borderBottom: '1px solid #E7E5E4' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px' }}>
         <div>
-          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Tablón de Obras Mayores</h2>
-          <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>Encuentra proyectos de arquitectura, cálculo y especialidades.</p>
-        </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <div style={{ 
-            background: '#FFFFFF', 
-            border: '1px solid #E7E5E4', 
-            borderRadius: '6px', 
-            padding: '8px 12px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            width: '250px'
-          }}>
-            <Search size={16} color="#A8A29E" />
-            <input 
-              type="text" 
-              placeholder="Buscar proyectos..." 
-              style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.85rem', color: '#292524' }} 
-            />
-          </div>
+          <h2 style={{ fontSize: '1.75rem', color: '#292524', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Radar de Proyectos</h2>
+          <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>Proyectos de arquitectura y cálculo estructural.</p>
         </div>
       </div>
 
-      {/* TABS FILTROS */}
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-        <button style={{ background: '#292524', color: '#FFF', border: 'none', padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer' }}>
-          Todas las Obras
-        </button>
-        <button style={{ background: '#FFFFFF', color: '#78716C', border: '1px solid #E7E5E4', padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '500', cursor: 'pointer' }}>
-          Arquitectura
-        </button>
-        <button style={{ background: '#FFFFFF', color: '#78716C', border: '1px solid #E7E5E4', padding: '6px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: '500', cursor: 'pointer' }}>
-          Cálculo Estructural
-        </button>
-      </div>
-
-      {/* LISTADO DE OBRAS MAYORES */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        {obras.length === 0 ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#A8A29E', background: '#FFF', borderRadius: '8px', border: '1px solid #E7E5E4' }}>
-            No hay obras mayores abiertas en este momento.
+      <div style={{ display: 'flex', gap: '20px', flex: 1, minHeight: 0 }}>
+        
+        {/* LEFT PANEL */}
+        <div style={{ width: '400px', display: 'flex', flexDirection: 'column', gap: '15px', overflowY: 'auto', paddingRight: '5px' }}>
+          
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <div style={{ flex: 1, background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '6px', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Search size={16} color="#A8A29E" />
+              <input type="text" placeholder="Buscar por especialidad..." style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.85rem', color: '#292524' }} />
+            </div>
+            <button style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', padding: '8px 12px', borderRadius: '6px', color: '#292524', cursor: 'pointer' }}>
+              <Filter size={16} />
+            </button>
           </div>
-        ) : (
-          obras.map((obra) => (
-            <div key={obra.id} style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '8px', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', transition: 'box-shadow 0.2s', cursor: 'pointer' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                    <span style={{ background: '#F5F5F4', color: '#57534E', padding: '4px 10px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: '600' }}>{obra.especialidad}</span>
-                    <span style={{ color: '#A8A29E', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={12}/> Hace 2 hrs</span>
+
+          <div style={{ display: 'flex', gap: '8px', paddingBottom: '5px' }}>
+            <button onClick={() => setActiveTab('todas')} style={{ flex: 1, background: activeTab === 'todas' ? '#292524' : '#E7E5E4', color: activeTab === 'todas' ? '#FFFFFF' : '#78716C', border: 'none', padding: '8px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s' }}>
+              Todas
+            </button>
+            <button onClick={() => setActiveTab('arquitectura')} style={{ flex: 1, background: activeTab === 'arquitectura' ? '#292524' : '#E7E5E4', color: activeTab === 'arquitectura' ? '#FFFFFF' : '#78716C', border: 'none', padding: '8px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s' }}>
+              Arquitectura
+            </button>
+            <button onClick={() => setActiveTab('calculo')} style={{ flex: 1, background: activeTab === 'calculo' ? '#292524' : '#E7E5E4', color: activeTab === 'calculo' ? '#FFFFFF' : '#78716C', border: 'none', padding: '8px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s' }}>
+              Cálculo
+            </button>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {obras.length === 0 ? (
+              <div style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
+                <p style={{ margin: 0, fontSize: '0.85rem', color: '#78716C' }}>No hay proyectos de especialidad disponibles.</p>
+              </div>
+            ) : (
+              obras.map((obra) => (
+                <div 
+                  key={obra.id} 
+                  onClick={() => setSelectedObra(obra)}
+                  style={{ 
+                    background: selectedObra?.id === obra.id ? '#FAFAF9' : '#FFFFFF', 
+                    border: `1px solid ${selectedObra?.id === obra.id ? '#292524' : '#E7E5E4'}`, 
+                    borderRadius: '12px', 
+                    padding: '16px', 
+                    cursor: 'pointer', 
+                    transition: 'all 0.2s' 
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                    <h3 style={{ margin: 0, fontSize: '1rem', color: '#292524', fontWeight: '700' }}>{obra.titulo}</h3>
+                    <span style={{ background: '#292524', color: '#FAFAF9', padding: '2px 6px', borderRadius: '4px', fontSize: '0.65rem', fontWeight: '700' }}>NUEVO</span>
                   </div>
-                  <h3 style={{ margin: '0 0 4px 0', fontSize: '1.25rem', color: '#292524', fontWeight: '700' }}>{obra.titulo}</h3>
-                  <p style={{ margin: 0, color: '#78716C', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <Building size={14} color="#A8A29E" /> Constructora ID: {obra.constructoraId.substring(0,8)}
+                  <p style={{ margin: '0 0 10px 0', fontSize: '0.8rem', color: '#78716C', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <Briefcase size={12}/> {obra.especialidad}
                   </p>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#10B981' }}>
+                      <DollarSign size={14} />
+                      <span style={{ fontSize: '0.85rem', fontWeight: '700' }}>{obra.presupuesto}</span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* RIGHT PANEL - MAP */}
+        <div style={{ flex: 1, background: '#E7E5E4', borderRadius: '12px', overflow: 'hidden', position: 'relative', border: '1px solid #D6D3D1' }}>
+          <MapWithNoSSR obras={obras} onSelectObra={setSelectedObra} />
+          
+          {selectedObra && (
+            <div style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px', background: '#FFFFFF', borderRadius: '12px', padding: '20px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', border: '1px solid #E7E5E4', zIndex: 1000 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+                <div>
+                  <h3 style={{ margin: '0 0 5px 0', fontSize: '1.25rem', color: '#292524', fontWeight: '800' }}>{selectedObra.titulo}</h3>
+                  <p style={{ margin: 0, fontSize: '0.85rem', color: '#78716C', display: 'flex', alignItems: 'center', gap: '4px' }}><MapPin size={14} color="#A8A29E" /> Constructora ID: {selectedObra.constructoraId.substring(0,8)}</p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
-                  <p style={{ margin: '0 0 4px 0', fontSize: '1.25rem', color: '#292524', fontWeight: '800' }}>{obra.presupuesto}</p>
-                  <p style={{ margin: 0, color: '#10B981', fontSize: '0.75rem', fontWeight: '600' }}>{obra.estado}</p>
+                  <span style={{ display: 'block', fontSize: '1.1rem', fontWeight: '800', color: '#10B981' }}>{selectedObra.presupuesto}</span>
                 </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '16px', borderTop: '1px dashed #E7E5E4' }}>
-                <p style={{ margin: 0, color: '#78716C', fontSize: '0.85rem' }}>{obra.propuestas || 0} propuestas enviadas</p>
+
+              <div style={{ display: 'flex', gap: '10px' }}>
                 <button 
-                  onClick={() => openPostulacion(obra)}
-                  style={{ background: 'transparent', color: '#292524', border: '1px solid #292524', padding: '8px 16px', borderRadius: '6px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  Postular Ahora <ChevronRight size={16} />
+                  onClick={() => window.location.href = '/dashboard/profesional/postulaciones'}
+                  style={{ flex: 1, background: '#292524', color: '#FFFFFF', padding: '12px', borderRadius: '8px', border: 'none', fontWeight: '600', fontSize: '0.9rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px' }}>
+                  <FileText size={16} /> Preparar Postulación
                 </button>
               </div>
             </div>
-          ))
-        )}
-      </div>
-
-      {/* MODAL POSTULACIÓN */}
-      {showModal && selectedObra && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          background: 'rgba(0,0,0,0.5)', zIndex: 100,
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
-          <div style={{
-            background: '#FFFFFF', width: '100%', maxWidth: '500px',
-            borderRadius: '12px', padding: '30px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#292524', fontWeight: '800' }}>Enviar Propuesta</h3>
-              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#A8A29E' }}>
-                <X size={20} />
-              </button>
-            </div>
-            
-            <p style={{ color: '#78716C', fontSize: '0.85rem', marginBottom: '20px' }}>
-              Estás postulando a: <strong>{selectedObra.titulo}</strong>
-            </p>
-
-            <form onSubmit={handlePostular} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <div style={{ display: 'flex', gap: '15px' }}>
-                <div style={{ flex: 1 }}>
-                  <label style={{ display: 'block', marginBottom: '5px', fontSize: '0.85rem', fontWeight: '600' }}>Tu Presupuesto</label>
-                  <input required value={presupuestoPropuesto} onChange={e => setPresupuestoPropuesto(e.target.value)} type="text" placeholder="Ej: $2.8M" style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #E7E5E4' }} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <label style={{ display: 'block', marginBottom: '5px', fontSize: '0.85rem', fontWeight: '600' }}>Tiempo Estimado</label>
-                  <input required value={tiempoEstimado} onChange={e => setTiempoEstimado(e.target.value)} type="text" placeholder="Ej: 30 días" style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #E7E5E4' }} />
-                </div>
-              </div>
-
-              <div>
-                <label style={{ display: 'block', marginBottom: '5px', fontSize: '0.85rem', fontWeight: '600' }}>Mensaje para la Constructora</label>
-                <textarea required value={mensaje} onChange={e => setMensaje(e.target.value)} rows={4} placeholder="Describe brevemente por qué eres el ideal para esta obra..." style={{ width: '100%', padding: '10px', borderRadius: '6px', border: '1px solid #E7E5E4', fontFamily: 'inherit' }} />
-              </div>
-
-              <button 
-                type="submit" 
-                disabled={isSubmitting}
-                style={{ 
-                  marginTop: '10px', background: '#292524', color: '#FFF', 
-                  padding: '12px', borderRadius: '6px', border: 'none', 
-                  fontWeight: '600', cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                  opacity: isSubmitting ? 0.7 : 1
-                }}>
-                {isSubmitting ? 'Enviando...' : 'Enviar Postulación'}
-              </button>
-            </form>
-          </div>
+          )}
         </div>
-      )}
 
+      </div>
     </div>
   );
 }
