@@ -88,35 +88,35 @@ export default function RadarObras() {
         overflowY: 'auto',
         paddingRight: '10px'
       }}>
-        <h3 style={{ color: 'var(--capi-navy)', margin: '0 0 10px 0', fontSize: '1.2rem' }}>Obras Disponibles en tu Radar</h3>
+        <h3 style={{ color: 'var(--capi-navy)', margin: '0 0 10px 0', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Obras en Radar</h3>
         
         {jobs.map((job) => (
           <div 
             key={`card-${job.id}`}
             style={{
               background: activeJob === job.id ? 'rgba(240, 249, 255, 1)' : 'white',
-              border: activeJob === job.id ? '2px solid #38bdf8' : '1px solid var(--capi-border)',
-              borderRadius: '15px',
-              padding: '20px',
+              border: activeJob === job.id ? '1px solid #38bdf8' : '1px solid var(--capi-border)',
+              borderRadius: '12px',
+              padding: '12px',
               transition: 'all 0.3s ease',
-              boxShadow: activeJob === job.id ? '0 10px 20px rgba(56, 189, 248, 0.15)' : '0 4px 6px rgba(0,0,0,0.02)',
+              boxShadow: activeJob === job.id ? '0 5px 15px rgba(56, 189, 248, 0.15)' : '0 2px 4px rgba(0,0,0,0.02)',
               cursor: 'pointer'
             }}
             onMouseEnter={() => setActiveJob(job.id)}
             onMouseLeave={() => setActiveJob(null)}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-              <span style={{ color: 'var(--capi-navy)', fontWeight: 'bold', fontSize: '1.1rem' }}>{job.title}</span>
-              <span style={{ color: '#10b981', fontWeight: 'bold', fontSize: '1.1rem' }}>{job.price}</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', alignItems: 'flex-start' }}>
+              <span style={{ color: 'var(--capi-navy)', fontWeight: 'bold', fontSize: '0.95rem', lineHeight: '1.2' }}>{job.title}</span>
+              <span style={{ color: '#10b981', fontWeight: 'bold', fontSize: '0.95rem' }}>{job.price}</span>
             </div>
-            <p style={{ color: '#64748b', fontSize: '0.9rem', margin: '0 0 15px 0' }}>{job.desc}</p>
+            <p style={{ color: '#64748b', fontSize: '0.8rem', margin: '0 0 10px 0', lineHeight: '1.3' }}>{job.desc}</p>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ color: '#64748b', fontSize: '0.85rem' }}>📍 A {job.distance} de ti</span>
+              <span style={{ color: '#64748b', fontSize: '0.75rem' }}>📍 A {job.distance}</span>
               <button 
                 onClick={() => handleAcceptClick(job)}
-                style={{ background: 'var(--capi-navy)', color: 'white', border: 'none', padding: '8px 15px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' }}
+                style={{ background: 'var(--capi-navy)', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.75rem' }}
               >
-                Aceptar Trabajo
+                Aceptar
               </button>
             </div>
           </div>
