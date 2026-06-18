@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Package, Plus, Search, Filter, Edit, Trash2, X } from 'lucide-react';
-import { db, auth } from '../../../lib/firebase';
+import { db, auth } from '../../../../lib/firebase';
 import { collection, addDoc, getDocs, query, orderBy, where } from 'firebase/firestore';
 
 export default function FerreteriaDashboard() {

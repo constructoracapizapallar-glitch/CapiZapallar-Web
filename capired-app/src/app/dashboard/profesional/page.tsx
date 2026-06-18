@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapPin, Search, Filter, Briefcase, Zap, Clock, DollarSign, Wallet, ArrowUpRight, FileText } from 'lucide-react';
-import { db } from '../../../../lib/firebase';
+import { db } from '../../../lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
 
-const MapWithNoSSR = dynamic(() => import('../../../../components/MapComponent'), { ssr: false });
+const MapWithNoSSR = dynamic(() => import('../../../components/MapComponent'), { ssr: false });
 
 export default function ProfesionalRadar() {
   const [activeTab, setActiveTab] = useState('todas');
