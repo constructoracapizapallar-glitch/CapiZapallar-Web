@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { FileText, Plus, Search, Filter, Eye, MoreHorizontal, MapPin, X } from 'lucide-react';
-import { db, auth } from '../../../../lib/firebase';
+import { db, auth } from '../../../lib/firebase';
 import { collection, addDoc, getDocs, query, orderBy } from 'firebase/firestore';
 
 export default function ConstructoraObrasMayores() {

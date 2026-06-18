@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { MapPin, Search, Filter, Briefcase, Zap, Clock, DollarSign, Wallet, ArrowUpRight } from 'lucide-react';
-import { db } from '../../../../lib/firebase';
+import { db } from '../../../lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
 
 // Disable SSR for MapComponent to avoid Leaflet window errors
-const MapWithNoSSR = dynamic(() => import('../../../../components/MapComponent'), { ssr: false });
+const MapWithNoSSR = dynamic(() => import('../../../components/MapComponent'), { ssr: false });
 
 export default function MaestroDashboard() {
   const [activeTab, setActiveTab] = useState('urgentes');

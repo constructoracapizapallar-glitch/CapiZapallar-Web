@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Briefcase, Building, Search, Filter, Calendar, MapPin, ChevronRight, FileText, X } from 'lucide-react';
-import { db, auth } from '../../../../lib/firebase';
+import { db, auth } from '../../../lib/firebase';
 import { collection, addDoc, getDocs, query, orderBy, where } from 'firebase/firestore';
 
 export default function ProfesionalDashboard() {
