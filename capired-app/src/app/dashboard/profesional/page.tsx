@@ -5,10 +5,12 @@ import { MapPin, Search, Filter, Briefcase, Zap, Clock, DollarSign, Wallet, Arro
 import { db } from '../../../lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 const MapWithNoSSR = dynamic(() => import('../../../components/MapComponent'), { ssr: false });
 
 export default function ProfesionalRadar() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('todas');
   const [obras, setObras] = useState<any[]>([]);
   const [selectedObra, setSelectedObra] = useState<any>(null);
@@ -123,8 +125,8 @@ export default function ProfesionalRadar() {
 
               <div style={{ display: 'flex', gap: '10px' }}>
                 <button 
-                  onClick={() => window.location.href = '/dashboard/profesional/postulaciones'}
-                  style={{ flex: 1, background: '#292524', color: '#FFFFFF', padding: '12px', borderRadius: '8px', border: 'none', fontWeight: '600', fontSize: '0.9rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px' }}>
+                  onClick={() => router.push('/dashboard/profesional/postulaciones')}
+                  style={{ marginTop: '10px', background: 'var(--capi-navy)', color: '#FFF', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px' }}>
                   <FileText size={16} /> Preparar Postulación
                 </button>
               </div>

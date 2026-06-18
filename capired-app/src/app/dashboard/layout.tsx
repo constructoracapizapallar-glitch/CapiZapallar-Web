@@ -18,16 +18,18 @@ import {
   Wallet,
   Home,
   Camera,
-  BookOpen
+  BookOpen,
+  Star
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [userName, setUserName] = useState('Usuario');
   const [role, setRole] = useState('');
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user: any) => {
@@ -39,9 +41,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           if (data.name) setUserName(data.name);
           else setUserName(user.email?.split('@')[0] || 'Usuario');
           setRole(data.role || '');
+          
+          if (pathname === '/dashboard') {
+            router.push(`/dashboard/${data.role}`);
+          }
         }
       } else {
-        window.location.href = '/capired-app/out/';
+        router.push('/');
       }
       setIsCheckingAuth(false);
     });
@@ -51,7 +57,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      window.location.href = '/capired-app/out/';
+      router.push('/');
     } catch (error) {
       console.error("Error al cerrar sesión", error);
     }
@@ -65,6 +71,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           { name: 'Catálogo e Inventario', icon: <Package size={20} />, href: '/dashboard/ferreteria/catalogo' },
           { name: 'Despachos', icon: <Truck size={20} />, href: '/dashboard/ferreteria/despachos' },
           { name: 'Ventas', icon: <BarChart3 size={20} />, href: '/dashboard/ferreteria/ventas' },
+          { name: 'Reputación', icon: <Star size={20} />, href: '/dashboard/ferreteria/reputacion' },
           { name: 'Ajustes', icon: <Settings size={20} />, href: '/dashboard/ferreteria/ajustes' },
         ];
       case 'admin':

@@ -5,10 +5,12 @@ import { MapPin, Search, Filter, Building, Plus, Users, ArrowUpRight } from 'luc
 import { db, auth } from '../../../lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 const MapWithNoSSR = dynamic(() => import('../../../components/MapComponent'), { ssr: false });
 
 export default function ConstructoraRadar() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('mis-obras');
   const [obras, setObras] = useState<any[]>([]);
   const [selectedObra, setSelectedObra] = useState<any>(null);
@@ -69,9 +71,9 @@ export default function ConstructoraRadar() {
             {obras.length === 0 ? (
               <div style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
                 <p style={{ margin: 0, fontSize: '0.85rem', color: '#78716C' }}>No tienes obras publicadas.</p>
-                <button 
-                  onClick={() => window.location.href = '/dashboard/constructora/obras-mayores'}
-                  style={{ marginTop: '10px', background: '#292524', color: '#FFF', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '0.8rem' }}>
+                  <button 
+                  onClick={() => router.push('/dashboard/constructora/obras-mayores')}
+                  style={{ background: 'var(--capi-navy)', color: 'var(--capi-white)', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}>
                   Crear Obra Mayor
                 </button>
               </div>
