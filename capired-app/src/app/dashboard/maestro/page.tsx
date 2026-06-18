@@ -6,67 +6,68 @@ import { Target, MapPin, Search } from 'lucide-react';
 
 export default function MaestroDashboard() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
       {/* HEADER SECTION */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '10px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingBottom: '10px', borderBottom: '1px solid #E2E8F0' }}>
         <div>
-          <h2 style={{ fontSize: '2.5rem', color: '#0F172A', margin: '0 0 8px 0', fontWeight: '800', letterSpacing: '-1px' }}>Encontrar Trabajo</h2>
-          <p style={{ margin: 0, color: '#64748B', fontSize: '1rem' }}>Postula a trabajos locales y expande tu red de clientes.</p>
+          <h2 style={{ fontSize: '1.75rem', color: '#0F172A', margin: '0 0 4px 0', fontWeight: '800', letterSpacing: '-0.5px' }}>Encontrar Trabajo</h2>
+          <p style={{ margin: 0, color: '#64748B', fontSize: '0.85rem' }}>Postula a trabajos locales y expande tu red de clientes.</p>
         </div>
         <button style={{ 
           background: '#0F172A', 
-          color: '#FFFFFF', 
-          border: 'none', 
-          padding: '12px 24px', 
-          borderRadius: '10px', 
+          color: '#D4AF37', 
+          border: '1px solid #0F172A', 
+          padding: '8px 16px', 
+          borderRadius: '6px', 
           fontWeight: '600', 
+          fontSize: '0.85rem',
           cursor: 'pointer', 
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
+          gap: '6px',
           transition: 'all 0.2s',
-          boxShadow: '0 4px 15px rgba(15, 23, 42, 0.2)'
         }}>
-          <Target size={18} /> Activar Radar
+          <Target size={16} /> Activar Radar
         </button>
       </div>
 
-      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <div style={{ 
           flex: 1, 
           background: '#FFFFFF', 
           border: '1px solid #E2E8F0', 
-          borderRadius: '10px', 
-          padding: '12px 20px',
+          borderRadius: '6px', 
+          padding: '8px 12px',
           display: 'flex',
           alignItems: 'center',
-          gap: '10px'
+          gap: '8px'
         }}>
-          <Search size={20} color="#94A3B8" />
+          <Search size={16} color="#94A3B8" />
           <input 
             type="text" 
             placeholder="Buscar por especialidad o comuna..." 
-            style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.95rem', color: '#0F172A' }} 
+            style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.85rem', color: '#0F172A' }} 
           />
         </div>
         <div style={{
-          background: '#F1F5F9',
+          background: '#F8FAFC',
           border: '1px solid #E2E8F0',
-          padding: '12px 20px',
-          borderRadius: '10px',
+          padding: '8px 16px',
+          borderRadius: '6px',
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
-          color: '#475569',
+          gap: '6px',
+          color: '#0F172A',
+          fontSize: '0.85rem',
           fontWeight: '600',
         }}>
-          <MapPin size={18} /> Zapallar +15km
+          <MapPin size={16} color="#D4AF37" /> Zapallar +15km
         </div>
       </div>
 
       {/* RADAR DE OBRAS COMPONENTE */}
-      <div style={{ background: '#FFFFFF', borderRadius: '16px', padding: '40px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)', border: '1px solid #E2E8F0' }}>
+      <div style={{ background: '#FFFFFF', borderRadius: '8px', padding: '24px', border: '1px solid #E2E8F0' }}>
         <RadarObras />
       </div>
 
