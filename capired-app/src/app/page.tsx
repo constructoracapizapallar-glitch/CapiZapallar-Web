@@ -137,6 +137,41 @@ export default function CapiRedLanding() {
         </div>
       </section>
       
+      {/* FOOTER LEGAL */}
+      <footer style={{ backgroundColor: '#0f172a', padding: '60px 20px', borderTop: '1px solid #1e293b' }}>
+        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '30px' }}>
+          
+          <div style={{ flex: '1 1 300px' }}>
+            <h3 style={{ color: 'white', marginBottom: '15px' }}>Capi Red</h3>
+            <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: '1.6' }}>
+              La plataforma que profesionaliza la industria de la construcción, garantizando pagos seguros y conexiones de confianza entre Clientes, Maestros, Constructoras y Ferreterías.
+            </p>
+          </div>
+
+          <div style={{ flex: '1 1 200px' }}>
+            <h4 style={{ color: 'white', marginBottom: '15px', fontSize: '1rem' }}>Centro Legal</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Términos y Condiciones Generales</a></li>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Política de Retención y Pagos (Fideicomiso)</a></li>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Política Anti-Soborno y Tratos por Fuera</a></li>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Contratos de Licitación B2B</a></li>
+            </ul>
+          </div>
+
+          <div style={{ flex: '1 1 200px' }}>
+            <h4 style={{ color: 'white', marginBottom: '15px', fontSize: '1rem' }}>Soporte Técnico</h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Centro de Ayuda</a></li>
+              <li style={{ marginBottom: '10px' }}><a href="#" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.9rem' }}>Reportar una Infracción</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '40px', paddingTop: '20px', borderTop: '1px solid #1e293b', color: '#64748b', fontSize: '0.85rem' }}>
+          © 2026 Capi Zapallar SpA. Todos los derechos reservados.
+        </div>
+      </footer>
+
       {authModalType && (
         <AuthModal 
           initialIsLogin={authModalType === 'login'} 
