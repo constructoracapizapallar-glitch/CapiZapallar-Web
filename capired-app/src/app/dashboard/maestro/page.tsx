@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import RadarObras from '../../components/RadarObras';
 
 export default function MaestroDashboard() {
   const [location, setLocation] = useState<string>("Rastreando tu señal...");
@@ -34,7 +35,7 @@ export default function MaestroDashboard() {
     <div style={{ padding: '20px', backgroundColor: 'transparent', borderRadius: '20px', minHeight: '80vh' }}>
       
       {/* Header del Panel */}
-      <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ marginBottom: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '20px' }}>
         <div>
           <h1 style={{ 
             fontSize: '2.5rem', 
@@ -46,11 +47,16 @@ export default function MaestroDashboard() {
           <p style={{ color: '#64748b', fontSize: '1.1rem' }}>Sincronizando Obras Menores y proyectos cercanos a ti en tiempo real.</p>
         </div>
         
-        {/* Radar Widget */}
+        {/* Radar Widget Info */}
         <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid #10b981', padding: '10px 20px', borderRadius: '30px', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ width: '12px', height: '12px', background: '#10b981', borderRadius: '50%', boxShadow: '0 0 10px #10b981', animation: 'pulse 2s infinite' }}></div>
           <span style={{ color: '#10b981', fontWeight: 'bold' }}>{location}</span>
         </div>
+      </div>
+
+      {/* COMPONENTE RADAR UBER-LIKE */}
+      <div style={{ marginBottom: '50px' }}>
+        <RadarObras />
       </div>
 
       {/* Grid de Funciones Premium */}
@@ -64,16 +70,16 @@ export default function MaestroDashboard() {
         >
           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: 'linear-gradient(90deg, #3b82f6, #06b6d4)' }}></div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
-            <span style={{ background: '#eff6ff', color: '#3b82f6', padding: '5px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>3 CERCA DE TI</span>
+            <span style={{ background: '#eff6ff', color: '#3b82f6', padding: '5px 12px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold' }}>VISTA DE LISTA</span>
           </div>
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '10px', color: 'var(--capi-navy)' }}>Radar de Obras Menores</h2>
-          <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.6' }}>Encuentra reparaciones, filtraciones o instalaciones menores solicitadas hoy en Zapallar y Cachagua.</p>
+          <h2 style={{ fontSize: '1.5rem', marginBottom: '10px', color: 'var(--capi-navy)' }}>Oportunidades Locales</h2>
+          <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.6' }}>Ver el listado completo de reparaciones solicitadas hoy en Zapallar y Cachagua.</p>
           
           <button style={{
             background: '#3b82f6', color: 'white', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: 'bold', cursor: 'pointer', transition: 'transform 0.2s', width: '100%',
             transform: isHovered === 1 ? 'scale(1.02)' : 'scale(1)',
           }}>
-            Ver Mapa de Trabajos
+            Abrir Listado
           </button>
         </div>
 
