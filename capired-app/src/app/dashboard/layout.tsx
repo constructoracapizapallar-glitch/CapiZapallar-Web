@@ -26,6 +26,7 @@ import { usePathname } from 'next/navigation';
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const [userName, setUserName] = useState('Usuario');
   const [role, setRole] = useState('');
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       } else {
         window.location.href = '/capired-app/out/';
       }
+      setIsCheckingAuth(false);
     });
     return () => unsubscribe();
   }, []);
@@ -129,8 +131,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* NAVIGATION */}
         <nav style={{ flex: 1, padding: '20px' }}>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {menuItems.map((item, idx) => {
+          {isCheckingAuth ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', padding: '10px 0' }}>
+              <div style={{ height: '44px', background: '#E7E5E4', borderRadius: '10px', opacity: 0.5, animation: 'pulse 1.5s ease-in-out infinite' }} />
+              <div style={{ height: '44px', background: '#E7E5E4', borderRadius: '10px', opacity: 0.5, animation: 'pulse 1.5s ease-in-out infinite' }} />
+              <div style={{ height: '44px', background: '#E7E5E4', borderRadius: '10px', opacity: 0.5, animation: 'pulse 1.5s ease-in-out infinite' }} />
+            </div>
+          ) : (
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {menuItems.map((item, idx) => {
               const isActive = pathname === item.href;
               return (
                 <li key={idx}>
@@ -153,7 +162,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </li>
               );
             })}
-          </ul>
+            </ul>
+          )}
         </nav>
 
         {/* USER PROFILE BOTTOM */}
