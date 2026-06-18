@@ -1,117 +1,125 @@
 "use client";
 
 import React from 'react';
+import { UploadCloud, Folder, File, Image as ImageIcon, Search, Filter } from 'lucide-react';
 
 export default function ProfesionalDashboard() {
   return (
-    <div style={{ display: 'flex', gap: '30px', padding: '30px', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       
-      {/* SIDEBAR IZQUIERDO */}
-      <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        
-        {/* Header Profesional */}
-        <div style={{ background: 'var(--capi-navy)', borderRadius: '24px', padding: '30px', color: 'white', boxShadow: 'var(--capi-shadow)' }}>
-          <h1 style={{ fontSize: '2rem', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-0.5px' }}>Estudio</h1>
-          <p style={{ color: '#A0AEC0', fontSize: '0.85rem', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>Gestor de Planos</p>
+      {/* HEADER SECTION */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '10px' }}>
+        <div>
+          <h2 style={{ fontSize: '2.5rem', color: '#0F172A', margin: '0 0 8px 0', fontWeight: '800', letterSpacing: '-1px' }}>Drive de Proyectos</h2>
+          <p style={{ margin: 0, color: '#64748B', fontSize: '1rem' }}>Repositorio seguro de planimetrías y EETT.</p>
         </div>
-
-        {/* Acciones Rápidas / Menú */}
-        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', display: 'flex', flexDirection: 'column', gap: '10px', boxShadow: 'var(--capi-shadow)' }}>
-          
-          <h3 style={{ fontSize: '0.8rem', color: '#A0AEC0', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px' }}>Herramientas B2B</h3>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', background: '#F7FAFC', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s', border: '1px solid var(--capi-border)' }}>
-             <span style={{ fontSize: '1.2rem' }}>🧠</span>
-             <div>
-               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-navy)' }}>Capi IA Normativo</h4>
-               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--capi-text)' }}>Consultar Ordenanzas</p>
-             </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-             <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>🤝</span>
-             <div>
-               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Red de Constructoras</h4>
-               <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Asociatividad local</p>
-             </div>
-          </div>
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-             <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>⚙️</span>
-             <div>
-               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Configuración</h4>
-               <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Perfil profesional</p>
-             </div>
-          </div>
-
-        </div>
+        <button style={{ 
+          background: '#0F172A', 
+          color: '#FFFFFF', 
+          border: 'none', 
+          padding: '12px 24px', 
+          borderRadius: '10px', 
+          fontWeight: '600', 
+          cursor: 'pointer', 
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          transition: 'all 0.2s',
+          boxShadow: '0 4px 15px rgba(15, 23, 42, 0.2)'
+        }}>
+          <UploadCloud size={18} /> Subir Documento
+        </button>
       </div>
 
-      {/* ÁREA PRINCIPAL: GESTOR DOCUMENTAL (Estilo Escandinavo) */}
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+      {/* FILTROS Y BÚSQUEDA */}
+      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+        <div style={{ 
+          flex: 1, 
+          background: '#FFFFFF', 
+          border: '1px solid #E2E8F0', 
+          borderRadius: '10px', 
+          padding: '12px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px'
+        }}>
+          <Search size={20} color="#94A3B8" />
+          <input 
+            type="text" 
+            placeholder="Buscar carpetas o archivos..." 
+            style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.95rem', color: '#0F172A' }} 
+          />
+        </div>
+        <button style={{
+          background: '#FFFFFF',
+          border: '1px solid #E2E8F0',
+          padding: '12px 20px',
+          borderRadius: '10px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          color: '#0F172A',
+          fontWeight: '500',
+          cursor: 'pointer'
+        }}>
+          <Filter size={18} /> Filtros
+        </button>
+      </div>
+
+      <div style={{ background: '#FFFFFF', borderRadius: '16px', border: '1px solid #E2E8F0', padding: '40px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.02)' }}>
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-          <div>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--capi-navy)', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-1px' }}>Drive de Proyectos</h2>
-            <p style={{ margin: 0, color: 'var(--capi-text)' }}>Repositorio seguro de planimetrías y EETT.</p>
+        {/* CARPETAS */}
+        <h3 style={{ margin: '0 0 20px 0', color: '#64748B', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '700' }}>Carpetas Recientes</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px', marginBottom: '50px' }}>
+          
+          <div style={{ border: '1px solid #E2E8F0', borderRadius: '12px', padding: '24px', display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer', transition: 'all 0.2s', background: '#F8FAFC' }}>
+            <div style={{ background: '#E2E8F0', padding: '12px', borderRadius: '10px' }}>
+              <Folder size={28} color="#0F172A" />
+            </div>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', color: '#0F172A', fontSize: '1.05rem', fontWeight: '700' }}>Casa Zapallar Sur</h4>
+              <p style={{ margin: 0, color: '#64748B', fontSize: '0.85rem' }}>4 Archivos • Modificado hoy</p>
+            </div>
           </div>
-          <button style={{ background: 'var(--capi-navy)', color: 'var(--capi-white)', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: '600', cursor: 'pointer', boxShadow: 'var(--capi-shadow)' }}>
-            + Subir Documento
-          </button>
+          
+          <div style={{ border: '1px solid #E2E8F0', borderRadius: '12px', padding: '24px', display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer', transition: 'all 0.2s', background: '#FFFFFF' }}>
+            <div style={{ background: '#F1F5F9', padding: '12px', borderRadius: '10px' }}>
+              <Folder size={28} color="#64748B" />
+            </div>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', color: '#475569', fontSize: '1.05rem', fontWeight: '700' }}>Local Comercial</h4>
+              <p style={{ margin: 0, color: '#94A3B8', fontSize: '0.85rem' }}>12 Archivos • Hace 2 días</p>
+            </div>
+          </div>
+
         </div>
 
-        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '40px', boxShadow: 'var(--capi-shadow)', flex: 1 }}>
+        {/* ARCHIVOS RECIENTES */}
+        <h3 style={{ margin: '0 0 20px 0', color: '#64748B', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '700' }}>Archivos Subidos</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px' }}>
           
-          {/* CARPETAS */}
-          <h3 style={{ margin: '0 0 20px 0', color: '#A0AEC0', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Carpetas Recientes</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px', marginBottom: '40px' }}>
-            
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer', transition: 'all 0.3s', background: '#FAFCFF' }}>
-              <span style={{ fontSize: '2rem', filter: 'grayscale(0.2)' }}>📁</span>
-              <div>
-                <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '1rem', fontWeight: '600' }}>Casa Zapallar Sur</h4>
-                <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.8rem' }}>4 Archivos</p>
-              </div>
+          <div style={{ border: '1px solid #E2E8F0', borderRadius: '12px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', background: '#FFFFFF', boxShadow: '0 2px 4px -1px rgba(0,0,0,0.02)' }}>
+            <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px' }}>
+              <File size={48} color="#2563EB" strokeWidth={1.5} />
             </div>
-            
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '20px', display: 'flex', alignItems: 'center', gap: '15px', cursor: 'pointer', transition: 'all 0.3s' }}>
-              <span style={{ fontSize: '2rem', filter: 'grayscale(0.2)' }}>📁</span>
-              <div>
-                <h4 style={{ margin: 0, color: 'var(--capi-text)', fontSize: '1rem', fontWeight: '600' }}>Local Comercial</h4>
-                <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.8rem' }}>12 Archivos</p>
-              </div>
-            </div>
-
+            <h4 style={{ margin: '0 0 6px 0', color: '#0F172A', fontSize: '0.95rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>EETT_Arquitectura.pdf</h4>
+            <p style={{ margin: 0, color: '#64748B', fontSize: '0.8rem' }}>Hace 2 horas • 2.4 MB</p>
           </div>
 
-          {/* ARCHIVOS RECIENTES */}
-          <h3 style={{ margin: '0 0 20px 0', color: '#A0AEC0', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Archivos Subidos</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
-            
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '20px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s', background: 'var(--capi-white)' }}>
-              <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', color: 'var(--capi-navy)', marginBottom: '15px', opacity: 0.8 }}>
-                📄
-              </div>
-              <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.95rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>EETT_Arquitectura.pdf</h4>
-              <p style={{ margin: '5px 0 0 0', color: '#A0AEC0', fontSize: '0.75rem' }}>Hace 2 horas</p>
+          <div style={{ border: '1px solid #E2E8F0', borderRadius: '12px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', background: '#FFFFFF', boxShadow: '0 2px 4px -1px rgba(0,0,0,0.02)' }}>
+            <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px' }}>
+              <File size={48} color="#D97706" strokeWidth={1.5} />
             </div>
-
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '20px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s', background: 'var(--capi-white)' }}>
-              <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', color: '#4A5568', marginBottom: '15px', opacity: 0.8 }}>
-                📐
-              </div>
-              <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.95rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Plano_Planta_v2.dwg</h4>
-              <p style={{ margin: '5px 0 0 0', color: '#A0AEC0', fontSize: '0.75rem' }}>Ayer</p>
+            <h4 style={{ margin: '0 0 6px 0', color: '#0F172A', fontSize: '0.95rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Plano_Planta_v2.dwg</h4>
+            <p style={{ margin: 0, color: '#64748B', fontSize: '0.8rem' }}>Ayer • 15 MB</p>
+          </div>
+          
+          <div style={{ border: '1px solid #E2E8F0', borderRadius: '12px', padding: '24px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.2s', background: '#FFFFFF', boxShadow: '0 2px 4px -1px rgba(0,0,0,0.02)' }}>
+            <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px' }}>
+              <ImageIcon size={48} color="#10B981" strokeWidth={1.5} />
             </div>
-            
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '20px', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s', background: 'var(--capi-white)' }}>
-              <div style={{ height: '80px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '3rem', color: '#718096', marginBottom: '15px', opacity: 0.8 }}>
-                🖼️
-              </div>
-              <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '0.95rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Render_Fachada.png</h4>
-              <p style={{ margin: '5px 0 0 0', color: '#A0AEC0', fontSize: '0.75rem' }}>La semana pasada</p>
-            </div>
-
+            <h4 style={{ margin: '0 0 6px 0', color: '#0F172A', fontSize: '0.95rem', fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Render_Fachada.png</h4>
+            <p style={{ margin: 0, color: '#64748B', fontSize: '0.8rem' }}>Hace 1 semana • 4.1 MB</p>
           </div>
 
         </div>

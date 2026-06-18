@@ -1,179 +1,161 @@
 "use client";
 
 import React, { useState } from 'react';
-import ProfileToggle from '../../components/ProfileToggle';
+import { Plus, Search, Building2, HardHat, FileText, CheckCircle2, CircleDashed, Filter } from 'lucide-react';
 
 export default function ConstructoraDashboard() {
-  const [mode, setMode] = useState<'proveedor' | 'cliente'>('proveedor');
+  const [activeTab, setActiveTab] = useState('kanban');
 
   return (
-    <div style={{ display: 'flex', gap: '30px', padding: '30px', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       
-      {/* SIDEBAR IZQUIERDO */}
-      <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        
-        {/* Header Constructora */}
-        <div style={{ background: 'var(--capi-navy)', borderRadius: '24px', padding: '30px', color: 'white', boxShadow: 'var(--capi-shadow)' }}>
-          <h1 style={{ fontSize: '2rem', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-0.5px' }}>Comando</h1>
-          <p style={{ color: '#A0AEC0', fontSize: '0.85rem', margin: '0 0 25px 0', textTransform: 'uppercase', letterSpacing: '1px' }}>Constructora</p>
-          
-          <ProfileToggle mode={mode} setMode={setMode} labelProveedor="Contratista" labelCliente="Mandante" />
+      {/* HEADER SECTION */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '10px' }}>
+        <div>
+          <h2 style={{ fontSize: '2.5rem', color: '#0F172A', margin: '0 0 8px 0', fontWeight: '800', letterSpacing: '-1px' }}>Obras Activas</h2>
+          <p style={{ margin: 0, color: '#64748B', fontSize: '1rem' }}>Visión centralizada de todos tus proyectos en ejecución.</p>
         </div>
+        <button style={{ 
+          background: '#0F172A', 
+          color: '#FFFFFF', 
+          border: 'none', 
+          padding: '12px 24px', 
+          borderRadius: '10px', 
+          fontWeight: '600', 
+          cursor: 'pointer', 
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          transition: 'all 0.2s',
+          boxShadow: '0 4px 15px rgba(15, 23, 42, 0.2)'
+        }}>
+          <Plus size={18} /> Nueva Obra
+        </button>
+      </div>
 
-        {/* Acciones Rápidas / Menú */}
-        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', display: 'flex', flexDirection: 'column', gap: '10px', boxShadow: 'var(--capi-shadow)' }}>
-          
-          <h3 style={{ fontSize: '0.8rem', color: '#A0AEC0', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px' }}>Opciones Principales</h3>
+      {/* KPI CARDS */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
+        {[
+          { label: 'Obras en Curso', value: '4', icon: <Building2 size={24} color="#0F172A" /> },
+          { label: 'Contratistas', value: '12', icon: <HardHat size={24} color="#0F172A" /> },
+          { label: 'Documentos', value: '38', icon: <FileText size={24} color="#0F172A" /> },
+          { label: 'Avance Promedio', value: '65%', icon: <CircleDashed size={24} color="#0F172A" /> },
+        ].map((kpi, idx) => (
+          <div key={idx} style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '16px', padding: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 4px -1px rgba(0, 0, 0, 0.02)' }}>
+            <div>
+              <p style={{ margin: '0 0 8px 0', fontSize: '0.85rem', color: '#64748B', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{kpi.label}</p>
+              <h3 style={{ margin: 0, fontSize: '2rem', color: '#0F172A', fontWeight: '800' }}>{kpi.value}</h3>
+            </div>
+            <div style={{ background: '#F1F5F9', padding: '12px', borderRadius: '12px' }}>
+              {kpi.icon}
+            </div>
+          </div>
+        ))}
+      </div>
 
-          {mode === 'proveedor' ? (
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', background: '#F7FAFC', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s', border: '1px solid var(--capi-border)' }}>
-                 <span style={{ fontSize: '1.2rem' }}>📋</span>
-                 <div>
-                   <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-navy)' }}>Licitaciones (2)</h4>
-                   <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--capi-text)' }}>Ver proyectos disponibles</p>
-                 </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-                 <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>🏗️</span>
-                 <div>
-                   <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Mis Obras Activas</h4>
-                   <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Estados de pago</p>
-                 </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-                 <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>📄</span>
-                 <div>
-                   <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Contratos</h4>
-                   <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Firmas pendientes</p>
-                 </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', background: '#F7FAFC', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s', border: '1px solid var(--capi-border)' }}>
-                 <span style={{ fontSize: '1.2rem' }}>👥</span>
-                 <div>
-                   <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-navy)' }}>Subcontratar</h4>
-                   <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--capi-text)' }}>Buscar especialistas</p>
-                 </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-                 <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>🛒</span>
-                 <div>
-                   <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Adquisiciones</h4>
-                   <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Comprar materiales</p>
-                 </div>
-              </div>
-            </>
-          )}
-
+      {/* TABS & FILTERS */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #E2E8F0', paddingBottom: '15px' }}>
+        <div style={{ display: 'flex', gap: '30px' }}>
+          <button 
+            onClick={() => setActiveTab('kanban')}
+            style={{ background: 'none', border: 'none', padding: 0, fontSize: '1rem', fontWeight: activeTab === 'kanban' ? '700' : '500', color: activeTab === 'kanban' ? '#0F172A' : '#64748B', cursor: 'pointer', position: 'relative' }}
+          >
+            Vista Kanban
+            {activeTab === 'kanban' && <div style={{ position: 'absolute', bottom: '-16px', left: 0, width: '100%', height: '3px', background: '#0F172A', borderRadius: '3px 3px 0 0' }}></div>}
+          </button>
+          <button 
+            onClick={() => setActiveTab('lista')}
+            style={{ background: 'none', border: 'none', padding: 0, fontSize: '1rem', fontWeight: activeTab === 'lista' ? '700' : '500', color: activeTab === 'lista' ? '#0F172A' : '#64748B', cursor: 'pointer', position: 'relative' }}
+          >
+            Vista Lista
+            {activeTab === 'lista' && <div style={{ position: 'absolute', bottom: '-16px', left: 0, width: '100%', height: '3px', background: '#0F172A', borderRadius: '3px 3px 0 0' }}></div>}
+          </button>
+        </div>
+        <div style={{ display: 'flex', gap: '15px' }}>
+          <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '8px', padding: '8px 16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Search size={16} color="#94A3B8" />
+            <input type="text" placeholder="Buscar..." style={{ border: 'none', outline: 'none', fontSize: '0.9rem', width: '150px' }} />
+          </div>
+          <button style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', padding: '8px 16px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '8px', color: '#0F172A', fontWeight: '500', cursor: 'pointer' }}>
+            <Filter size={16} /> Filtros
+          </button>
         </div>
       </div>
 
-      {/* ÁREA PRINCIPAL */}
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+      {/* KANBAN BOARD */}
+      <div style={{ display: 'flex', gap: '20px', overflowX: 'auto', paddingBottom: '20px' }}>
         
-        {/* Superior: Header Principal */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-          <div>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--capi-navy)', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-1px' }}>Panel General</h2>
-            <p style={{ margin: 0, color: 'var(--capi-text)' }}>Resumen operativo de tus proyectos en tiempo real.</p>
+        {/* COLUMNA: POR INICIAR */}
+        <div style={{ flex: '0 0 350px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0' }}>
+            <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: '#0F172A', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#CBD5E1' }}></div>
+              Por Iniciar <span style={{ background: '#F1F5F9', color: '#64748B', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' }}>1</span>
+            </h4>
           </div>
-          <div style={{ display: 'flex', gap: '15px' }}>
-            <button style={{ background: 'var(--capi-white)', color: 'var(--capi-navy)', border: '1px solid var(--capi-border)', padding: '12px 24px', borderRadius: '12px', fontWeight: '600', cursor: 'pointer', boxShadow: 'var(--capi-shadow)' }}>
-              Exportar
-            </button>
-            <button style={{ background: 'var(--capi-navy)', color: 'white', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: '600', cursor: 'pointer', boxShadow: 'var(--capi-shadow)' }}>
-              + Nuevo Proyecto
-            </button>
-          </div>
-        </div>
-
-        {/* KPIs (Estilo Minimalista) */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
-          <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', boxShadow: 'var(--capi-shadow)' }}>
-            <p style={{ margin: '0 0 10px 0', color: '#A0AEC0', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Obras Activas</p>
-            <p style={{ margin: 0, fontSize: '2.5rem', fontWeight: '300', color: 'var(--capi-navy)' }}>3</p>
-          </div>
-          <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', boxShadow: 'var(--capi-shadow)' }}>
-            <p style={{ margin: '0 0 10px 0', color: '#A0AEC0', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Presupuesto Neto</p>
-            <p style={{ margin: 0, fontSize: '2.5rem', fontWeight: '300', color: 'var(--capi-navy)' }}>$145<span style={{ fontSize: '1.2rem', color: '#A0AEC0' }}>M</span></p>
-          </div>
-          <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', boxShadow: 'var(--capi-shadow)' }}>
-            <p style={{ margin: '0 0 10px 0', color: '#A0AEC0', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Retrasos</p>
-            <p style={{ margin: 0, fontSize: '2.5rem', fontWeight: '300', color: '#E53E3E' }}>0</p>
-          </div>
-          <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', boxShadow: 'var(--capi-shadow)' }}>
-            <p style={{ margin: '0 0 10px 0', color: '#A0AEC0', fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Próximo Hito</p>
-            <p style={{ margin: 0, fontSize: '2.5rem', fontWeight: '300', color: 'var(--capi-navy)' }}>12<span style={{ fontSize: '1.2rem', color: '#A0AEC0' }}>días</span></p>
-          </div>
-        </div>
-
-        {/* KANBAN / LISTA DE PROYECTOS (Airy & Clean) */}
-        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '30px', boxShadow: 'var(--capi-shadow)', flex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
-            <h3 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '1.2rem', fontWeight: '600' }}>Línea de Producción</h3>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <span style={{ padding: '5px 15px', background: '#F7FAFC', borderRadius: '20px', fontSize: '0.8rem', color: 'var(--capi-navy)', cursor: 'pointer', border: '1px solid var(--capi-border)' }}>Todos</span>
-              <span style={{ padding: '5px 15px', borderRadius: '20px', fontSize: '0.8rem', color: '#A0AEC0', cursor: 'pointer' }}>En Proceso</span>
+          <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '20px', cursor: 'pointer', boxShadow: '0 2px 4px -1px rgba(0,0,0,0.02)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <span style={{ background: '#F1F5F9', color: '#475569', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600' }}>Cachagua</span>
             </div>
+            <h5 style={{ margin: '0 0 8px 0', fontSize: '1.1rem', color: '#0F172A', fontWeight: '700' }}>Remodelación Cocina</h5>
+            <p style={{ margin: '0 0 15px 0', fontSize: '0.85rem', color: '#64748B' }}>Cliente: Familia Herrera</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid #F1F5F9', paddingTop: '15px' }}>
+              <HardHat size={16} color="#94A3B8" />
+              <span style={{ fontSize: '0.8rem', color: '#64748B', fontWeight: '500' }}>Sin maestro asignado</span>
+            </div>
+          </div>
+        </div>
+
+        {/* COLUMNA: EN EJECUCIÓN */}
+        <div style={{ flex: '0 0 350px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0' }}>
+            <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: '#0F172A', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3B82F6' }}></div>
+              En Ejecución <span style={{ background: '#F1F5F9', color: '#64748B', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' }}>2</span>
+            </h4>
           </div>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            {/* Proyecto 1 */}
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '25px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', transition: 'all 0.3s', cursor: 'pointer', background: '#FAFCFF' }}>
-              <div style={{ flex: '1' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '8px' }}>
-                  <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Condominio Las Brisas</h4>
-                  <span style={{ background: '#EBF8FF', color: '#2B6CB0', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>En Proceso</span>
-                </div>
-                <p style={{ margin: 0, color: 'var(--capi-text)', fontSize: '0.85rem' }}>Mandante: Inmobiliaria Pacífico SpA</p>
-              </div>
-              
-              <div style={{ flex: '1', padding: '0 40px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.8rem', color: 'var(--capi-text)' }}>
-                  <span>Avance Físico</span>
-                  <span style={{ fontWeight: '600', color: 'var(--capi-navy)' }}>45%</span>
-                </div>
-                <div style={{ width: '100%', background: '#EDF2F7', borderRadius: '8px', height: '6px', overflow: 'hidden' }}>
-                  <div style={{ width: '45%', background: 'var(--capi-navy)', height: '100%', borderRadius: '8px' }}></div>
-                </div>
-              </div>
-
-              <div style={{ flex: '0 0 100px', textAlign: 'right' }}>
-                <span style={{ color: '#A0AEC0', fontSize: '1.2rem' }}>→</span>
+          <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '20px', cursor: 'pointer', boxShadow: '0 2px 4px -1px rgba(0,0,0,0.02)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <span style={{ background: '#EFF6FF', color: '#2563EB', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600' }}>Zapallar</span>
+            </div>
+            <h5 style={{ margin: '0 0 8px 0', fontSize: '1.1rem', color: '#0F172A', fontWeight: '700' }}>Casa El Pangue - Obra Gruesa</h5>
+            <p style={{ margin: '0 0 15px 0', fontSize: '0.85rem', color: '#64748B' }}>Avance esperado: 45%</p>
+            
+            {/* Progress Bar */}
+            <div style={{ marginBottom: '15px' }}>
+              <div style={{ width: '100%', background: '#F1F5F9', height: '6px', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{ width: '45%', background: '#3B82F6', height: '100%' }}></div>
               </div>
             </div>
 
-            {/* Proyecto 2 */}
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', padding: '25px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', transition: 'all 0.3s', cursor: 'pointer' }}>
-              <div style={{ flex: '1' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '8px' }}>
-                  <h4 style={{ margin: 0, color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Remodelación Casa 12</h4>
-                  <span style={{ background: '#FFFFF0', color: '#B7791F', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Por Iniciar</span>
-                </div>
-                <p style={{ margin: 0, color: 'var(--capi-text)', fontSize: '0.85rem' }}>Mandante: Familia Pérez</p>
-              </div>
-              
-              <div style={{ flex: '1', padding: '0 40px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.8rem', color: 'var(--capi-text)' }}>
-                  <span>Avance Físico</span>
-                  <span style={{ fontWeight: '600', color: 'var(--capi-navy)' }}>0%</span>
-                </div>
-                <div style={{ width: '100%', background: '#EDF2F7', borderRadius: '8px', height: '6px', overflow: 'hidden' }}>
-                  <div style={{ width: '0%', background: 'var(--capi-navy)', height: '100%', borderRadius: '8px' }}></div>
-                </div>
-              </div>
-
-              <div style={{ flex: '0 0 100px', textAlign: 'right' }}>
-                <span style={{ color: '#A0AEC0', fontSize: '1.2rem' }}>→</span>
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid #F1F5F9', paddingTop: '15px' }}>
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: '#E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: 'bold', color: '#475569' }}>JG</div>
+              <span style={{ fontSize: '0.8rem', color: '#0F172A', fontWeight: '600' }}>Juan Gasfiter</span>
             </div>
+          </div>
+        </div>
+
+        {/* COLUMNA: FINALIZADAS */}
+        <div style={{ flex: '0 0 350px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0' }}>
+            <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: '#0F172A', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981' }}></div>
+              Finalizadas <span style={{ background: '#F1F5F9', color: '#64748B', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem' }}>1</span>
+            </h4>
+          </div>
+          <div style={{ background: '#FFFFFF', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '20px', opacity: 0.7, cursor: 'pointer' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+              <span style={{ background: '#F0FDF4', color: '#16A34A', padding: '4px 10px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600' }}>Papudo</span>
+              <CheckCircle2 size={16} color="#16A34A" />
+            </div>
+            <h5 style={{ margin: '0 0 8px 0', fontSize: '1.1rem', color: '#0F172A', fontWeight: '700', textDecoration: 'line-through' }}>Reparación Techo</h5>
+            <p style={{ margin: '0', fontSize: '0.85rem', color: '#64748B' }}>Entregado el 12/Junio</p>
           </div>
         </div>
 
       </div>
+
     </div>
   );
 }

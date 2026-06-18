@@ -1,151 +1,204 @@
 "use client";
 
 import React from 'react';
+import { PackagePlus, Search, Filter, MoreHorizontal, ArrowUpRight, Hammer, Lightbulb, Zap } from 'lucide-react';
 
 export default function FerreteriaDashboard() {
   return (
-    <div style={{ display: 'flex', gap: '30px', padding: '30px', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
       
-      {/* SIDEBAR IZQUIERDO */}
-      <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        
-        {/* Header Ferretería */}
-        <div style={{ background: 'var(--capi-navy)', borderRadius: '24px', padding: '30px', color: 'white', boxShadow: 'var(--capi-shadow)' }}>
-          <h1 style={{ fontSize: '2rem', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-0.5px' }}>Store Hub</h1>
-          <p style={{ color: '#A0AEC0', fontSize: '0.85rem', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>B2B E-commerce</p>
+      {/* HEADER SECTION */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '10px' }}>
+        <div>
+          <h2 style={{ fontSize: '2.5rem', color: '#0F172A', margin: '0 0 8px 0', fontWeight: '800', letterSpacing: '-1px' }}>Catálogo B2B</h2>
+          <p style={{ margin: 0, color: '#64748B', fontSize: '1rem' }}>Gestiona tus productos publicados para la red de constructoras.</p>
         </div>
-
-        {/* Acciones Rápidas / Menú */}
-        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', display: 'flex', flexDirection: 'column', gap: '10px', boxShadow: 'var(--capi-shadow)' }}>
-          
-          <h3 style={{ fontSize: '0.8rem', color: '#A0AEC0', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px' }}>Inventario</h3>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', background: '#F7FAFC', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s', border: '1px solid var(--capi-border)' }}>
-             <span style={{ fontSize: '1.2rem' }}>📦</span>
-             <div>
-               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-navy)' }}>Mis Productos</h4>
-               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--capi-text)' }}>Gestión de catálogo</p>
-             </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-             <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>🚚</span>
-             <div>
-               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Despachos</h4>
-               <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Logística y envíos</p>
-             </div>
-          </div>
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
-             <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>📊</span>
-             <div>
-               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Ventas</h4>
-               <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Reportes B2B</p>
-             </div>
-          </div>
-
-        </div>
+        <button style={{ 
+          background: '#0F172A', 
+          color: '#FFFFFF', 
+          border: 'none', 
+          padding: '12px 24px', 
+          borderRadius: '10px', 
+          fontWeight: '600', 
+          cursor: 'pointer', 
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          transition: 'all 0.2s',
+          boxShadow: '0 4px 15px rgba(15, 23, 42, 0.2)'
+        }}>
+          <PackagePlus size={18} /> Agregar Producto
+        </button>
       </div>
 
-      {/* ÁREA PRINCIPAL: E-COMMERCE GRID (Estilo Escandinavo) */}
-      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '30px' }}>
-        
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-          <div>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--capi-navy)', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-1px' }}>Catálogo B2B</h2>
-            <p style={{ margin: 0, color: 'var(--capi-text)' }}>Tus productos publicados para la red de constructoras y maestros.</p>
-          </div>
-          <button style={{ background: 'var(--capi-navy)', color: 'var(--capi-white)', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: '600', cursor: 'pointer', boxShadow: 'var(--capi-shadow)' }}>
-            + Agregar Producto
-          </button>
+      {/* FILTROS Y BÚSQUEDA */}
+      <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+        <div style={{ 
+          flex: 1, 
+          background: '#FFFFFF', 
+          border: '1px solid #E2E8F0', 
+          borderRadius: '10px', 
+          padding: '12px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px'
+        }}>
+          <Search size={20} color="#94A3B8" />
+          <input 
+            type="text" 
+            placeholder="Buscar por SKU, nombre o categoría..." 
+            style={{ border: 'none', outline: 'none', width: '100%', fontSize: '0.95rem', color: '#0F172A' }} 
+          />
         </div>
+        <button style={{
+          background: '#FFFFFF',
+          border: '1px solid #E2E8F0',
+          padding: '12px 20px',
+          borderRadius: '10px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          color: '#0F172A',
+          fontWeight: '500',
+          cursor: 'pointer'
+        }}>
+          <Filter size={18} /> Filtros
+        </button>
+      </div>
 
-        {/* E-COMMERCE PRODUCT GRID */}
-        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '40px', boxShadow: 'var(--capi-shadow)', flex: 1 }}>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '25px' }}>
+      {/* E-COMMERCE PRODUCT GRID (Premium Scandi) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '25px' }}>
+        
+        {/* Producto 1 */}
+        <div style={{ 
+          background: '#FFFFFF', 
+          border: '1px solid #E2E8F0', 
+          borderRadius: '16px', 
+          overflow: 'hidden', 
+          transition: 'all 0.3s ease',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)'
+        }}>
+          {/* Image Placeholder */}
+          <div style={{ background: '#F8FAFC', height: '180px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', borderBottom: '1px solid #F1F5F9' }}>
+            <div style={{ background: '#E2E8F0', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Hammer size={32} color="#64748B" />
+            </div>
+            <span style={{ position: 'absolute', top: '15px', right: '15px', background: '#F1F5F9', color: '#475569', padding: '6px 12px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: '700', letterSpacing: '0.5px' }}>OBRA GRUESA</span>
+          </div>
+          {/* Details */}
+          <div style={{ padding: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+              <div>
+                <h4 style={{ margin: '0 0 5px 0', color: '#0F172A', fontSize: '1.15rem', fontWeight: '700' }}>Cemento Melón Especial</h4>
+                <p style={{ margin: 0, color: '#64748B', fontSize: '0.85rem' }}>Saco 25kg • SKU: MEL-025</p>
+              </div>
+              <button style={{ background: 'transparent', border: 'none', color: '#94A3B8', cursor: 'pointer' }}><MoreHorizontal size={20} /></button>
+            </div>
             
-            {/* Producto 1 */}
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', overflow: 'hidden', transition: 'all 0.3s', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ background: '#F7FAFC', height: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                <span style={{ fontSize: '4rem', opacity: 0.8 }}>🧱</span>
-                <span style={{ position: 'absolute', top: '15px', right: '15px', background: '#EBF8FF', color: '#2B6CB0', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Obra Gruesa</span>
+            <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', marginBottom: '15px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ color: '#64748B', fontSize: '0.85rem' }}>Stock Disponible</span>
+                <span style={{ fontWeight: '600', color: '#0F172A', fontSize: '0.9rem' }}>150 un.</span>
               </div>
-              <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <div>
-                  <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Cemento Melón Especial 25kg</h4>
-                  <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.85rem' }}>Stock: 150 un.</p>
-                </div>
-                
-                <div style={{ background: '#FAFCFF', padding: '15px', borderRadius: '12px', border: '1px solid var(--capi-border)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                    <span style={{ color: 'var(--capi-text)', fontSize: '0.85rem' }}>Precio Venta</span>
-                    <span style={{ fontWeight: '600', color: 'var(--capi-navy)' }}>$4.500</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--capi-text)', fontSize: '0.85rem' }}>Ganancia Neta</span>
-                    <span style={{ fontWeight: '600', color: '#38A169' }}>$1.200</span>
-                  </div>
-                </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#64748B', fontSize: '0.85rem' }}>Precio B2B</span>
+                <span style={{ fontWeight: '800', color: '#0F172A', fontSize: '1.1rem' }}>$4.500</span>
               </div>
             </div>
 
-            {/* Producto 2 */}
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', overflow: 'hidden', transition: 'all 0.3s', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ background: '#F7FAFC', height: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                <span style={{ fontSize: '4rem', opacity: 0.8 }}>🔧</span>
-                <span style={{ position: 'absolute', top: '15px', right: '15px', background: '#FFFFF0', color: '#B7791F', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Herramientas</span>
-              </div>
-              <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <div>
-                  <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Llave Francesa 12" Truper</h4>
-                  <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.85rem' }}>Stock: 12 un.</p>
-                </div>
-                
-                <div style={{ background: '#FAFCFF', padding: '15px', borderRadius: '12px', border: '1px solid var(--capi-border)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                    <span style={{ color: 'var(--capi-text)', fontSize: '0.85rem' }}>Precio Venta</span>
-                    <span style={{ fontWeight: '600', color: 'var(--capi-navy)' }}>$12.990</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--capi-text)', fontSize: '0.85rem' }}>Ganancia Neta</span>
-                    <span style={{ fontWeight: '600', color: '#38A169' }}>$4.500</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Producto 3 */}
-            <div style={{ border: '1px solid var(--capi-border)', borderRadius: '16px', overflow: 'hidden', transition: 'all 0.3s', cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
-              <div style={{ background: '#F7FAFC', height: '160px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                <span style={{ fontSize: '4rem', opacity: 0.8 }}>⚡</span>
-                <span style={{ position: 'absolute', top: '15px', right: '15px', background: '#F0FFF4', color: '#2F855A', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Eléctrico</span>
-              </div>
-              <div style={{ padding: '20px', flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <div>
-                  <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Cable THHN 2.5mm Rollo 100m</h4>
-                  <p style={{ margin: 0, color: '#E53E3E', fontSize: '0.85rem', fontWeight: '600' }}>Stock: 2 un. (Bajo)</p>
-                </div>
-                
-                <div style={{ background: '#FAFCFF', padding: '15px', borderRadius: '12px', border: '1px solid var(--capi-border)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                    <span style={{ color: 'var(--capi-text)', fontSize: '0.85rem' }}>Precio Venta</span>
-                    <span style={{ fontWeight: '600', color: 'var(--capi-navy)' }}>$45.000</span>
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ color: 'var(--capi-text)', fontSize: '0.85rem' }}>Ganancia Neta</span>
-                    <span style={{ fontWeight: '600', color: '#38A169' }}>$15.000</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            <button style={{ width: '100%', background: 'transparent', border: '1px solid #E2E8F0', padding: '10px', borderRadius: '8px', color: '#0F172A', fontWeight: '600', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', fontSize: '0.9rem', cursor: 'pointer' }}>
+              Ver Analíticas <ArrowUpRight size={16} />
+            </button>
           </div>
+        </div>
 
+        {/* Producto 2 */}
+        <div style={{ 
+          background: '#FFFFFF', 
+          border: '1px solid #E2E8F0', 
+          borderRadius: '16px', 
+          overflow: 'hidden', 
+          transition: 'all 0.3s ease',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)'
+        }}>
+          {/* Image Placeholder */}
+          <div style={{ background: '#F8FAFC', height: '180px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', borderBottom: '1px solid #F1F5F9' }}>
+            <div style={{ background: '#E2E8F0', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Hammer size={32} color="#64748B" />
+            </div>
+            <span style={{ position: 'absolute', top: '15px', right: '15px', background: '#F1F5F9', color: '#475569', padding: '6px 12px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: '700', letterSpacing: '0.5px' }}>HERRAMIENTAS</span>
+          </div>
+          {/* Details */}
+          <div style={{ padding: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+              <div>
+                <h4 style={{ margin: '0 0 5px 0', color: '#0F172A', fontSize: '1.15rem', fontWeight: '700' }}>Llave Francesa 12"</h4>
+                <p style={{ margin: 0, color: '#64748B', fontSize: '0.85rem' }}>Truper Profesional • SKU: TRP-112</p>
+              </div>
+              <button style={{ background: 'transparent', border: 'none', color: '#94A3B8', cursor: 'pointer' }}><MoreHorizontal size={20} /></button>
+            </div>
+            
+            <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', marginBottom: '15px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ color: '#64748B', fontSize: '0.85rem' }}>Stock Disponible</span>
+                <span style={{ fontWeight: '600', color: '#0F172A', fontSize: '0.9rem' }}>12 un.</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#64748B', fontSize: '0.85rem' }}>Precio B2B</span>
+                <span style={{ fontWeight: '800', color: '#0F172A', fontSize: '1.1rem' }}>$12.990</span>
+              </div>
+            </div>
+
+            <button style={{ width: '100%', background: 'transparent', border: '1px solid #E2E8F0', padding: '10px', borderRadius: '8px', color: '#0F172A', fontWeight: '600', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', fontSize: '0.9rem', cursor: 'pointer' }}>
+              Ver Analíticas <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Producto 3 */}
+        <div style={{ 
+          background: '#FFFFFF', 
+          border: '1px solid #E2E8F0', 
+          borderRadius: '16px', 
+          overflow: 'hidden', 
+          transition: 'all 0.3s ease',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)'
+        }}>
+          {/* Image Placeholder */}
+          <div style={{ background: '#FEF2F2', height: '180px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', borderBottom: '1px solid #FEE2E2' }}>
+            <div style={{ background: '#FECACA', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Zap size={32} color="#DC2626" />
+            </div>
+            <span style={{ position: 'absolute', top: '15px', right: '15px', background: '#F1F5F9', color: '#475569', padding: '6px 12px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: '700', letterSpacing: '0.5px' }}>ELÉCTRICO</span>
+          </div>
+          {/* Details */}
+          <div style={{ padding: '24px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+              <div>
+                <h4 style={{ margin: '0 0 5px 0', color: '#0F172A', fontSize: '1.15rem', fontWeight: '700' }}>Cable THHN 2.5mm</h4>
+                <p style={{ margin: 0, color: '#64748B', fontSize: '0.85rem' }}>Rollo 100m Rojo • SKU: CAB-25R</p>
+              </div>
+              <button style={{ background: 'transparent', border: 'none', color: '#94A3B8', cursor: 'pointer' }}><MoreHorizontal size={20} /></button>
+            </div>
+            
+            <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', marginBottom: '15px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <span style={{ color: '#64748B', fontSize: '0.85rem' }}>Stock Disponible</span>
+                <span style={{ fontWeight: '700', color: '#DC2626', fontSize: '0.9rem' }}>2 un. (Bajo)</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ color: '#64748B', fontSize: '0.85rem' }}>Precio B2B</span>
+                <span style={{ fontWeight: '800', color: '#0F172A', fontSize: '1.1rem' }}>$45.000</span>
+              </div>
+            </div>
+
+            <button style={{ width: '100%', background: 'transparent', border: '1px solid #E2E8F0', padding: '10px', borderRadius: '8px', color: '#0F172A', fontWeight: '600', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', fontSize: '0.9rem', cursor: 'pointer' }}>
+              Ver Analíticas <ArrowUpRight size={16} />
+            </button>
+          </div>
         </div>
 
       </div>
-
     </div>
   );
 }
