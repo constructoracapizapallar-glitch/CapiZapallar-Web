@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
 :root {
-  --capi-navy: #1A1A1D;
+  --capi-navy: #2d3748; /* Charcoal / Dark Gray instead of pure Navy */
   --capi-gold: #D4AF37;
   --capi-gold-hover: #B4942D;
-  --capi-bg: #FDFBF7;
-  --capi-text: #2C2C2C;
+  --capi-bg: #F5F3EC; /* Soft Beige / Scandinavian White */
+  --capi-text: #4A5568; /* Soft Charcoal */
   --capi-white: #ffffff;
-  --capi-border: rgba(0, 0, 0, 0.12);
+  --capi-border: rgba(0, 0, 0, 0.06); /* Lighter borders */
+  --capi-shadow: 0 10px 40px rgba(0, 0, 0, 0.03); /* Soft, luxurious shadows */
 }
 
 * {

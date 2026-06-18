@@ -4,103 +4,117 @@ import React from 'react';
 
 export default function ClienteDashboard() {
   return (
-    <div style={{ display: 'flex', gap: '20px', padding: '20px', minHeight: '80vh', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', gap: '30px', padding: '30px', minHeight: '100vh', fontFamily: 'system-ui, sans-serif' }}>
       
       {/* SIDEBAR IZQUIERDO */}
       <div style={{ flex: '0 0 320px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
         
         {/* Header Cliente */}
-        <div style={{ background: 'var(--capi-navy)', borderRadius: '20px', padding: '25px', color: 'white', boxShadow: '0 10px 30px rgba(15, 23, 42, 0.2)' }}>
-          <h1 style={{ fontSize: '1.8rem', margin: '0 0 10px 0' }}>Mi Hogar</h1>
-          <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0 }}>Gestiona tus proyectos de construcción y reparaciones.</p>
+        <div style={{ background: 'var(--capi-navy)', borderRadius: '24px', padding: '30px', color: 'white', boxShadow: 'var(--capi-shadow)' }}>
+          <h1 style={{ fontSize: '2rem', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-0.5px' }}>Mi Hogar</h1>
+          <p style={{ color: '#A0AEC0', fontSize: '0.85rem', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>Proyectos Activos</p>
         </div>
 
-        {/* Acciones Rápidas */}
-        <div style={{ background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+        {/* Acciones Rápidas / Menú */}
+        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '25px', display: 'flex', flexDirection: 'column', gap: '10px', boxShadow: 'var(--capi-shadow)' }}>
           
-          <div style={{ border: '1px solid #fef08a', background: '#fefce8', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s', position: 'relative' }}>
-             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#854d0e' }}>Capi IA Visión 📷</h3>
-             <p style={{ fontSize: '0.8rem', color: '#a16207', margin: 0 }}>Sube una foto y cotiza tu problema gratis.</p>
+          <h3 style={{ fontSize: '0.8rem', color: '#A0AEC0', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '10px' }}>Servicios Capi</h3>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', background: '#F7FAFC', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s', border: '1px solid var(--capi-border)' }}>
+             <span style={{ fontSize: '1.2rem' }}>📷</span>
+             <div>
+               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-navy)' }}>Capi IA Visión</h4>
+               <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--capi-text)' }}>Cotizar con foto</p>
+             </div>
           </div>
 
-          <div style={{ border: '1px solid #bbf7d0', background: '#f0fdf4', borderRadius: '12px', padding: '15px', cursor: 'pointer', transition: 'all 0.2s' }}>
-             <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem', color: '#166534' }}>Directorio Local</h3>
-             <p style={{ fontSize: '0.8rem', color: '#15803d', margin: 0 }}>Busca maestros verificados en Zapallar.</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
+             <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>🔍</span>
+             <div>
+               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Directorio Local</h4>
+               <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Buscar maestros</p>
+             </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '12px 15px', borderRadius: '12px', cursor: 'pointer', transition: 'all 0.2s' }}>
+             <span style={{ fontSize: '1.2rem', opacity: 0.5 }}>📝</span>
+             <div>
+               <h4 style={{ margin: 0, fontSize: '0.95rem', color: 'var(--capi-text)' }}>Garantías</h4>
+               <p style={{ margin: 0, fontSize: '0.75rem', color: '#A0AEC0' }}>Seguro Capi Zapallar</p>
+             </div>
           </div>
 
         </div>
       </div>
 
-      {/* ÁREA PRINCIPAL: TIMELINE / SEGUIMIENTO */}
-      <div style={{ flex: '1', background: 'white', border: '1px solid var(--capi-border)', borderRadius: '20px', padding: '40px', display: 'flex', flexDirection: 'column' }}>
+      {/* ÁREA PRINCIPAL: TIMELINE (Estilo Escandinavo) */}
+      <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '30px' }}>
         
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-          <h2 style={{ fontSize: '1.8rem', color: 'var(--capi-navy)', margin: 0 }}>Seguimiento de Obras Activas</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <div>
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--capi-navy)', margin: '0 0 5px 0', fontWeight: '300', letterSpacing: '-1px' }}>Seguimiento</h2>
+            <p style={{ margin: 0, color: 'var(--capi-text)' }}>Supervisa el avance de tus obras de forma transparente.</p>
+          </div>
         </div>
 
         {/* PROYECTO PRINCIPAL (TIMELINE) */}
-        <div style={{ border: '1px solid #e2e8f0', borderRadius: '15px', padding: '30px', marginBottom: '30px' }}>
+        <div style={{ background: 'var(--capi-white)', borderRadius: '24px', padding: '40px', boxShadow: 'var(--capi-shadow)', flex: 1 }}>
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '30px' }}>
             <div>
-              <h3 style={{ margin: '0 0 5px 0', fontSize: '1.5rem', color: 'var(--capi-navy)' }}>Remodelación Baño Principal</h3>
-              <p style={{ margin: 0, color: '#64748b' }}>A cargo de: Maestro Juan Pérez (Gasfitería y Cerámicos)</p>
+              <h3 style={{ margin: '0 0 5px 0', fontSize: '1.5rem', color: 'var(--capi-navy)', fontWeight: '600' }}>Remodelación Baño Principal</h3>
+              <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.9rem' }}>Contratista: Maestro Juan Pérez</p>
             </div>
-            <span style={{ background: '#dbeafe', color: '#1e40af', padding: '5px 12px', borderRadius: '10px', fontSize: '0.9rem', fontWeight: 'bold' }}>EN PROCESO</span>
+            <span style={{ background: '#EBF8FF', color: '#2B6CB0', padding: '6px 12px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px' }}>En Proceso</span>
           </div>
 
           {/* Barra de Progreso Global */}
-          <div style={{ marginBottom: '30px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '0.9rem', color: '#64748b', fontWeight: 'bold' }}>
-              <span>Avance General</span>
-              <span style={{ color: '#3b82f6' }}>65%</span>
+          <div style={{ marginBottom: '50px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '0.9rem', color: 'var(--capi-text)', fontWeight: '600' }}>
+              <span>Progreso Estimado</span>
+              <span style={{ color: 'var(--capi-navy)' }}>65%</span>
             </div>
-            <div style={{ width: '100%', background: '#f1f5f9', borderRadius: '10px', height: '12px', overflow: 'hidden' }}>
-              <div style={{ width: '65%', background: '#3b82f6', height: '100%', borderRadius: '10px' }}></div>
+            <div style={{ width: '100%', background: '#EDF2F7', borderRadius: '10px', height: '8px', overflow: 'hidden' }}>
+              <div style={{ width: '65%', background: 'var(--capi-navy)', height: '100%', borderRadius: '10px' }}></div>
             </div>
           </div>
 
-          {/* TIMELINE VERTICAL */}
-          <div style={{ position: 'relative', paddingLeft: '20px', borderLeft: '2px solid #e2e8f0' }}>
+          {/* TIMELINE VERTICAL MINIMALISTA */}
+          <div style={{ position: 'relative', paddingLeft: '30px' }}>
+            {/* Línea vertical base */}
+            <div style={{ position: 'absolute', left: '6px', top: '5px', bottom: '20px', width: '2px', background: '#EDF2F7' }}></div>
             
             {/* Hito 1 (Completado) */}
-            <div style={{ position: 'relative', marginBottom: '25px' }}>
-              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#10b981', border: '2px solid white', borderRadius: '50%' }}></div>
-              <h4 style={{ margin: '0 0 5px 0', color: '#10b981', fontSize: '1.1rem' }}>Desarme y Retiro de Escombros</h4>
-              <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>Completado el 12 de Junio.</p>
+            <div style={{ position: 'relative', marginBottom: '40px' }}>
+              <div style={{ position: 'absolute', left: '-31px', top: '4px', width: '14px', height: '14px', background: 'var(--capi-navy)', borderRadius: '50%', border: '3px solid var(--capi-white)', boxShadow: '0 0 0 1px var(--capi-navy)' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Desarme y Retiro de Escombros</h4>
+              <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.9rem' }}>Completado el 12 de Junio.</p>
             </div>
 
             {/* Hito 2 (Completado) */}
-            <div style={{ position: 'relative', marginBottom: '25px' }}>
-              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#10b981', border: '2px solid white', borderRadius: '50%' }}></div>
-              <h4 style={{ margin: '0 0 5px 0', color: '#10b981', fontSize: '1.1rem' }}>Instalación de Red de Agua</h4>
-              <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>Completado el 15 de Junio. Prueba de presión superada.</p>
+            <div style={{ position: 'relative', marginBottom: '40px' }}>
+              <div style={{ position: 'absolute', left: '-31px', top: '4px', width: '14px', height: '14px', background: 'var(--capi-navy)', borderRadius: '50%', border: '3px solid var(--capi-white)', boxShadow: '0 0 0 1px var(--capi-navy)' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Instalación de Red de Agua</h4>
+              <p style={{ margin: 0, color: '#A0AEC0', fontSize: '0.9rem' }}>Completado el 15 de Junio. Prueba de presión superada.</p>
             </div>
 
             {/* Hito 3 (En Progreso) */}
-            <div style={{ position: 'relative', marginBottom: '25px' }}>
-              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#3b82f6', border: '2px solid white', borderRadius: '50%', boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.2)' }}></div>
-              <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem' }}>Instalación de Cerámicas</h4>
-              <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem' }}>En ejecución hoy. Faltan terminaciones y fragüe.</p>
+            <div style={{ position: 'relative', marginBottom: '40px' }}>
+              <div style={{ position: 'absolute', left: '-31px', top: '4px', width: '14px', height: '14px', background: 'var(--capi-white)', borderRadius: '50%', border: '3px solid var(--capi-navy)', boxShadow: '0 0 0 4px rgba(45, 55, 72, 0.1)' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: 'var(--capi-navy)', fontSize: '1.1rem', fontWeight: '600' }}>Instalación de Cerámicas</h4>
+              <p style={{ margin: 0, color: 'var(--capi-text)', fontSize: '0.9rem' }}>En ejecución hoy. Faltan terminaciones y fragüe.</p>
             </div>
 
             {/* Hito 4 (Pendiente) */}
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', left: '-27px', top: '0', width: '12px', height: '12px', background: '#e2e8f0', border: '2px solid white', borderRadius: '50%' }}></div>
-              <h4 style={{ margin: '0 0 5px 0', color: '#94a3b8', fontSize: '1.1rem' }}>Instalación de Artefactos</h4>
-              <p style={{ margin: 0, color: '#cbd5e1', fontSize: '0.9rem' }}>Por iniciar (WC, Vanitorio, Grifería).</p>
+              <div style={{ position: 'absolute', left: '-31px', top: '4px', width: '14px', height: '14px', background: '#EDF2F7', borderRadius: '50%', border: '3px solid var(--capi-white)' }}></div>
+              <h4 style={{ margin: '0 0 5px 0', color: '#A0AEC0', fontSize: '1.1rem', fontWeight: '600' }}>Instalación de Artefactos</h4>
+              <p style={{ margin: 0, color: '#CBD5E0', fontSize: '0.9rem' }}>Por iniciar (WC, Vanitorio, Grifería).</p>
             </div>
 
           </div>
 
         </div>
-        
-        {/* Historial Corto */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h3 style={{ color: 'var(--capi-navy)', fontSize: '1.2rem', margin: 0 }}>Proyectos Anteriores</h3>
-          <button style={{ background: 'transparent', border: 'none', color: '#3b82f6', fontWeight: 'bold', cursor: 'pointer' }}>Ver Historial Completo</button>
-        </div>
-        <p style={{ color: '#64748b' }}>No hay proyectos finalizados aún.</p>
 
       </div>
 
