@@ -20,7 +20,7 @@ export default function ProfesionalDashboard() {
 
   useEffect(() => {
     // Escuchar el estado de autenticación para estar seguros de tener el UID
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user: any) => {
       fetchObras();
       if (user) {
         fetchMisPostulaciones(user.uid);
