@@ -1,14 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { FileText, Plus, Search, Filter, Eye, MoreHorizontal, MapPin, X } from 'lucide-react';
+import { FileText, Plus, Search, Filter, Eye, MoreHorizontal, MapPin, X, Check, XCircle, Clock } from 'lucide-react';
 import { db, auth } from '../../../../lib/firebase';
-import { collection, addDoc, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, addDoc, getDocs, query, orderBy, where, doc, updateDoc } from 'firebase/firestore';
 
 export default function ConstructoraObrasMayores() {
   const [obras, setObras] = useState<any[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Propuestas (Postulaciones) State
+  const [showPropuestasModal, setShowPropuestasModal] = useState(false);
+  const [selectedObraForPropuestas, setSelectedObraForPropuestas] = useState<any>(null);
+  const [propuestas, setPropuestas] = useState<any[]>([]);
   
   // Form state
   const [titulo, setTitulo] = useState('');
@@ -60,6 +65,35 @@ export default function ConstructoraObrasMayores() {
       alert("Error al guardar la Obra Mayor");
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const openPropuestas = async (obra: any) => {
+    setSelectedObraForPropuestas(obra);
+    setShowPropuestasModal(true);
+    setPropuestas([]); // Clear old
+    try {
+      const q = query(collection(db, 'postulaciones'), where('obraId', '==', obra.id));
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setPropuestas(data);
+    } catch (error) {
+      console.error("Error fetching propuestas", error);
+    }
+  };
+
+  const updatePropuestaStatus = async (propuestaId: string, status: string) => {
+    try {
+      const ref = doc(db, 'postulaciones', propuestaId);
+      await updateDoc(ref, { estado: status });
+      // Update local UI
+      setPropuestas(prev => prev.map(p => p.id === propuestaId ? { ...p, estado: status } : p));
+      
+      // Si se aprueba, quizás queramos cerrar la obra o sumarle a las analíticas, etc.
+      // Por ahora mantenemos la lógica simple de aprobar.
+    } catch (error) {
+      console.error("Error updating status", error);
+      alert("Hubo un error al actualizar el estado");
     }
   };
 
@@ -117,37 +151,35 @@ export default function ConstructoraObrasMayores() {
               <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600' }}>Proyecto / Obra</th>
               <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600' }}>Especialidad</th>
               <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600' }}>Presupuesto Estimado</th>
-              <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600', textAlign: 'center' }}>Propuestas</th>
               <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600' }}>Estado</th>
-              <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600', textAlign: 'right' }}>Acciones</th>
+              <th style={{ padding: '12px 16px', color: '#78716C', fontWeight: '600', textAlign: 'right' }}>Propuestas / Acciones</th>
             </tr>
           </thead>
           <tbody>
             {obras.length === 0 ? (
               <tr>
-                <td colSpan={6} style={{ padding: '24px', textAlign: 'center', color: '#A8A29E' }}>
+                <td colSpan={5} style={{ padding: '24px', textAlign: 'center', color: '#A8A29E' }}>
                   No hay obras publicadas todavía. Crea tu primera Obra Mayor.
                 </td>
               </tr>
             ) : (
               obras.map((obra) => (
-                <tr key={obra.id} style={{ borderBottom: '1px solid #F5F5F4', transition: 'background 0.2s', cursor: 'pointer' }}>
+                <tr key={obra.id} style={{ borderBottom: '1px solid #F5F5F4', transition: 'background 0.2s' }}>
                   <td style={{ padding: '12px 16px' }}>
                     <p style={{ margin: 0, fontWeight: '700', color: '#292524' }}>{obra.titulo}</p>
                     <p style={{ margin: 0, fontSize: '0.75rem', color: '#78716C' }}>ID: {obra.id.substring(0, 8)}</p>
                   </td>
                   <td style={{ padding: '12px 16px', color: '#57534E', fontWeight: '500' }}>{obra.especialidad}</td>
                   <td style={{ padding: '12px 16px', color: '#292524', fontWeight: '600' }}>{obra.presupuesto}</td>
-                  <td style={{ padding: '12px 16px', textAlign: 'center' }}>
-                    <span style={{ background: '#292524', color: '#FAFAF9', padding: '2px 8px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: '700' }}>
-                      {obra.propuestas || 0}
-                    </span>
-                  </td>
                   <td style={{ padding: '12px 16px' }}>
                     <span style={{ border: '1px solid #10B981', color: '#10B981', background: '#ECFDF5', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: '700' }}>{obra.estado}</span>
                   </td>
                   <td style={{ padding: '12px 16px', textAlign: 'right' }}>
-                    <button style={{ background: 'transparent', border: 'none', color: '#78716C', cursor: 'pointer' }}><Eye size={18} /></button>
+                    <button 
+                      onClick={() => openPropuestas(obra)}
+                      style={{ background: '#F5F5F4', border: '1px solid #E7E5E4', color: '#292524', padding: '6px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: '600', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      <FileText size={14} /> Ver Propuestas Recibidas
+                    </button>
                   </td>
                 </tr>
               ))
@@ -232,6 +264,83 @@ export default function ConstructoraObrasMayores() {
           </div>
         </div>
       )}
+
+      {/* MODAL PROPUESTAS RECIBIDAS */}
+      {showPropuestasModal && selectedObraForPropuestas && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.5)', zIndex: 100,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <div style={{
+            background: '#FAFAF9', width: '100%', maxWidth: '700px', maxHeight: '90vh',
+            borderRadius: '12px', boxShadow: '0 20px 40px rgba(0,0,0,0.2)', display: 'flex', flexDirection: 'column'
+          }}>
+            <div style={{ padding: '24px', borderBottom: '1px solid #E7E5E4', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', background: '#FFF', borderRadius: '12px 12px 0 0' }}>
+              <div>
+                <p style={{ margin: '0 0 4px 0', fontSize: '0.75rem', color: '#78716C', textTransform: 'uppercase', fontWeight: '700' }}>Propuestas Recibidas</p>
+                <h3 style={{ margin: 0, fontSize: '1.25rem', color: '#292524', fontWeight: '800' }}>{selectedObraForPropuestas.titulo}</h3>
+              </div>
+              <button onClick={() => setShowPropuestasModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#A8A29E' }}>
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div style={{ padding: '24px', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
+              {propuestas.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '40px', color: '#78716C' }}>
+                  No has recibido ninguna propuesta para esta obra todavía.
+                </div>
+              ) : (
+                propuestas.map(prop => (
+                  <div key={prop.id} style={{ background: '#FFFFFF', border: '1px solid #E7E5E4', borderRadius: '8px', padding: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                      <div>
+                        <h4 style={{ margin: '0 0 4px 0', color: '#292524', fontSize: '1.1rem' }}>Oferente ID: {prop.profesionalId?.substring(0, 8)}</h4>
+                        <p style={{ margin: 0, color: '#57534E', fontSize: '0.85rem' }}>Fecha: {prop.createdAt?.toDate ? prop.createdAt.toDate().toLocaleDateString() : 'Reciente'}</p>
+                      </div>
+                      <div style={{ textAlign: 'right' }}>
+                        <p style={{ margin: '0 0 4px 0', color: '#292524', fontSize: '1.2rem', fontWeight: '800' }}>{prop.presupuestoPropuesto}</p>
+                        <p style={{ margin: 0, color: '#78716C', fontSize: '0.8rem' }}>Tiempo: {prop.tiempoEstimado}</p>
+                      </div>
+                    </div>
+                    
+                    <div style={{ background: '#F5F5F4', padding: '12px', borderRadius: '6px', marginBottom: '16px' }}>
+                      <p style={{ margin: 0, fontSize: '0.85rem', color: '#57534E', fontStyle: 'italic' }}>"{prop.mensaje}"</p>
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ 
+                        fontSize: '0.75rem', fontWeight: '700', padding: '4px 10px', borderRadius: '12px',
+                        background: prop.estado === 'PENDIENTE' ? '#FEF3C7' : prop.estado === 'APROBADA' ? '#D1FAE5' : '#FEE2E2',
+                        color: prop.estado === 'PENDIENTE' ? '#D97706' : prop.estado === 'APROBADA' ? '#059669' : '#DC2626'
+                      }}>
+                        Estado: {prop.estado}
+                      </span>
+
+                      {prop.estado === 'PENDIENTE' && (
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                          <button 
+                            onClick={() => updatePropuestaStatus(prop.id, 'RECHAZADA')}
+                            style={{ background: 'transparent', border: '1px solid #E7E5E4', color: '#DC2626', padding: '6px 12px', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <XCircle size={14} /> Rechazar
+                          </button>
+                          <button 
+                            onClick={() => updatePropuestaStatus(prop.id, 'APROBADA')}
+                            style={{ background: '#10B981', border: 'none', color: '#FFF', padding: '6px 16px', borderRadius: '6px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Check size={14} /> Aprobar Propuesta
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
